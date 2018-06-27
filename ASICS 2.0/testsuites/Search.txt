@@ -1,0 +1,34 @@
+*** Settings ***
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        search    cycle1
+Library           Selenium2Library
+Resource          ../keywords/setup.txt
+Resource          ../keywords/search.txt
+
+*** Test Cases ***
+Search
+    [Documentation]    Passes if a search page appears
+    Search    gel
+    Comment    Results Page should Appear    gel
+    Wait until page contains element    id=productListerGridFilter_sortBySelect    30 seconds
+
+Autosuggest
+    [Documentation]    Passes if autosuggest results appear.
+    Autosuggest    kayano
+
+Click More
+    [Documentation]    Passes if the "More" button is visble and clickable
+    ...
+    ...    Just checking as this feature sometimes doesn't work.
+    Autosuggest    ${search_product_keyword}
+    Click More button
+    Comment    Results Page should appear    ${search_product_keyword}
+    Wait until page contains element    id=productListerGridFilter_sortBySelect
+
+Select an item from the autosuggest
+    [Documentation]    Test will pass if the user can click an item on the autosuggest list
+    Autosuggest    ${search_product_keyword}
+    ${firstSuggestedProductName}=    Get First Suggested Product Name
+    Click first autosuggest item
+    PDP should appear    ${firstSuggestedProductName}

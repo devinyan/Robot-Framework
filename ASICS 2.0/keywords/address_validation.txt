@@ -1,0 +1,93 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          checkout.txt
+
+*** Keywords ***
+Enter First Name
+    [Arguments]    ${firstname}
+    Wait until Element is visible    id=address.firstName_del    5 seconds
+    Input Text    id=address.firstName_del    ${firstname}
+
+Enter Last Name
+    [Arguments]    ${lastname}
+    Wait until Element is visible    id=address.firstName_del    5 seconds
+    Input Text    id=address.surname_del    ${lastname}
+
+Enter Phoentic Surname
+    [Arguments]    ${phoentic_surname}
+    Input Text    id=address.middlename_del    ${phoentic_surname}
+
+Enter Phonetic First Name
+    [Arguments]    ${phonetic_first_name}
+    Input Text    address.middlename2_del    ${phonetic_first_name}
+
+Enter Phone Number
+    [Arguments]    ${phonenumber}
+    Input Text    address.phone_del    ${phonenumber}
+
+Enter Invalid Region
+    Double Click Element    id=address.region_del
+
+Select Region
+    [Arguments]    ${region}
+    [Documentation]    AJP Prefecture
+    Select from List    id=address.region_del    ${region}
+
+Enter Post Code
+    [Arguments]    ${postcode}
+    Input Text    address.postcode_del    ${postcode}
+
+Enter Town
+    [Arguments]    ${town}
+    Input Text    id=address.townCity_del    ${town}
+
+Enter Address Line1
+    [Arguments]    ${address_line1}
+    Input Text    id=address.line1_del    ${address_line1}
+
+Enter Address Line2
+    [Arguments]    ${address_line2}
+    Input Text    id=address.line2_del    ${address_line2}
+
+Go To Summary Page Use Guest User
+    [Documentation]    Used by AJP
+    ...
+    ...    Will try to allow for AAC
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to Checkout
+    Checkout as Guest
+    Run keyword if    "${COUNTRY}" == "AJP"    Run Keywords    ${EMPTY}
+    ...    AND    Accept Terms and Conditions
+
+Address Validation Error Message Should Appear By Locator
+    [Arguments]    ${errorMessageLocator}
+    Wait Until Page Contains Element    ${errorMessageLocator}    15
+
+Address Validation Error Message Should Display By ID
+    [Arguments]    ${errorMessageIdName}
+    ${isErrorMessageShow}    Execute Javascript    return $('#deliveryAddressForm').find('#address\\\\.${errorMessageIdName}').css('display') == "block"
+    Should Be True    ${isErrorMessageShow}
+
+Check Postcode Value
+    [Documentation]    Checks if the input has characters or has more than 4 digits
+    ${postcode}=    Get Value    address.postcode_del
+    Length should be    ${postcode}    4
+    Should Match Regexp    ${postcode}    [0-9]
+
+Check Phone No Value (AOP)
+    ${phone_no}=    Get Value    address.phone_del
+    Length should be    ${phone_no}    12
+    Should Match Regexp    ${phone_no}    [0-9]
+
+Check Phone No Value (AAC)
+    ${phone_no}=    Get Value    id=address.phone_del
+    Should Match Regexp    ${phone_no}    [0-9]
+
+Enter Email Address
+    [Arguments]    ${emailaddress}
+    Input text    id=address.emailAddress_del    ${emailaddress}

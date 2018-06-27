@@ -1,0 +1,18 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for US
+
+*** Variables ***
+${site_url}       http://www.ecstage.onitsukatiger.com/be/be-fr/
+${url_production}    http://www.onitsukatiger.com/be/be-fr/
+${home_title_prefix}    Onitsuka Tiger Belgium
+${home_title_suffix}    | Homepage
+${search_keyword}    edr
+${search_product}    gel    # 0010141695.1390
+${search_results_title}    Rechercher...
+@{shoe_size2}     Mens 6    \    \    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    /    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    \    Womens 7.5
+${local_site_url}    http://onitsukatiger-fr:9001/be/be-fr/
+${search_prod}    gel

@@ -1,0 +1,51 @@
+*** Settings ***
+Suite Setup       Open Homepage For SmokeTest    AOP
+Suite Teardown    Close Browser
+Force Tags        checkout    aop    smoketestaop
+Resource          ../keywords/cart.txt
+Resource          ../keywords/checkout.txt
+Resource          ../variables/AOP/resource.txt
+Resource          ../keywords/customer_registration.txt
+
+*** Test Cases ***
+Guest Checkout
+    [Documentation]    Had to separate AOP from AJP's checkout due to the different payment methods and the flow is different.
+    Set Test Variable    ${COUNTRY}    AOP
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Guest
+    Enter AOP Address
+
+Guest Checkout with Gift Wrapping
+    [Documentation]    No check whether Gift wrapping appears in the confirmation page.
+    [Tags]    giftwrappingaop    sandbox
+    [Setup]    Go to    ${asics_production_url}
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Guest
+    Enter AOP Address
+    Select Enable Gift Wrapping Checkbox
+
+Registered Checkout
+    [Tags]    registeredaop
+    [Setup]    Go to    ${asics_url}
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to Checkout
+    Checkout as Registered User
+    Enter a Delivery Address if not present
+    [Teardown]    Log Out

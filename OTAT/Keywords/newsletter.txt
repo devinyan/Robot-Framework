@@ -1,0 +1,10 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          address_validation.txt
+
+*** Keywords ***
+Newsletter should be checked
+    Checkbox Should be Selected    id=NewsLetter
+
+Newsletter should not be checked
+    Checkbox Should not be Selected    id=NewsLetter

@@ -1,0 +1,33 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for AU
+
+*** Variables ***
+${error_invalid_firstname}    Please enter a first name
+${error_invalid_lastname}    Please enter a last name
+${error_weak_password}    Please enter a strong password (at least 6 chars)
+${error_invalid_email}    Please enter a valid email
+${error_no_password}    Please enter a strong password (at least 6 chars)
+${error_no_confirm_password}    Please confirm your password
+${error_general_message}    Please correct the errors below.
+${notification_registration_complete}    Thanks for registering.
+${login_url}      login
+${error_existing_email}    An account already exists for this email address
+${error_password_no_match}    Password and password confirmation do not match
+${search_results_title}    Search
+${notification_quantity_updated}    Product quantity has been updated
+${my_account_header}    My Account
+${addressvariable}    AOP    # This is for AOP address population
+${payment_variable}    AOP
+${shipping_link}    Click here for more info
+${shipping_url}    shipping
+${shipping_header}    Shipping
+${error_invalid_login}    Your username or password was incorrect
+${titleForShippingAddress}    Ms
+${firstNameForShippingAddress}    Nicole
+${lastNameForShiipingAddress}    Toledo
+${addressLine1}    27 O Connel Street
+${addressLine2}    ${EMPTY}
+${townCity}       Sydney
+${state}          New South Wales
+${postcode}       2000
+${phonenumber}    07700900698

@@ -1,0 +1,96 @@
+*** Settings ***
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        aop    checkoutaop    cycle1
+Resource          ../keywords/cart.txt
+Resource          ../keywords/checkout.txt
+Resource          ../variables/AOP/resource.txt
+Resource          ../keywords/customer_registration.txt
+
+*** Test Cases ***
+Guest Checkout
+    [Documentation]    Had to separate AOP from AJP's checkout due to the different payment methods and the flow is different.
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Guest
+    Enter AOP Address
+    Accept Terms and Conditions
+    Pay with Visa
+    Place Order
+    Comment    Pay with Paypal Visa
+    Get Order Number
+
+Guest Checkout with Gift Wrapping
+    [Documentation]    No check whether Gift wrapping appears in the confirmation page.
+    [Tags]    giftwrappingaop
+    [Setup]    Go to    ${asics_url}
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Guest
+    Enter AOP Address
+    Select Enable Gift Wrapping Checkbox
+    Accept Terms and Conditions
+    Pay with Visa
+    Place Order
+    Comment    Pay with Paypal Visa
+    Get Order Number
+
+Registered Checkout
+    [Tags]    registeredaop
+    [Setup]    Go to    ${asics_url}
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to Checkout
+    Checkout as Registered User
+    Enter a Delivery Address if not present
+    Accept Terms and Conditions
+    Pay with Visa
+    Place Order
+    Comment    Pay with Paypal Visa
+    Get Order Number
+    [Teardown]    Log Out
+
+Become a New Member and Checkout
+    [Documentation]    This is the successful case.
+    ...
+    ...    The expected failtures will go to another test suite.
+    ...
+    ...    Make sure the COUNTRY variable is set properly in the variable file else it won't work.
+    [Tags]
+    [Setup]    Go to    ${asics_url}
+    Search    0010123221.0190
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to Checkout
+    Register from Checkout
+    Enter First Name    ${registration_firstname}
+    Enter Last Name    ${registration_lastname}
+    ${dummyEmail}=    Generate Dummy Email
+    Input Text    id=address.emailAddress_del    ${dummyEmail}
+    Enter Password    ${registration_password}
+    Enter Confirmed Password    ${registration_password}
+    Register
+    Welcome Message should appear
+    Enter AOP Address
+    Accept Terms and Conditions
+    Pay with Visa
+    Place Order
+    Comment    Pay with Paypal Visa
+    Get Order Number

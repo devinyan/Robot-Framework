@@ -1,0 +1,25 @@
+*** Settings ***
+Documentation     Verify Component on Homepage
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Resource          ../keywords/setup.txt
+Resource          ../keywords/search.txt
+Resource          ../keywords/cart.txt
+
+*** Test Cases ***
+Verify MCTA Component
+    Page Should Contain Element    id=fullwidth
+
+Verify Product Recomment Component
+    [Documentation]    Validate the recommend component In Homepage
+    [Tags]    certona
+    [Setup]
+    Wait until Page Contains Element    id=auto-recommend-component    1 minute
+
+Verify Product Recomment Component In PDP
+    [Documentation]    Validate the recommend component In PDP
+    [Tags]    certona
+    [Setup]
+    Search    gel
+    Select In Stock Product in the PLP
+    Wait until Page Contains Element    id=auto-recommend-component    1 minute

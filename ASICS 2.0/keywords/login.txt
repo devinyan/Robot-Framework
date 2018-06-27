@@ -1,0 +1,32 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          ../variables/userdetails.txt
+
+*** Keywords ***
+Login
+    [Arguments]    ${username}    ${password}
+    Wait Until Page Contains Element    id=j_username    20 seconds
+    Input Text    id=j_username    ${username}
+    Input Password    id=j_password    ${password}
+    Click Element    xpath=//button[@type='submit']
+    Page should contain    ${my_account_title}
+
+Login to My Account
+    Go to    ${asics_url}${login_url}
+    Wait until Page Contains Element    id=j_username    30 seconds
+    Login    ${login_email}    ${login_password}
+
+Log out
+    [Documentation]    This is specifically for AJP.
+    Comment    Focus    xpath=.//*[@id='top-bar-left']/li[6]/a
+    Comment    Wait until Element is Visible    xpath=.//*[@id='top-bar-left']/li[6]/a    10 seconds
+    Comment    Click Element    xpath=.//*[@id='top-bar-left']/li[6]/a
+    Focus    id=logout
+    Wait until Element is visible    id=logout
+    Click Element    id=logout
+    Wait Until Keyword succeeds    1 minute    10 seconds    Page Should Contain Element    css=.alert.neutral
+
+Login to My Account For Change Password Case
+    Go to    ${asics_url}${login_url}
+    Wait until Page Contains Element    id=j_username    30 seconds
+    Login    ${update_password_case_user_email}    ${login_password}

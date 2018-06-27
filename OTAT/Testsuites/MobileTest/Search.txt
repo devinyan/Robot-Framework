@@ -1,0 +1,13 @@
+*** Settings ***
+Suite Setup       Open Homepage For Mobile
+Suite Teardown    Close browser
+Force Tags        mobile
+Resource          ../../Keywords/setup.txt
+Resource          ../../Keywords/search.txt
+
+*** Test Cases ***
+Search
+    [Setup]
+    Search For Mobile    ${search_keyword}
+    Search Result Page should be Open    ${search_keyword}    ${search_results_title}    ${home_title_prefix}
+    [Teardown]

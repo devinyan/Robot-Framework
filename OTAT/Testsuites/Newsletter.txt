@@ -1,0 +1,18 @@
+*** Settings ***
+Documentation     For test cases regarding the Newsletter checkbox
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Test Setup        Go to Summary Page Use Guest User
+Force Tags        newsletter
+Resource          ../Keywords/newsletter.txt
+
+*** Test Cases ***
+AAC Checkbox
+    [Documentation]    AAC wants the Newsletter checkbox to be checked on default during Guest Checkout.
+    ...
+    ...    https://asicshq.atlassian.net/browse/OTSPRT-1501
+    [Tags]    otatus    uscheckout
+    Newsletter should be checked
+
+Non-AAC Checkbox
+    Newsletter should not be checked

@@ -1,0 +1,45 @@
+*** Settings ***
+Documentation     Listed are all the payments based on the country.
+...
+...               AAC's payments are done on the Order Confirmation page.
+...               AOP is done via the Paypal Page
+...               AEB is done via Ogone Page
+Library           Selenium2Library
+
+*** Keywords ***
+AAC - Visa Payment
+    Select from List    id=payment.cardType    Visa
+    Input Text    id=payment.nameOnCard    Nicole Toledo
+    Input Text    id=payment.cardNumber    4111111111111111
+    Select from List    id=ExpiryMonth    10
+    Select from List    id=ExpiryYear    2017
+    Input Text    id=securityCode    123
+    Sleep    10 seconds
+
+AOP - Paypal Visa
+    Wait until Page Contains Element    id=credit_card_number    20 seconds
+    Input Text    id=credit_card_number    4222626995915762
+    Input Text    css=input[name="expiryMonth"]    10
+    Input Text    css=input[name="expiryYear"]    2018
+    Input Text    id=cvv2    123
+    Click Element    id=btn_pay_cc
+    Wait Until Element is Visible    css=.col-sm-6    45 seconds
+
+AEB- Ogone Payment
+    [Documentation]    Only for VISA Payment.
+    Wait Until Page contains Element    id=Ecom_Payment_Card_Number    20 seconds
+    Input Text    id=Ecom_Payment_Card_Number    4111111111111111
+    Select from list    id=Ecom_Payment_Card_ExpDate_Month    10
+    Select from List    id=Ecom_Payment_Card_ExpDate_Year    2031
+    Input Text    id=Ecom_Payment_Card_Verification    321
+    Click Element    submit3
+    Sleep    5 seconds
+
+AOP - Paypal Visa For Mobile
+    Select from List    id=payment.cardType    Visa
+    Input Text    id=payment.nameOnCard    Nicole Toledo
+    Input Text    id=payment.cardNumber    4111111111111111
+    Select from List    id=ExpiryMonth    10
+    Select from List    id=ExpiryYear    2017
+    Input Text    id=securityCode    123
+    Sleep    10 seconds

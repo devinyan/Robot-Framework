@@ -1,0 +1,27 @@
+﻿*** Settings ***
+Documentation     User credentials for testing for AJP
+
+*** Variables ***
+#Customer Registration - PLEASE DELETE IN THE BACKEND BEFORE USE
+${registration_firstname}    Nicole
+${registration_lastname}    Toledo
+${registration_phonetic_firstname}    ニコール
+${registration_phonetic_lastname}    トレド
+${registration_email}    nicole.toledo.test@outlook.com
+${registration_password}    123456n
+${registration_confirm_password}    123456n
+#Login Details - For Registered Users
+${login_email}    nicole.toledo@asics.com
+${login_password}    123456n
+${checkout_delivery_title}    Miss
+${checkout_delivery_surname}    トレド
+${checkout_delivery_firstname}    ニコール
+${checkout_delivery_sei}    トレド
+${checkout_delivery_mei}    ニコール
+${checkout_delivery_phonenumber}    0801234567890
+${checkout_delivery_postcode}    2650025
+${checkout_delivery_region}    千葉県
+${checkout_delivery_town}    花見川区
+${checkout_delivery_address1}    花園２－６－２
+${login_updated_password}    654321n
+${update_password_case_user_email}    n.toledo@mailinator.com    # Just for the Successful Change Password test case

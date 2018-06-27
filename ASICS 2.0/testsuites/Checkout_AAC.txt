@@ -1,0 +1,111 @@
+*** Settings ***
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        checkout    cycle1    aac    checkoutaac
+Resource          ../keywords/checkout.txt
+Resource          ../keywords/cart.txt
+Resource          ../keywords/tax_calculation.txt
+
+*** Test Cases ***
+Guest Checkout
+    [Tags]    guestaac
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Guest
+    Enter AAC Address
+    Pay with Visa For ACC
+    Place Order
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Get Order Number
+
+Delete Cookies then Refresh On Summary Page
+    [Documentation]    Issue we had on Production
+    ...    If you checkout and delete the cookies/wait for the session to timeout it will get a 500 error
+    [Tags]    deletecookies
+    [Setup]    Go to    ${asics_url}
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Guest
+    Delete all Cookies
+    Reload Page
+    Page Should Not Contain    It looks like this page doesn't exist or some error occurred
+    Comment    Page should contain Element    id=address.firstName_del
+
+Delete Cookies then Refresh On Cart Page
+    [Documentation]    Issue we had on Production
+    ...    If you checkout and delete the cookies/wait for the session to timeout it will get a 500 error
+    [Tags]    deletecookies
+    [Setup]    Go to    ${asics_url}
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Delete all Cookies
+    Go to Cart Page
+    Comment    Reload Page
+    Page Should Not Contain    It looks like this page doesn't exist or some error occurred
+    Page Should Contain    Your shopping cart is empty
+
+Tax Calculation For Guest
+    [Tags]    taxaac    sandbox
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Guest
+    Enter AAC Address
+    Comment    Get Tax From Summary Page For AAC
+    Tax Should Be Correct For AAC
+    Pay with Visa For ACC
+    Place Order
+    Get Order Number
+
+Registered Checkout
+    [Tags]
+    [Setup]    Go to    ${asics_url}
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Registered User
+    Enter AAC Delivery Address If Not Exist
+    Comment    Pay with Visa For ACC
+    Enter Visa Info If Not Exist for AAC
+    Place Order
+    Get Order Number
+    [Teardown]    Logout
+
+Tax Calculation For Registered
+    [Tags]    taxaac    sandbox
+    [Setup]    Go to    ${asics_url}
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Registered User
+    Enter AAC Delivery Address If Not Exist
+    Comment    Pay with Visa For ACC
+    Tax Should Be Correct For AAC
+    Enter Visa Info If Not Exist for AAC
+    Place Order
+    Get Order Number
+    [Teardown]    Logout

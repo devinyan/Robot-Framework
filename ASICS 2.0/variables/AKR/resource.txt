@@ -1,0 +1,54 @@
+*** Settings ***
+Documentation     These contain keywords for localziations or url paths for ASICS 2.0 Japan
+
+*** Variables ***
+${asics_url}      http://www.ecstage.asics.com/kr/ko-kr    #http://www.ecstage.asics.com/kr/ko-kr\ \ #http://www.ecdev.asics.com/kr/ko-kr/ # http://asics-kr.local:9001/kr/ko-kr/
+${asics_home_title_prefix}    ASICS Korea
+${asics_home_title_suffix}    \    # | Homepage
+#Login Page
+${login_title}    Login
+${login_url}      login
+${logout_link_text}    로그아웃
+#Registration Page
+${error_invalid_firstname}    お名前をご入力ください。
+${error_invalid_lastname}    姓（名字）をご入力ください。
+${error_weak_password}    強力なパスワードを入力してください (最低 6 文字)
+${error_invalid_email}    有効なEメールアドレスを入力してください。
+${error_existing_email}    この電子メール アドレスに対してすでにメールのアカウントが存在します
+${error_email_no_match}    メール アドレスと再入力したメール アドレスが一致しません
+${error_no_password}    パスワードを再入力してください
+${error_no_confirm_password}    パスワードを再入力してください
+${error_password_no_match}    パスワードとパスワード再入力が一致しません
+${error_general_message}    以下のエラーを修正してください
+${error_phonetic_first_name}    メイ（お名前）をカナでご入力ください
+${error_phonetic_last_name}    セイ（名字）をカナでご入力ください
+${error_byte_validation}    姓名が入力文字数を超えたため、省略してご記入ください
+${error_blank_email}    正しいメール アドレスを入力してください    # for personal details
+${notification_registration_complete}    ご登録ありがとうございます。
+#My Account Page
+${my_account_url}    my-account
+${my_account_title}    나의 계정
+${notification_update_details}    プロフィールが更新されています
+${error_incorrect_current_password}    現在のパスワードを入力してください
+${button_cancel}    キャンセル
+${notification_password_update}    パスワードが変更されています
+${profile_url}    profile
+${personal_details_modify_text}    会員情報を設定する
+${error_personal_details_blank_email}    メール アドレスを確認してください
+${personal_details_title}    나의 계정
+#Store Finder
+${store_finder_url}    store-finder
+${store_finder_title}    Store Locator
+${store_finder_page_title}    매장 검색
+${checkout_text}    결제 진행
+${continue_shopping_text}    쇼핑 계속하기
+${error_mandatory_text}    このフィールドは必須です
+${error_personal_info_notchecked}    個人情報の取扱を承諾してください。
+${resultstitle}    검색
+${error_invalid_login}    사용자명 또는 비밀번호가 일치하지 않습니다.
+${search_product_keyword}    gel
+${asics_production_url}    http://www.asics.com/kr    # http://www.asics.com/kr \ \ \ http://www.ecstage.asics.com/kr/ko-kr
+${shoesCatalogURL}    */c/mens-tennis-shoes
+${apparelCatalogURL}    */c/kids-apparel
+${accessoriesCatalogURL}    */c/kids-accessories
+${search_prod}    gel

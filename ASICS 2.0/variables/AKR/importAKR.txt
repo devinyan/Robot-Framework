@@ -1,0 +1,10 @@
+*** Settings ***
+Documentation     This resource file contain specific variables for running
+...               tests on ASICS 2.0 JP site.
+
+*** Variables ***
+
+*** Keywords ***
+AKR
+    [Documentation]    Initialises AKR variables (Currently using the DEV site)
+    Import Resource    ${CURDIR}\\resource.txt

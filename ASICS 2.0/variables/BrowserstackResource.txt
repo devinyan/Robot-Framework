@@ -1,0 +1,15 @@
+*** Settings ***
+Documentation     This file setup the browserstack resourece
+
+*** Variables ***
+${OS}             WINDOWS
+# The OS you want to test.
+${OS_VERSION}     7
+${BROWSER_NAME}    chrome
+${BROWSER_VERSION}    51    # Browser version you want to test.
+${PROJECT_NAME}    ASICS 2.0    # What appears in Browserstack
+${BUILD_NUM}      AGB Checkout Test    # For grouping purposes
+${BS_SPECS}       javascriptEnabled:True,browserstack.debug:true,acceptSslCerts:true
+${COMMAND_EXECUTOR_BROWSERSTACK}    http://nicoletoledo1:wmqWLsMSspdjJuvf4uzT@hub.browserstack.com/wd/hub
+${USE_LOCAL_SERVER}    True
+${browserstack_video}    true

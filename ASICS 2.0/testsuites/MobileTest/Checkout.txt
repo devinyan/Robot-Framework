@@ -1,0 +1,31 @@
+*** Settings ***
+Suite Setup       Open Homepage For Mobile
+Suite Teardown    Close Browser
+Resource          ../../Keywords/checkout.txt
+Resource          ../../Keywords/setup.txt
+
+*** Test Cases ***
+Guest Checkout
+    [Tags]    mobile
+    Search For Mobile    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to Cart For Mobile
+    Proceed to Checkout For Mobile
+    Checkout as Guest For Mobile
+    Enter Shipping Details
+    Proceed with Payment For Mobile
+    Get Order Number
+
+Registered Checkout
+    [Tags]    mobile
+    Search For Mobile    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to Cart For Mobile
+    Proceed to Checkout For Mobile
+    Checkout as Registered User
+    Enter Shipping Details If Not Exist For Registered User
+    Accept Terms and Conditions
+    Proceed with Payment For Mobile
+    Get Order Number

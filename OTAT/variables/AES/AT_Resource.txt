@@ -1,0 +1,16 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for US
+
+*** Variables ***
+${site_url}       http://www.ecstage.asicstiger.com/es/es-es/
+${url_production}    http:///www.asicstiger.com/es/
+${home_title_prefix}    ASICS Tiger Spain
+@{shoe_size2}     Mens 6    \    \    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    /    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    \    Womens 7.5
+${search_product}    0010238281.9099    # 0010236804.1159
+${search_keyword}    gel
+${local_site_url}    http://asicstiger-es:9001/es/es-es/
+${search_prod}    0010299797.0101

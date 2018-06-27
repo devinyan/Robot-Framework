@@ -1,0 +1,3 @@
+*** Keywords ***
+AGB
+    Import Resource    ${CURDIR}\\resource.txt

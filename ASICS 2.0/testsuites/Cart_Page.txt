@@ -1,0 +1,64 @@
+*** Settings ***
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        cart    cycle1
+Library           Selenium2Library
+Resource          ../keywords/cart.txt
+Resource          ../keywords/setup.txt
+
+*** Test Cases ***
+Add to Cart
+    Search    ${search_product_keyword}
+    Comment    Select first Product in the PLP
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    [Teardown]    Run Keywords    Go to Cart Page
+    ...    AND    Remove Item from Cart
+
+Review Cart Layout
+    [Documentation]    Test passes if all important fields are present (please refer to Review Cart Layout button)
+    Search    ${search_product_keyword}
+    Comment    Select first Product in the PLP
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Shopping Cart ID should be present
+    Review Cart Layout
+    [Teardown]    Remove Item from Cart
+
+Update Item Quantity
+    Search    ${search_product_keyword}
+    Comment    Select first Product in the PLP
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Increase Item Quantity
+    Cart Quantity should have changed
+    [Teardown]    Remove Item from Cart
+
+Keep Shopping
+    [Documentation]    Test will pass if upon clicking the keep shopping button and user goes back to the homepage.
+    [Tags]    keepshopping
+    Search    ${search_product_keyword}
+    Comment    Select first Product in the PLP
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Continue Shopping
+    [Teardown]    Run Keywords    Go to Cart Page
+    ...    AND    Remove Item from Cart
+
+Empty Cart
+    [Documentation]    When you click on the cart page you should not get a site 500
+    [Tags]    emptycart
+    [Setup]    Go to    ${asics_url}
+    Go to Cart Page
+    Page should contain Element    css=.content

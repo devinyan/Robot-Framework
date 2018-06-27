@@ -1,0 +1,39 @@
+*** Settings ***
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        addtocart    otatus    cycle1
+Resource          ../Keywords/cart.txt
+
+*** Test Cases ***
+Add to Cart
+    [Documentation]    This is from the PDP.
+    Search    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to Cart
+    MiniCart Quantity should have increased
+    [Teardown]    Run Keyword if Test Passed    Run Keywords    Go to Cart Page
+    ...    AND    Remove Item from Cart
+
+Update Cart Quantity
+    Search    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to Cart
+    MiniCart Quantity should have increased
+    Go to Cart Page
+    Increase Cart Quantity
+    Cart Quantity should have been changed
+    [Teardown]    Remove Item from Cart
+
+Shipping Links are working
+    [Tags]    shippinglink
+    Search    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to Cart
+    MiniCart Quantity should have increased
+    Go to Cart Page
+    Check shipping info link
+    [Teardown]    Run Keywords    Go to Cart Page
+    ...    AND    Remove Item from Cart

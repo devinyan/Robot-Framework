@@ -1,0 +1,102 @@
+*** Settings ***
+Suite Setup       Open Homepage For Mobile
+Suite Teardown    Close Browser
+Resource          ../../Keywords/setup.txt
+Resource          ../../keywords/customer_registration.txt
+
+*** Test Cases ***
+Invalid First Name
+    [Documentation]    Leaving the first name blank should cause an error
+    [Tags]    mobile
+    [Setup]    Go to    ${site_url}${login_url}
+    Enter First Name    ${EMPTY}
+    Enter Last Name    ${registration_lastname}
+    Register
+    Error Message should appear    ${error_invalid_firstname}
+    Error Message should appear    ${error_general_message}
+
+Invalid Last Name
+    [Documentation]    Leaving the first name blank should cause an error
+    [Tags]    mobile
+    [Setup]    Go to    ${site_url}${login_url}
+    Enter Last Name    ${EMPTY}
+    Enter First Name    ${registration_firstname}
+    Register
+    Error message should appear    ${error_invalid_lastname}
+    Error Message should appear    ${error_general_message}
+
+Invalid Email Address
+    [Tags]    mobile
+    [Setup]    Go to    ${site_url}${login_url}
+    Enter Email Address    whatever@
+    Register
+    Error Message should appear    ${error_invalid_email}
+
+Existing Email Address
+    [Tags]    mobile
+    [Setup]    Go to    ${site_url}${login_url}
+    Enter First Name    ${registration_firstname}
+    Enter Last Name    ${registration_lastname}
+    Enter Email Address    ${login_email}
+    Enter Password    asics123
+    Enter Confirmed Password    asics123
+    Register
+    Error Message should appear    ${error_existing_email}
+    Error Message should appear    ${error_general_message}
+
+Weak Password
+    [Tags]    mobile
+    [Setup]    Go to    ${site_url}${login_url}
+    Enter First Name    ${registration_firstname}
+    Enter Last Name    ${registration_lastname}
+    Enter Email Address    ${guestemaill}
+    Enter Password    1234
+    Enter Confirmed Password    1234
+    Register
+    Error Message should appear    ${error_general_message}
+    Error message should appear    ${error_weak_password}
+    ${errortext}=    Get Text    id=pwd.errors
+    Log    ${errortext}
+
+Blank Confirm Password
+    [Tags]    mobile
+    [Setup]    Go to    ${site_url}${login_url}
+    Enter First Name    ${registration_firstname}
+    Enter Last Name    ${registration_lastname}
+    Enter Email Address    ${guestemaill}
+    Enter Password    123456n
+    Enter Confirmed Password    ${EMPTY}
+    Register
+    Error Message should appear    ${error_general_message}
+    Error Message should appear    ${error_no_confirm_password}
+
+Newsletter Check
+    [Tags]    mobile
+    [Setup]    Go to    ${site_url}${login_url}
+    Email Checkbox shouldn't be checked
+
+Passwords do not match
+    [Tags]    mobile
+    [Setup]    Go to    ${site_url}${login_url}
+    Enter First Name    ${registration_firstname}
+    Enter Last Name    ${registration_lastname}
+    Enter Email Address    ${guestemaill}
+    Enter Password    123456
+    Enter Confirmed Password    1234567
+    Comment    Check Personal Information Checkbox
+    Register
+    Error Message should appear    ${error_password_no_match}
+    Error Message should appear    ${error_general_message}
+
+Successful Registration
+    [Tags]    mobile
+    [Setup]    Go to    ${site_url}${login_url}
+    Enter First Name    ${registration_firstname}
+    Enter Last Name    ${registration_lastname}
+    Comment    Generate a dummy email
+    ${dummyEmail}=    Generate Dummy email
+    Enter Email Address    ${dummyEmail}
+    Enter Password    ${registration_password}
+    Enter Confirmed Password    ${registration_password}
+    Register
+    Welcome Message should appear

@@ -1,0 +1,162 @@
+*** Settings ***
+Documentation     This resource file creates dummy addresses to use for checkout purposes.
+Library           Selenium2Library
+
+*** Keywords ***
+AAC Address
+    Select from List    id=address.title_del    Miss
+    Input Text    id=address.firstName_del    Nicole
+    Input Text    id=address.surname_del    Toledo
+    Input Text    id=address.line1_del    80 Technology
+    Input Text    id=address.townCity_del    Irvine
+    Select from List    id=address.region_del    California
+    Input Text    id=address.postcode_del    92618
+    Input Text    id =address.phone_del    07700900698
+    Input Text    id =address.emailAddress_del    nicole.toledo@asics.com
+    Comment    Click Element at Coordinates    id=address.firstName_del    10    10
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit();
+    Wait Until Element Is Visible    css=.alert.positive.infoMessage    10
+
+AOP Address
+    Comment    Select from List    id=address.title_del    Miss
+    Input Text    id=address.firstName_del    Nicole
+    Input Text    id=address.surname_del    Toledo
+    Input Text    id=address.line1_del    27 O Connel Street
+    Input Text    id=address.townCity_del    Sydney
+    Select from List    id=address.region_del    New South Wales
+    Input Text    id=address.postcode_del    2000
+    Input Text    id =address.phone_del    07700900698
+    ${ifExistEmailAdd}    Execute Javascript    return $("input[name='emailAddress']").is(":visible");
+    Run Keyword if    "${ifExistEmailAdd}" =="True"    Input Text    id=address.emailAddress_del    nicole.toledo@asics.com
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit();
+    Sleep    3
+    Comment    Wait Until Element Is Visible    css=.alert.positive.infoMessage    5
+
+ADE Address
+    Input text    address.firstName_del    Nicole
+    Input text    address.surname_del    Toledo
+    Input text    address.phone_del    07700900698
+    ${ifExistEmailAdd}    Execute Javascript    return $("input[name='emailAddress']").is(":visible");
+    Run Keyword if    "${ifExistEmailAdd}" =="True"    Input Text    id=address.emailAddress_del    nicole.toledo@asics.com
+    Sleep    5 seconds
+    Comment    Click Element    xpath=//*[@id='deliveryAddressForm']/div[1]/div[3]/ul/li[4]/ul/li/label/a
+    Input Text    id=address.line1_del    Kurfürstendamm
+    Input Text    id=address.line2_del    101
+    Input Text    id=address.townCity_del    Berlin
+    Input Text    id=address.postcode_del    10711
+    Comment    Click Element at Coordinates    id =address.phone_del    10    10
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit();
+    Comment    Wait Until Element Is Visible    css=.alert.positive.infoMessage    5
+
+AUK Address
+    Input text    address.firstName_del    Nicole
+    Input text    address.surname_del    Toledo
+    Input text    address.phone_del    07700900698
+    ${ifExistEmailAdd}    Execute Javascript    return $("input[name='emailAddress']").is(":visible");
+    Run Keyword if    "${ifExistEmailAdd}" =="True"    Input Text    address.emailAddress_del    nicole.toledo@asics.com
+    Comment    Click Element    xpath=//*[@id='deliveryAddressForm']/div[1]/div[3]/ul/li[4]/ul/li/label/a
+    Input Text    id=address.line1_del    16-22
+    Input Text    id=address.line2_del    Great Russell St
+    Input Text    id=address.townCity_del    London
+    Input Text    id=address.postcode_del    WC1B3NN
+    Comment    Click Element at Coordinates    id =address.phone_del    10    10
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit();
+    Sleep    3 seconds
+    Comment    Wait Until Element Is Visible    css=.alert.positive.infoMessage    5
+
+AFR Address
+    Input text    address.firstName_del    Nicole
+    Input text    address.surname_del    Toledo
+    Input text    address.phone_del    07700900698
+    ${ifExistEmailAdd}    Execute Javascript    return $("input[name='emailAddress']").is(":visible");
+    Run Keyword if    "${ifExistEmailAdd}" =="True"    Input Text    id=address.emailAddress_del    nicole.toledo@asics.com
+    Sleep    5 seconds
+    Comment    Click Element    xpath=//*[@id='deliveryAddressForm']/div[1]/div[3]/ul/li[4]/ul/li/label/a
+    Input Text    id=address.line1_del    7 Rue de Navarin
+    Input Text    id=address.line2_del    ${EMPTY}
+    Input Text    id=address.townCity_del    Paris
+    Input Text    id=address.postcode_del    75009
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit();
+    Sleep    2 seconds
+    Comment    Wait Until Element Is Visible    css=.alert.positive.infoMessage    5
+
+AIT Address
+    Input text    address.firstName_del    Nicole
+    Input text    address.surname_del    Toledo
+    Input text    address.phone_del    07700900698
+    ${ifExistEmailAdd}    Execute Javascript    return $("input[name='emailAddress']").is(":visible");
+    Run Keyword if    "${ifExistEmailAdd}" =="True"    Input Text    id=address.emailAddress_del    nicole.toledo@asics.com
+    Sleep    5 seconds
+    Comment    Click Element    xpath=//*[@id='deliveryAddressForm']/div[1]/div[3]/ul/li[4]/ul/li/label/a
+    Input Text    id=address.line1_del    Via Nazionale 14
+    Input Text    id=address.line2_del    ${EMPTY}
+    Input Text    id=address.townCity_del    Firenze
+    Input Text    id=address.postcode_del    50123
+    Comment    Click Element at Coordinates    id =address.phone_del    10    10
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit();
+    Sleep    2 seconds
+    Comment    Wait Until Element Is Visible    css=.alert.positive.infoMessage    5
+    execute javascript    document.getElementById('p-method-paypal-express-visa').checked='checked';document.getElementById('p-method-paypal-express-paypal').checked=false;
+
+AES Address
+    Input text    address.firstName_del    Nicole
+    Input text    address.surname_del    Toledo
+    Input text    address.phone_del    07700900698
+    ${ifExistEmailAdd}    Execute Javascript    return $("input[name='emailAddress']").is(":visible");
+    Run Keyword if    "${ifExistEmailAdd}" =="True"    Input Text    id=address.emailAddress_del    nicole.toledo@asics.com
+    Sleep    5 seconds
+    Comment    Click Element    xpath=//*[@id='deliveryAddressForm']/div[1]/div[3]/ul/li[4]/ul/li/label/a
+    Input Text    id=address.line1_del    Carrera de S. Jerónimo 34
+    Input Text    id=address.line2_del    ${EMPTY}
+    Input Text    id=address.townCity_del    Madrid
+    Input Text    id=address.postcode_del    28014
+    Comment    Click Element at Coordinates    id =address.phone_del    10    10
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit();
+    Accept Terms and Conditions
+    Sleep    2 seconds
+    Comment    Wait Until Element Is Visible    css=.alert.positive.infoMessage    5
+
+ASE Address
+    Input text    address.firstName_del    Nicole
+    Input text    address.surname_del    Toledo
+    Input text    address.phone_del    07700900698
+    ${ifExistEmailAdd}    Execute Javascript    return $("input[name='emailAddress']").is(":visible");
+    Run Keyword if    "${ifExistEmailAdd}" =="True"    Input Text    id=address.emailAddress_del    nicole.toledo@asics.com
+    Sleep    5 seconds
+    Comment    Click Element    xpath=//*[@id='deliveryAddressForm']/div[1]/div[3]/ul/li[4]/ul/li/label/a
+    Input Text    id=address.line1_del    Brandmansvägen
+    Input Text    id=address.line2_del    ${EMPTY}
+    Input Text    id=address.townCity_del    Skällinge
+    Input Text    id=address.postcode_del    43017
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit();
+    Accept Terms and Conditions
+
+ADK Address
+    Input text    address.firstName_del    Nicole
+    Input text    address.surname_del    Toledo
+    Input text    address.phone_del    07700900698
+    ${ifExistEmailAdd}    Execute Javascript    return $("input[name='emailAddress']").is(":visible");
+    Run Keyword if    "${ifExistEmailAdd}" =="True"    Input Text    id=address.emailAddress_del    nicole.toledo@asics.com
+    Sleep    5 seconds
+    Comment    Click Element    xpath=//*[@id='deliveryAddressForm']/div[1]/div[3]/ul/li[4]/ul/li/label/a
+    Input Text    id=address.line1_del    Søndergade 75
+    Input Text    id=address.line2_del    ${EMPTY}
+    Input Text    id=address.townCity_del    Jerslev Sjælland
+    Input Text    id=address.postcode_del    4490
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit();
+    Accept Terms and Conditions
+
+AIE Address
+    Input text    address.firstName_del    Nicole
+    Input text    address.surname_del    Toledo
+    Input text    address.phone_del    07700900698
+    ${ifExistEmailAdd}    Execute Javascript    return $("input[name='emailAddress']").is(":visible");
+    Run Keyword if    "${ifExistEmailAdd}" =="True"    Input Text    id=address.emailAddress_del    nicole.toledo@asics.com
+    Sleep    5 seconds
+    Comment    Click Element    xpath=//*[@id='deliveryAddressForm']/div[1]/div[3]/ul/li[4]/ul/li/label/a
+    Input Text    id=address.line1_del    55 Edmund Rice Park
+    Input Text    id=address.line2_del    Bolton
+    Input Text    id=address.townCity_del    Callan
+    Input Text    id=address.postcode_del    D02 AF30
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit();
+    Accept Terms and Conditions

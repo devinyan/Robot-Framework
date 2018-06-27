@@ -1,0 +1,11 @@
+*** Settings ***
+Documentation     This resource file contain specific variables for running
+...               tests on ASICS 2.0 JP site.
+Library           Selenium2Library
+
+*** Variables ***
+
+*** Keywords ***
+AJP
+    [Documentation]    Initialises AJP variables (Currently using the DEV site)
+    Import Resource    ${CURDIR}\\resource.txt

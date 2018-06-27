@@ -1,0 +1,128 @@
+*** Settings ***
+Documentation     AOP has different ways to validate address
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Test Setup        Go To Summary Page Use Guest User
+Test Teardown     Run Keywords    Go to    ${asics_url}
+...               AND    Go to Cart Page
+...               AND    Remove item from Cart
+Force Tags        aop_address    aop
+Resource          ../keywords/address_validation.txt
+Resource          ../keywords/checkout.txt
+
+*** Test Cases ***
+Blank First Name
+    [Tags]
+    [Setup]    Go To Summary Page Use Guest User
+    Enter First Name    ${EMPTY}
+    Enter Last Name    Toledo
+    Enter AddressLine1    21 Jump Street
+    Enter Town    Sydney
+    Select Region    New South Wales
+    Enter Post Code    1234
+    Enter Phone Number    0123456789012
+    Enter Email Address    nicole.toledo@asics.com
+    Place Order
+    Address Validation Error Message Should Appear By Locator    id=address.firstName_del-error
+    [Teardown]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go to Cart Page
+    ...    AND    Remove item from Cart
+
+Blank Last Name
+    Enter First Name    Nicole
+    Enter Last Name    ${EMPTY}
+    Enter AddressLine1    21 Jump Street
+    Enter Town    Sydney
+    Select Region    New South Wales
+    Enter Post Code    1234
+    Enter Phone Number    0123456789012
+    Enter Email Address    nicole.toledo@asics.com
+    Place Order
+    Address Validation Error Message Should Appear By Locator    id=address.surname_del-error
+
+Blank Address Line1
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    ${EMPTY}
+    Enter Town    Sydney
+    Select Region    New South Wales
+    Enter Post Code    1234
+    Enter Phone Number    0123456789012
+    Enter Email Address    nicole.toledo@asics.com
+    Place Order
+    Address Validation Error Message Should Appear By Locator    id=address.line1_del-error
+
+Blank Suburb
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    21 Jump Street
+    Enter Town    ${EMPTY}
+    Select Region    New South Wales
+    Enter Post Code    1234
+    Enter Phone Number    0123456789012
+    Place Order
+    Address Validation Error Message Should Appear By Locator    id=address.townCity_del-error
+
+Blank Region
+    [Tags]
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    21 Jump Street
+    Enter Town    Sydney
+    Select Region    ${EMPTY}
+    Enter Post Code    1234
+    Enter Phone Number    0123456789012
+    Enter Email Address    nicole.toledo@asics.com
+    Place Order
+    Address Validation Error Message Should Appear By Locator    id=address.region_del-error
+
+Check if Postcode is valid
+    [Documentation]    Less than 4 and numeric only
+    [Tags]
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    21 Jump Street
+    Enter Town    Sydney
+    Select Region    New South Wales
+    Enter Post Code    1234testing
+    Enter Phone Number    0123456789012
+    Enter Email Address    nicole.toledo@asics.com
+    Check Postcode Value
+
+Blank Email Address
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    ${EMPTY}
+    Enter Town    Sydney
+    Select Region    New South Wales
+    Enter Post Code    1234
+    Enter Phone Number    0123456789012
+    Enter Email Address    ${EMPTY}
+    Place Order
+    Address Validation Error Message Should Appear By Locator    address.emailAddress_del-error
+
+Check if Phone Number is Valid
+    [Tags]
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    21 Jump Street
+    Enter Town    Sydney
+    Select Region    New South Wales
+    Enter Post Code    1234
+    Enter Phone Number    0123456789012testing
+    Enter Email Address    nicole.toledo@asics.com
+    Check Phone No Value (AOP)
+
+Terms and Conditions should be checked
+    [Tags]    auterms
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    21 Jump Street
+    Enter Town    Sydney
+    Select Region    New South Wales
+    Enter Post Code    1234
+    Enter Phone Number    0123456789012testing
+    Enter Email Address    nicole.toledo@asics.com
+    Untick Terms and Condtions
+    Place Order
+    Address Validation Error Message Should Appear By Locator    id=termsCheck-error

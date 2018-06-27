@@ -1,0 +1,33 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for US
+
+*** Variables ***
+${error_invalid_firstname}    Inserisci un nome
+${error_invalid_lastname}    Inserisci un cognome
+${error_weak_password}    Inserisci una password sicura (almeno 6 caratteri)
+${error_invalid_email}    Inserisci un indirizzo e-mail valido
+${error_no_password}    Inserisci una password sicura (almeno 6 caratteri)
+${error_no_confirm_password}    Conferma la tua password
+${error_general_message}    Correggi gli errori in basso
+${notification_registration_complete}    Grazie per l'iscrizione
+${login_url}      login
+${error_existing_email}    Esiste già un account associato a questo indirizzo e-mail
+${error_password_no_match}    Le password inserite non corrispondono
+${search_results_title}    Cerca
+${notification_quantity_updated}    Product quantity has been updated
+${my_account_header}    Il mio account
+${shipping_link}    Hier erhältst du weitere Informationen zu den Versandoptionen
+${address_variable}    AIT    # Address Population
+${payment_variable}    AEB    # This is only used for AEB due to Ogone Payment
+${shipping_url}    delivery
+${at_search_keyword}    gel
+${error_invalid_login}    Il tuo nome utente e la tua password non sono stati riconosciuti. Riprova
+${titleForShippingAddress}    Ms
+${firstNameForShippingAddress}    Nicole
+${lastNameForShiipingAddress}    Toledo
+${addressLine1}    Via Nazionale 14
+${addressLine2}    ${EMPTY}
+${townCity}       Firenze
+${state}          ${EMPTY}
+${postcode}       50123
+${phonenumber}    07700900698

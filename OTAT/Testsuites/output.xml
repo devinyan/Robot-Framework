@@ -1,0 +1,1204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20150819 10:51:12.502" generator="Robot 2.8.7 (Python 2.7.9 on win32)">
+<suite source="C:\Users\toledo-ni\My Documents\Codebase\TIGER B2C\robotTest\OTAT\Testsuites\Checkout.txt" id="s1" name="OT">
+<kw type="setup" name="setup.Open OT Homepage">
+<doc></doc>
+<arguments>
+</arguments>
+<kw type="kw" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>OT</arg>
+</arguments>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<status status="PASS" endtime="20150819 10:51:13.072" starttime="20150819 10:51:13.072"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150819 10:51:13.073" level="INFO">Log level changed from INFO to TRACE</msg>
+<msg timestamp="20150819 10:51:13.073" level="TRACE">Return: 'INFO'</msg>
+<status status="PASS" endtime="20150819 10:51:13.073" starttime="20150819 10:51:13.073"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150819 10:51:13.074" level="TRACE">Arguments: [ u'AOP' ]</msg>
+<kw type="kw" name="importaop.AOP">
+<doc>Initializes the AOP keyword variables</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:51:13.075" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AOP\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150819 10:51:13.076" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AOP\\\\Resource.txt' ]</msg>
+<msg timestamp="20150819 10:51:13.081" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:13.081" starttime="20150819 10:51:13.075"></status>
+</kw>
+<msg timestamp="20150819 10:51:13.081" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:13.081" starttime="20150819 10:51:13.074"></status>
+</kw>
+<msg timestamp="20150819 10:51:13.081" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:13.081" starttime="20150819 10:51:13.074"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150819 10:51:13.082" level="TRACE">Arguments: [ u'"OT" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<kw type="kw" name="setup.Open Homepage And Check Site Is Up">
+<doc></doc>
+<arguments>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150819 10:51:13.084" level="TRACE">Arguments: [ ${URL}=u'http://www.ecstage.onitsukatiger.com/au/en-au/' | ${homepageTitlePrefix}=u'Onitsuka Tiger Australia' | ${browser}=u'ie' ]</msg>
+<kw type="kw" name="${DESIRED_CAPABILITIES_BROWSERSTACK} = browserstack.Setup Browserstack Desired Capabilities">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:51:13.085" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="${desiredCapabilities} = BuiltIn.Catenate">
+<doc>Catenates the given items together and returns the resulted string.</doc>
+<arguments>
+<arg>SEPARATOR=,</arg>
+<arg>os:${OS}</arg>
+<arg>os_version:${OS_VERSION}</arg>
+<arg>browser:${BROWSER_NAME}</arg>
+<arg>browser_version:${BROWSER_VERSION}</arg>
+<arg>project:${PROJECT_NAME}</arg>
+<arg>build:${BUILD_NUM}</arg>
+<arg>browserstack.local:${USE_LOCAL_SERVER}</arg>
+<arg>${BS_SPECS}</arg>
+</arguments>
+<msg timestamp="20150819 10:51:13.086" level="TRACE">Arguments: [ u'SEPARATOR=,' | u'os:WINDOWS' | u'os_version:7' | u'browser:Chrome' | u'browser_version:42' | u'project:ATOT' | u'build:4.4' | u'browserstack.local:true' | u'javascriptEnabled:True,browserstack.debug:true,acceptSslCerts:true' ]</msg>
+<msg timestamp="20150819 10:51:13.087" level="TRACE">Return: u'os:WINDOWS,os_version:7,browser:Chrome,browser_version:42,project:ATOT,build:4.4,browserstack.local:true,javascriptEnabled:True,browserstack.debug:true,acceptSslCerts:true'</msg>
+<msg timestamp="20150819 10:51:13.087" level="INFO">${desiredCapabilities} = os:WINDOWS,os_version:7,browser:Chrome,browser_version:42,project:ATOT,build:4.4,browserstack.local:true,javascriptEnabled:True,browserstack.debug:true,acceptSslCerts:true</msg>
+<status status="PASS" endtime="20150819 10:51:13.087" starttime="20150819 10:51:13.085"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Log">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${desiredCapabilities}</arg>
+</arguments>
+<msg timestamp="20150819 10:51:13.088" level="TRACE">Arguments: [ u'os:WINDOWS,os_version:7,browser:Chrome,browser_version:42,project:ATOT,build:4.4,browserstack.local:true,javascriptEnabled:True,browserstack.debug:true,acceptSslCerts:true' ]</msg>
+<msg timestamp="20150819 10:51:13.088" level="INFO">os:WINDOWS,os_version:7,browser:Chrome,browser_version:42,project:ATOT,build:4.4,browserstack.local:true,javascriptEnabled:True,browserstack.debug:true,acceptSslCerts:true</msg>
+<msg timestamp="20150819 10:51:13.088" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:13.088" starttime="20150819 10:51:13.087"></status>
+</kw>
+<msg timestamp="20150819 10:51:13.088" level="TRACE">Return: u'os:WINDOWS,os_version:7,browser:Chrome,browser_version:42,project:ATOT,build:4.4,browserstack.local:true,javascriptEnabled:True,browserstack.debug:true,acceptSslCerts:true'</msg>
+<msg timestamp="20150819 10:51:13.088" level="INFO">${DESIRED_CAPABILITIES_BROWSERSTACK} = os:WINDOWS,os_version:7,browser:Chrome,browser_version:42,project:ATOT,build:4.4,browserstack.local:true,javascriptEnabled:True,browserstack.debug:true,acceptSslCerts:true</msg>
+<status status="PASS" endtime="20150819 10:51:13.088" starttime="20150819 10:51:13.084"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${BrowserLocation}"=="local"</arg>
+<arg>Open Browser</arg>
+<arg>${URL}</arg>
+<arg>${browser}</arg>
+</arguments>
+<msg timestamp="20150819 10:51:13.089" level="TRACE">Arguments: [ u'"phantomjs"=="local"' | u'Open Browser' | u'${URL}' | u'${browser}' ]</msg>
+<msg timestamp="20150819 10:51:13.089" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:13.089" starttime="20150819 10:51:13.089"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${BrowserLocation}"=="browserstack"</arg>
+<arg>Open Browser</arg>
+<arg>${URL}</arg>
+<arg>${browser}</arg>
+<arg>remote_url=${COMMAND_EXECUTOR_BROWSERSTACK}</arg>
+<arg>desired_capabilities=${DESIRED_CAPABILITIES_BROWSERSTACK}</arg>
+</arguments>
+<msg timestamp="20150819 10:51:13.090" level="TRACE">Arguments: [ u'"phantomjs"=="browserstack"' | u'Open Browser' | u'${URL}' | u'${browser}' | u'remote_url=${COMMAND_EXECUTOR_BROWSERSTACK}' | u'desired_capabilities=${DESIRED_CAPABILITIES_BROWSERSTACK}' ]</msg>
+<msg timestamp="20150819 10:51:13.090" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:13.090" starttime="20150819 10:51:13.090"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${BrowserLocation}"=="phantomjs"</arg>
+<arg>Open Browser</arg>
+<arg>${URL}</arg>
+<arg>phantomjs</arg>
+<arg>remote_url=http://127.0.0.1:8910/</arg>
+</arguments>
+<msg timestamp="20150819 10:51:13.091" level="TRACE">Arguments: [ u'"phantomjs"=="phantomjs"' | u'Open Browser' | u'${URL}' | u'phantomjs' | u'remote_url=http://127.0.0.1:8910/' ]</msg>
+<kw type="kw" name="Selenium2Library.Open Browser">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${URL}</arg>
+<arg>phantomjs</arg>
+<arg>remote_url=http://127.0.0.1:8910/</arg>
+</arguments>
+<msg timestamp="20150819 10:51:13.092" level="TRACE">Arguments: [ u'http://www.ecstage.onitsukatiger.com/au/en-au/' | u'phantomjs' | remote_url=u'http://127.0.0.1:8910/' ]</msg>
+<msg timestamp="20150819 10:51:13.092" level="INFO">Opening browser 'phantomjs' to base url 'http://www.ecstage.onitsukatiger.com/au/en-au/' through remote server at 'http://127.0.0.1:8910/'</msg>
+<msg timestamp="20150819 10:51:13.094" level="DEBUG">POST http://127.0.0.1:8910//session {"desiredCapabilities": {"platform": "ANY", "browserName": "phantomjs", "version": "", "javascriptEnabled": true}}</msg>
+<msg timestamp="20150819 10:51:13.197" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:13.198" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/timeouts/async_script {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "ms": 5000.0}</msg>
+<msg timestamp="20150819 10:51:13.337" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:14.337" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/timeouts/implicit_wait {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "ms": 0.0}</msg>
+<msg timestamp="20150819 10:51:14.345" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:15.345" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/url {"url": "http://www.ecstage.onitsukatiger.com/au/en-au/", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51"}</msg>
+<msg timestamp="20150819 10:51:37.406" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:38.407" level="DEBUG">Opened browser with session id c57a1230-4614-11e5-8bed-7b83a93c4c51</msg>
+<msg timestamp="20150819 10:51:38.407" level="TRACE">Return: 1</msg>
+<status status="PASS" endtime="20150819 10:51:38.407" starttime="20150819 10:51:13.091"></status>
+</kw>
+<msg timestamp="20150819 10:51:38.408" level="TRACE">Return: 1</msg>
+<status status="PASS" endtime="20150819 10:51:38.408" starttime="20150819 10:51:13.090"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Page Should Contain">
+<doc>Verifies that current page contains `text`.</doc>
+<arguments>
+<arg>${homepageTitlePrefix}</arg>
+</arguments>
+<msg timestamp="20150819 10:51:38.410" level="TRACE">Arguments: [ u'Onitsuka Tiger Australia' ]</msg>
+<msg timestamp="20150819 10:51:38.410" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/frame {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": null}</msg>
+<msg timestamp="20150819 10:51:38.426" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:39.426" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "xpath", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "//*[contains(., 'Onitsuka Tiger Australia')]"}</msg>
+<msg timestamp="20150819 10:51:39.469" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:40.469" level="INFO">Current page contains text 'Onitsuka Tiger Australia'.</msg>
+<msg timestamp="20150819 10:51:40.469" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:40.469" starttime="20150819 10:51:38.409"></status>
+</kw>
+<msg timestamp="20150819 10:51:40.470" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:40.470" starttime="20150819 10:51:13.082"></status>
+</kw>
+<msg timestamp="20150819 10:51:40.470" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:40.470" starttime="20150819 10:51:13.081"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150819 10:51:40.472" level="TRACE">Arguments: [ u'"OT" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150819 10:51:40.472" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:40.472" starttime="20150819 10:51:40.471"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:51:40.473" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150819 10:51:40.474" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/window/current/maximize {"windowHandle": "current", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51"}</msg>
+<msg timestamp="20150819 10:51:40.543" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:41.543" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:41.543" starttime="20150819 10:51:40.473"></status>
+</kw>
+<kw type="kw" name="setup.Close the Cookie Banner">
+<doc>Run this for AEB due to their cookie banner blocking elements needed during the checkout</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150819 10:51:41.546" level="TRACE">Arguments: [ ${country}=u'AOP' ]</msg>
+<kw type="kw" name="${countryList} = BuiltIn.Create List">
+<doc>Returns a list containing given items.</doc>
+<arguments>
+<arg>"ADE"</arg>
+<arg>"AFR"</arg>
+<arg>"AUK"</arg>
+<arg>"AIT"</arg>
+<arg>"AES"</arg>
+<arg>"AOP"</arg>
+</arguments>
+<msg timestamp="20150819 10:51:41.548" level="TRACE">Arguments: [ u'"ADE"' | u'"AFR"' | u'"AUK"' | u'"AIT"' | u'"AES"' | u'"AOP"' ]</msg>
+<msg timestamp="20150819 10:51:41.548" level="TRACE">Return: [u'"ADE"', u'"AFR"', u'"AUK"', u'"AIT"', u'"AES"', u'"AOP"']</msg>
+<msg timestamp="20150819 10:51:41.548" level="INFO">${countryList} = [u'"ADE"', u'"AFR"', u'"AUK"', u'"AIT"', u'"AES"', u'"AOP"']</msg>
+<status status="PASS" endtime="20150819 10:51:41.548" starttime="20150819 10:51:41.547"></status>
+</kw>
+<kw type="kw" name="${count} = Collections.Get Match Count">
+<doc>Returns the count of matches to `pattern` in `list`.</doc>
+<arguments>
+<arg>${countryList}</arg>
+<arg>"${country}"</arg>
+</arguments>
+<msg timestamp="20150819 10:51:41.550" level="TRACE">Arguments: [ [u'"ADE"', u'"AFR"', u'"AUK"', u'"AIT"', u'"AES"', u'"AOP"'] | u'"AOP"' ]</msg>
+<msg timestamp="20150819 10:51:41.550" level="TRACE">Return: 1</msg>
+<msg timestamp="20150819 10:51:41.551" level="INFO">${count} = 1</msg>
+<status status="PASS" endtime="20150819 10:51:41.550" starttime="20150819 10:51:41.549"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>${count} &gt; 0</arg>
+<arg>Click Element</arg>
+<arg>xpath=//a[contains(@href, '#')]</arg>
+</arguments>
+<msg timestamp="20150819 10:51:41.552" level="TRACE">Arguments: [ u'1 &gt; 0' | u'Click Element' | u"xpath=//a[contains(@href, '#')]" ]</msg>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>xpath=//a[contains(@href, '#')]</arg>
+</arguments>
+<msg timestamp="20150819 10:51:41.553" level="TRACE">Arguments: [ u"xpath=//a[contains(@href, '#')]" ]</msg>
+<msg timestamp="20150819 10:51:41.553" level="INFO">Clicking element 'xpath=//a[contains(@href, '#')]'.</msg>
+<msg timestamp="20150819 10:51:41.554" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "xpath", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "//a[contains(@href, '#')]"}</msg>
+<msg timestamp="20150819 10:51:41.593" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:42.593" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949099470/click {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949099470"}</msg>
+<msg timestamp="20150819 10:51:42.678" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:43.678" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:43.678" starttime="20150819 10:51:41.553"></status>
+</kw>
+<msg timestamp="20150819 10:51:43.678" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:43.678" starttime="20150819 10:51:41.551"></status>
+</kw>
+<msg timestamp="20150819 10:51:43.679" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:43.679" starttime="20150819 10:51:41.544"></status>
+</kw>
+<msg timestamp="20150819 10:51:43.679" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:43.679" starttime="20150819 10:51:13.071"></status>
+</kw>
+<msg timestamp="20150819 10:51:43.679" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:43.679" starttime="20150819 10:51:13.069"></status>
+</kw>
+<test id="s1-t1" name="Guest Checkout">
+<kw type="kw" name="search.Search">
+<doc></doc>
+<arguments>
+<arg>${search_product}</arg>
+</arguments>
+<msg timestamp="20150819 10:51:43.684" level="TRACE">Arguments: [ ${keyword}=u'0010223100.1212' ]</msg>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=search</arg>
+<arg>${keyword}</arg>
+</arguments>
+<msg timestamp="20150819 10:51:43.686" level="TRACE">Arguments: [ u'id=search' | u'0010223100.1212' ]</msg>
+<msg timestamp="20150819 10:51:43.686" level="INFO">Typing text '0010223100.1212' into text field 'id=search'</msg>
+<msg timestamp="20150819 10:51:43.686" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "search"}</msg>
+<msg timestamp="20150819 10:51:43.717" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:44.717" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949099478/clear {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949099478"}</msg>
+<msg timestamp="20150819 10:51:44.769" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:45.769" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949099478/value {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949099478", "value": ["0", "0", "1", "0", "2", "2", "3", "1", "0", "0", ".", "1", "2", "1", "2"]}</msg>
+<msg timestamp="20150819 10:51:45.921" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:46.923" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:46.922" starttime="20150819 10:51:43.685"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Press Key">
+<doc>Simulates user pressing key on element identified by `locator`.</doc>
+<arguments>
+<arg>id=search</arg>
+<arg>\\13</arg>
+</arguments>
+<msg timestamp="20150819 10:51:46.924" level="TRACE">Arguments: [ u'id=search' | u'\\13' ]</msg>
+<msg timestamp="20150819 10:51:46.925" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "search"}</msg>
+<msg timestamp="20150819 10:51:46.966" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:47.967" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949099478/value {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949099478", "value": ["\ue007"]}</msg>
+<msg timestamp="20150819 10:51:52.968" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:53.968" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:53.968" starttime="20150819 10:51:46.924"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Page Should Contain Element">
+<doc>Verifies element identified by `locator` is found on the current page.</doc>
+<arguments>
+<arg>id=content</arg>
+</arguments>
+<msg timestamp="20150819 10:51:53.970" level="TRACE">Arguments: [ u'id=content' ]</msg>
+<msg timestamp="20150819 10:51:53.970" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "content"}</msg>
+<msg timestamp="20150819 10:51:54.007" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:55.007" level="INFO">Current page contains element 'id=content'.</msg>
+<msg timestamp="20150819 10:51:55.007" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:55.007" starttime="20150819 10:51:53.969"></status>
+</kw>
+<msg timestamp="20150819 10:51:55.008" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:55.008" starttime="20150819 10:51:43.682"></status>
+</kw>
+<kw type="kw" name="cart.Select the first Product">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:51:55.011" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Wait Until Page Contains Element">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>css=.prod-wrap a</arg>
+<arg>30 seconds</arg>
+</arguments>
+<msg timestamp="20150819 10:51:55.013" level="TRACE">Arguments: [ u'css=.prod-wrap a' | u'30 seconds' ]</msg>
+<msg timestamp="20150819 10:51:55.015" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "css selector", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": ".prod-wrap a"}</msg>
+<msg timestamp="20150819 10:51:55.047" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:56.048" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:56.048" starttime="20150819 10:51:55.012"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>css=.prod-wrap a</arg>
+</arguments>
+<msg timestamp="20150819 10:51:56.049" level="TRACE">Arguments: [ u'css=.prod-wrap a' ]</msg>
+<msg timestamp="20150819 10:51:56.049" level="INFO">Clicking element 'css=.prod-wrap a'.</msg>
+<msg timestamp="20150819 10:51:56.050" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "css selector", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": ".prod-wrap a"}</msg>
+<msg timestamp="20150819 10:51:56.066" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:57.066" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949114006/click {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949114006"}</msg>
+<msg timestamp="20150819 10:51:57.179" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:58.180" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:51:58.180" starttime="20150819 10:51:56.049"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Page Contains Element">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>id=addToCartButton</arg>
+</arguments>
+<msg timestamp="20150819 10:51:58.182" level="TRACE">Arguments: [ u'id=addToCartButton' ]</msg>
+<msg timestamp="20150819 10:51:58.183" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "addToCartButton"}</msg>
+<msg timestamp="20150819 10:51:58.221" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:51:59.422" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "addToCartButton"}</msg>
+<msg timestamp="20150819 10:51:59.436" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:00.437" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:00.437" starttime="20150819 10:51:58.181"></status>
+</kw>
+<msg timestamp="20150819 10:52:00.438" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:00.438" starttime="20150819 10:51:55.009"></status>
+</kw>
+<kw type="kw" name="cart.Select Any Size">
+<doc>Picks the first available size in the list</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:52:00.440" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>id=ptpChooseSizeButton</arg>
+<arg>30 seconds</arg>
+</arguments>
+<msg timestamp="20150819 10:52:00.441" level="TRACE">Arguments: [ u'id=ptpChooseSizeButton' | u'30 seconds' ]</msg>
+<msg timestamp="20150819 10:52:00.442" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "ptpChooseSizeButton"}</msg>
+<msg timestamp="20150819 10:52:00.474" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:01.474" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949119439/displayed {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949119439"}</msg>
+<msg timestamp="20150819 10:52:01.503" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:02.503" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:02.503" starttime="20150819 10:52:00.441"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>id=ptpChooseSizeButton</arg>
+</arguments>
+<msg timestamp="20150819 10:52:02.503" level="TRACE">Arguments: [ u'id=ptpChooseSizeButton' ]</msg>
+<msg timestamp="20150819 10:52:02.504" level="INFO">Clicking element 'id=ptpChooseSizeButton'.</msg>
+<msg timestamp="20150819 10:52:02.504" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "ptpChooseSizeButton"}</msg>
+<msg timestamp="20150819 10:52:02.516" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:03.516" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949119439/click {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949119439"}</msg>
+<msg timestamp="20150819 10:52:04.293" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:05.293" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:05.293" starttime="20150819 10:52:02.503"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>css=.dropdown-menu .SizeOption a:not(.SizeUnavailable)</arg>
+<arg>30 seconds</arg>
+</arguments>
+<msg timestamp="20150819 10:52:05.295" level="TRACE">Arguments: [ u'css=.dropdown-menu .SizeOption a:not(.SizeUnavailable)' | u'30 seconds' ]</msg>
+<msg timestamp="20150819 10:52:05.296" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "css selector", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": ".dropdown-menu .SizeOption a:not(.SizeUnavailable)"}</msg>
+<msg timestamp="20150819 10:52:05.332" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:06.333" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949119440/displayed {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949119440"}</msg>
+<msg timestamp="20150819 10:52:06.380" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:07.381" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:07.381" starttime="20150819 10:52:05.294"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>css=.dropdown-menu .SizeOption a:not(.SizeUnavailable)</arg>
+</arguments>
+<msg timestamp="20150819 10:52:07.381" level="TRACE">Arguments: [ u'css=.dropdown-menu .SizeOption a:not(.SizeUnavailable)' ]</msg>
+<msg timestamp="20150819 10:52:07.382" level="INFO">Clicking element 'css=.dropdown-menu .SizeOption a:not(.SizeUnavailable)'.</msg>
+<msg timestamp="20150819 10:52:07.382" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "css selector", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": ".dropdown-menu .SizeOption a:not(.SizeUnavailable)"}</msg>
+<msg timestamp="20150819 10:52:07.396" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:08.396" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949119440/click {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949119440"}</msg>
+<msg timestamp="20150819 10:52:08.471" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:09.472" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:09.472" starttime="20150819 10:52:07.381"></status>
+</kw>
+<msg timestamp="20150819 10:52:09.473" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:09.473" starttime="20150819 10:52:00.439"></status>
+</kw>
+<kw type="kw" name="cart.Add to Cart">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:52:09.476" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="${status} = BuiltIn.Run Keyword And Return Status">
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<arguments>
+<arg>Element should be visible</arg>
+<arg>id=addToCartButton</arg>
+</arguments>
+<msg timestamp="20150819 10:52:09.477" level="TRACE">Arguments: [ u'Element should be visible' | u'id=addToCartButton' ]</msg>
+<kw type="kw" name="Selenium2Library.Element Should Be Visible">
+<doc>Verifies that the element identified by `locator` is visible.</doc>
+<arguments>
+<arg>id=addToCartButton</arg>
+</arguments>
+<msg timestamp="20150819 10:52:09.478" level="TRACE">Arguments: [ u'id=addToCartButton' ]</msg>
+<msg timestamp="20150819 10:52:09.478" level="INFO">Verifying element 'id=addToCartButton' is visible.</msg>
+<msg timestamp="20150819 10:52:09.479" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "addToCartButton"}</msg>
+<msg timestamp="20150819 10:52:09.489" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:10.489" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949119438/displayed {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949119438"}</msg>
+<msg timestamp="20150819 10:52:10.520" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:11.521" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:11.521" starttime="20150819 10:52:09.478"></status>
+</kw>
+<msg timestamp="20150819 10:52:11.522" level="TRACE">Return: True</msg>
+<msg timestamp="20150819 10:52:11.523" level="INFO">${status} = True</msg>
+<status status="PASS" endtime="20150819 10:52:11.522" starttime="20150819 10:52:09.476"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>${Status} == False</arg>
+<arg>Log</arg>
+<arg>Item might be out of stock</arg>
+</arguments>
+<msg timestamp="20150819 10:52:11.524" level="TRACE">Arguments: [ u'True == False' | u'Log' | u'Item might be out of stock' ]</msg>
+<msg timestamp="20150819 10:52:11.525" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:11.525" starttime="20150819 10:52:11.524"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>${Status} == True</arg>
+<arg>Click Element</arg>
+<arg>id=addToCartButton</arg>
+</arguments>
+<msg timestamp="20150819 10:52:11.527" level="TRACE">Arguments: [ u'True == True' | u'Click Element' | u'id=addToCartButton' ]</msg>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>id=addToCartButton</arg>
+</arguments>
+<msg timestamp="20150819 10:52:11.533" level="TRACE">Arguments: [ u'id=addToCartButton' ]</msg>
+<msg timestamp="20150819 10:52:11.534" level="INFO">Clicking element 'id=addToCartButton'.</msg>
+<msg timestamp="20150819 10:52:11.534" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "addToCartButton"}</msg>
+<msg timestamp="20150819 10:52:11.550" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:12.551" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949119438/click {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949119438"}</msg>
+<msg timestamp="20150819 10:52:12.639" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:13.641" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:13.641" starttime="20150819 10:52:11.533"></status>
+</kw>
+<msg timestamp="20150819 10:52:13.642" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:13.642" starttime="20150819 10:52:11.527"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Sleep">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5 seconds</arg>
+</arguments>
+<msg timestamp="20150819 10:52:13.643" level="TRACE">Arguments: [ u'5 seconds' ]</msg>
+<msg timestamp="20150819 10:52:18.643" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20150819 10:52:18.643" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:18.643" starttime="20150819 10:52:13.643"></status>
+</kw>
+<msg timestamp="20150819 10:52:18.644" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:18.644" starttime="20150819 10:52:09.473"></status>
+</kw>
+<kw type="kw" name="checkout.Proceed to Checkout">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:52:18.646" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>id=minicart-total</arg>
+</arguments>
+<msg timestamp="20150819 10:52:18.647" level="TRACE">Arguments: [ u'id=minicart-total' ]</msg>
+<msg timestamp="20150819 10:52:18.647" level="INFO">Clicking element 'id=minicart-total'.</msg>
+<msg timestamp="20150819 10:52:18.647" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "minicart-total"}</msg>
+<msg timestamp="20150819 10:52:18.678" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:19.678" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949119446/click {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949119446"}</msg>
+<msg timestamp="20150819 10:52:20.671" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:21.671" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:21.671" starttime="20150819 10:52:18.646"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>id=checkoutButtonTop</arg>
+<arg>20 seconds</arg>
+</arguments>
+<msg timestamp="20150819 10:52:21.672" level="TRACE">Arguments: [ u'id=checkoutButtonTop' | u'20 seconds' ]</msg>
+<msg timestamp="20150819 10:52:21.673" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "checkoutButtonTop"}</msg>
+<msg timestamp="20150819 10:52:21.700" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:22.701" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949141701/displayed {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949141701"}</msg>
+<msg timestamp="20150819 10:52:22.741" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:23.741" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:52:23.741" starttime="20150819 10:52:21.672"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>id=checkoutButtonTop</arg>
+</arguments>
+<msg timestamp="20150819 10:52:23.742" level="TRACE">Arguments: [ u'id=checkoutButtonTop' ]</msg>
+<msg timestamp="20150819 10:52:23.742" level="INFO">Clicking element 'id=checkoutButtonTop'.</msg>
+<msg timestamp="20150819 10:52:23.743" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "checkoutButtonTop"}</msg>
+<msg timestamp="20150819 10:52:23.757" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:52:24.757" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949141701/click {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949141701"}</msg>
+<msg timestamp="20150819 10:53:00.379" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:01.380" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:01.380" starttime="20150819 10:52:23.742"></status>
+</kw>
+<msg timestamp="20150819 10:53:01.381" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:01.380" starttime="20150819 10:52:18.644"></status>
+</kw>
+<kw type="kw" name="checkout.Checkout as Guest">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:53:01.384" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Wait Until Element Is Visible">
+<doc>Waits until element specified with `locator` is visible.</doc>
+<arguments>
+<arg>id=guest.email</arg>
+<arg>20 seconds</arg>
+</arguments>
+<msg timestamp="20150819 10:53:01.385" level="TRACE">Arguments: [ u'id=guest.email' | u'20 seconds' ]</msg>
+<msg timestamp="20150819 10:53:01.387" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "guest.email"}</msg>
+<msg timestamp="20150819 10:53:01.436" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:02.436" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949181439/displayed {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949181439"}</msg>
+<msg timestamp="20150819 10:53:02.481" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:03.481" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:03.481" starttime="20150819 10:53:01.385"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=guest.email</arg>
+<arg>${login_email}</arg>
+</arguments>
+<msg timestamp="20150819 10:53:03.482" level="TRACE">Arguments: [ u'id=guest.email' | u'nicole.toledo@asics.com' ]</msg>
+<msg timestamp="20150819 10:53:03.482" level="INFO">Typing text 'nicole.toledo@asics.com' into text field 'id=guest.email'</msg>
+<msg timestamp="20150819 10:53:03.482" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "guest.email"}</msg>
+<msg timestamp="20150819 10:53:03.491" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:04.496" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949181439/clear {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949181439"}</msg>
+<msg timestamp="20150819 10:53:04.531" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:05.532" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949181439/value {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949181439", "value": ["n", "i", "c", "o", "l", "e", ".", "t", "o", "l", "e", "d", "o", "@", "a", "s", "i", "c", "s", ".", "c", "o", "m"]}</msg>
+<msg timestamp="20150819 10:53:05.660" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:06.660" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:06.660" starttime="20150819 10:53:03.481"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>xpath=//form[@id='guestForm']/div/button</arg>
+</arguments>
+<msg timestamp="20150819 10:53:06.661" level="TRACE">Arguments: [ u"xpath=//form[@id='guestForm']/div/button" ]</msg>
+<msg timestamp="20150819 10:53:06.662" level="INFO">Clicking element 'xpath=//form[@id='guestForm']/div/button'.</msg>
+<msg timestamp="20150819 10:53:06.662" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "xpath", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "//form[@id='guestForm']/div/button"}</msg>
+<msg timestamp="20150819 10:53:06.703" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:07.703" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949181440/click {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949181440"}</msg>
+<msg timestamp="20150819 10:53:13.700" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:14.700" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:14.700" starttime="20150819 10:53:06.661"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${address_variable}" == "AAC"</arg>
+<arg>Set Registered setting</arg>
+<arg>False</arg>
+</arguments>
+<msg timestamp="20150819 10:53:14.702" level="TRACE">Arguments: [ u'"AOP" == "AAC"' | u'Set Registered setting' | u'False' ]</msg>
+<msg timestamp="20150819 10:53:14.702" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:14.702" starttime="20150819 10:53:14.701"></status>
+</kw>
+<msg timestamp="20150819 10:53:14.702" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:14.702" starttime="20150819 10:53:01.381"></status>
+</kw>
+<kw type="kw" name="checkout.Enter Shipping Details">
+<doc>Calls the address populating library and chooses which one based on the country</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:53:14.705" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${address_variable}" == "ADE"</arg>
+<arg>ADE Address</arg>
+</arguments>
+<msg timestamp="20150819 10:53:14.706" level="TRACE">Arguments: [ u'"AOP" == "ADE"' | u'ADE Address' ]</msg>
+<msg timestamp="20150819 10:53:14.707" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:14.707" starttime="20150819 10:53:14.706"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${payment_variable}" == "AEB"</arg>
+<arg>Accept Terms and Conditions</arg>
+</arguments>
+<msg timestamp="20150819 10:53:14.709" level="TRACE">Arguments: [ u'"AOP" == "AEB"' | u'Accept Terms and Conditions' ]</msg>
+<msg timestamp="20150819 10:53:14.709" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:14.709" starttime="20150819 10:53:14.708"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${payment_variable}" == "AOP"</arg>
+<arg>Accept Terms and Conditions</arg>
+</arguments>
+<msg timestamp="20150819 10:53:14.711" level="TRACE">Arguments: [ u'"AOP" == "AOP"' | u'Accept Terms and Conditions' ]</msg>
+<kw type="kw" name="checkout.Accept Terms and Conditions">
+<doc>Accept them blindly</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:53:14.714" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Sleep">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5 seconds</arg>
+</arguments>
+<msg timestamp="20150819 10:53:14.715" level="TRACE">Arguments: [ u'5 seconds' ]</msg>
+<msg timestamp="20150819 10:53:19.715" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20150819 10:53:19.715" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:19.715" starttime="20150819 10:53:14.714"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Select Checkbox">
+<doc>Selects checkbox identified by `locator`.</doc>
+<arguments>
+<arg>id=Terms</arg>
+</arguments>
+<msg timestamp="20150819 10:53:19.716" level="TRACE">Arguments: [ u'id=Terms' ]</msg>
+<msg timestamp="20150819 10:53:19.716" level="INFO">Selecting checkbox 'id=Terms'.</msg>
+<msg timestamp="20150819 10:53:19.717" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "Terms"}</msg>
+<msg timestamp="20150819 10:53:19.746" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:20.748" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199751/name {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199751"}</msg>
+<msg timestamp="20150819 10:53:20.764" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:21.764" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199751/selected {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199751"}</msg>
+<msg timestamp="20150819 10:53:21.793" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:22.794" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199751/click {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199751"}</msg>
+<msg timestamp="20150819 10:53:22.865" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:23.866" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:23.866" starttime="20150819 10:53:19.716"></status>
+</kw>
+<msg timestamp="20150819 10:53:23.867" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:23.867" starttime="20150819 10:53:14.712"></status>
+</kw>
+<msg timestamp="20150819 10:53:23.867" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:23.867" starttime="20150819 10:53:14.710"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${address_variable}" == "AAC"</arg>
+<arg>AAC Address</arg>
+</arguments>
+<msg timestamp="20150819 10:53:23.869" level="TRACE">Arguments: [ u'"AOP" == "AAC"' | u'AAC Address' ]</msg>
+<msg timestamp="20150819 10:53:23.869" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:23.869" starttime="20150819 10:53:23.868"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${address_variable}" == "AOP"</arg>
+<arg>AOP Address</arg>
+</arguments>
+<msg timestamp="20150819 10:53:23.871" level="TRACE">Arguments: [ u'"AOP" == "AOP"' | u'AOP Address' ]</msg>
+<kw type="kw" name="dummy_addresses.AOP Address">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:53:23.873" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Select From List">
+<doc>Selects `*items` from list identified by `locator`</doc>
+<arguments>
+<arg>id=address.title_del</arg>
+<arg>Miss</arg>
+</arguments>
+<msg timestamp="20150819 10:53:23.874" level="TRACE">Arguments: [ u'id=address.title_del' | u'Miss' ]</msg>
+<msg timestamp="20150819 10:53:23.875" level="INFO">Selecting option(s) 'Miss' from list 'id=address.title_del'.</msg>
+<msg timestamp="20150819 10:53:23.877" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "address.title_del"}</msg>
+<msg timestamp="20150819 10:53:23.904" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:24.904" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199752/name {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199752"}</msg>
+<msg timestamp="20150819 10:53:24.919" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:25.919" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199752/name {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199752"}</msg>
+<msg timestamp="20150819 10:53:25.930" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:26.931" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199752/attribute/multiple {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "name": "multiple", "id": ":wdc:1439949199752"}</msg>
+<msg timestamp="20150819 10:53:26.953" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:27.953" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199752/elements {"using": "css selector", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199752", "value": "option[value =\"Miss\"]"}</msg>
+<msg timestamp="20150819 10:53:27.982" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:28.982" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199752/elements {"using": "xpath", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199752", "value": ".//option[normalize-space(.) = \"Miss\"]"}</msg>
+<msg timestamp="20150819 10:53:29.019" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:30.020" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199753/selected {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199753"}</msg>
+<msg timestamp="20150819 10:53:30.051" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:31.051" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199753/click {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199753"}</msg>
+<msg timestamp="20150819 10:53:31.163" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:32.163" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:32.163" starttime="20150819 10:53:23.874"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=address.firstName_del</arg>
+<arg>Nicole</arg>
+</arguments>
+<msg timestamp="20150819 10:53:32.164" level="TRACE">Arguments: [ u'id=address.firstName_del' | u'Nicole' ]</msg>
+<msg timestamp="20150819 10:53:32.165" level="INFO">Typing text 'Nicole' into text field 'id=address.firstName_del'</msg>
+<msg timestamp="20150819 10:53:32.165" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "address.firstName_del"}</msg>
+<msg timestamp="20150819 10:53:32.201" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:33.201" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199754/clear {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199754"}</msg>
+<msg timestamp="20150819 10:53:33.252" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:34.252" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199754/value {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199754", "value": ["N", "i", "c", "o", "l", "e"]}</msg>
+<msg timestamp="20150819 10:53:34.340" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:35.340" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:35.340" starttime="20150819 10:53:32.164"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=address.surname_del</arg>
+<arg>Toledo</arg>
+</arguments>
+<msg timestamp="20150819 10:53:35.341" level="TRACE">Arguments: [ u'id=address.surname_del' | u'Toledo' ]</msg>
+<msg timestamp="20150819 10:53:35.342" level="INFO">Typing text 'Toledo' into text field 'id=address.surname_del'</msg>
+<msg timestamp="20150819 10:53:35.342" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "address.surname_del"}</msg>
+<msg timestamp="20150819 10:53:35.370" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:36.370" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199755/clear {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199755"}</msg>
+<msg timestamp="20150819 10:53:36.428" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:37.429" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199755/value {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199755", "value": ["T", "o", "l", "e", "d", "o"]}</msg>
+<msg timestamp="20150819 10:53:37.496" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:38.496" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:38.496" starttime="20150819 10:53:35.341"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=address.line1_del</arg>
+<arg>27 O Connel Street</arg>
+</arguments>
+<msg timestamp="20150819 10:53:38.497" level="TRACE">Arguments: [ u'id=address.line1_del' | u'27 O Connel Street' ]</msg>
+<msg timestamp="20150819 10:53:38.498" level="INFO">Typing text '27 O Connel Street' into text field 'id=address.line1_del'</msg>
+<msg timestamp="20150819 10:53:38.498" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "address.line1_del"}</msg>
+<msg timestamp="20150819 10:53:38.539" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:39.539" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199756/clear {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199756"}</msg>
+<msg timestamp="20150819 10:53:39.595" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:40.595" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199756/value {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199756", "value": ["2", "7", " ", "O", " ", "C", "o", "n", "n", "e", "l", " ", "S", "t", "r", "e", "e", "t"]}</msg>
+<msg timestamp="20150819 10:53:40.717" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:41.717" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:41.717" starttime="20150819 10:53:38.497"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=address.townCity_del</arg>
+<arg>Sydney</arg>
+</arguments>
+<msg timestamp="20150819 10:53:41.718" level="TRACE">Arguments: [ u'id=address.townCity_del' | u'Sydney' ]</msg>
+<msg timestamp="20150819 10:53:41.718" level="INFO">Typing text 'Sydney' into text field 'id=address.townCity_del'</msg>
+<msg timestamp="20150819 10:53:41.719" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "address.townCity_del"}</msg>
+<msg timestamp="20150819 10:53:41.749" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:42.749" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199757/clear {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199757"}</msg>
+<msg timestamp="20150819 10:53:42.817" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:43.817" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199757/value {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199757", "value": ["S", "y", "d", "n", "e", "y"]}</msg>
+<msg timestamp="20150819 10:53:43.894" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:44.894" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:44.894" starttime="20150819 10:53:41.718"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Select From List">
+<doc>Selects `*items` from list identified by `locator`</doc>
+<arguments>
+<arg>id=address.region_del</arg>
+<arg>New South Wales</arg>
+</arguments>
+<msg timestamp="20150819 10:53:44.896" level="TRACE">Arguments: [ u'id=address.region_del' | u'New South Wales' ]</msg>
+<msg timestamp="20150819 10:53:44.896" level="INFO">Selecting option(s) 'New South Wales' from list 'id=address.region_del'.</msg>
+<msg timestamp="20150819 10:53:44.897" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "address.region_del"}</msg>
+<msg timestamp="20150819 10:53:44.937" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:45.937" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199758/name {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199758"}</msg>
+<msg timestamp="20150819 10:53:45.956" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:46.956" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199758/name {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199758"}</msg>
+<msg timestamp="20150819 10:53:46.969" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:47.969" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199758/attribute/multiple {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "name": "multiple", "id": ":wdc:1439949199758"}</msg>
+<msg timestamp="20150819 10:53:48.000" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:49.000" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199758/elements {"using": "css selector", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199758", "value": "option[value =\"New South Wales\"]"}</msg>
+<msg timestamp="20150819 10:53:49.030" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:50.031" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199758/elements {"using": "xpath", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199758", "value": ".//option[normalize-space(.) = \"New South Wales\"]"}</msg>
+<msg timestamp="20150819 10:53:50.054" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:51.055" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199759/selected {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199759"}</msg>
+<msg timestamp="20150819 10:53:51.082" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:52.083" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199759/click {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199759"}</msg>
+<msg timestamp="20150819 10:53:52.186" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:53.187" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:53.187" starttime="20150819 10:53:44.895"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=address.postcode_del</arg>
+<arg>2000</arg>
+</arguments>
+<msg timestamp="20150819 10:53:53.188" level="TRACE">Arguments: [ u'id=address.postcode_del' | u'2000' ]</msg>
+<msg timestamp="20150819 10:53:53.188" level="INFO">Typing text '2000' into text field 'id=address.postcode_del'</msg>
+<msg timestamp="20150819 10:53:53.189" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "address.postcode_del"}</msg>
+<msg timestamp="20150819 10:53:53.220" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:54.220" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199760/clear {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199760"}</msg>
+<msg timestamp="20150819 10:53:54.271" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:55.272" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199760/value {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199760", "value": ["2", "0", "0", "0"]}</msg>
+<msg timestamp="20150819 10:53:55.366" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:56.367" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:56.367" starttime="20150819 10:53:53.188"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id =address.phone_del</arg>
+<arg>07700900698</arg>
+</arguments>
+<msg timestamp="20150819 10:53:56.368" level="TRACE">Arguments: [ u'id =address.phone_del' | u'07700900698' ]</msg>
+<msg timestamp="20150819 10:53:56.368" level="INFO">Typing text '07700900698' into text field 'id =address.phone_del'</msg>
+<msg timestamp="20150819 10:53:56.369" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "address.phone_del"}</msg>
+<msg timestamp="20150819 10:53:56.402" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:57.403" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199761/clear {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199761"}</msg>
+<msg timestamp="20150819 10:53:57.450" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:58.450" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199761/value {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199761", "value": ["0", "7", "7", "0", "0", "9", "0", "0", "6", "9", "8"]}</msg>
+<msg timestamp="20150819 10:53:58.524" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:53:59.524" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:53:59.524" starttime="20150819 10:53:56.368"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Click Element At Coordinates">
+<doc>Click element identified by `locator` at x/y coordinates of the element.</doc>
+<arguments>
+<arg>id =address.phone_del</arg>
+<arg>10</arg>
+<arg>10</arg>
+</arguments>
+<msg timestamp="20150819 10:53:59.525" level="TRACE">Arguments: [ u'id =address.phone_del' | u'10' | u'10' ]</msg>
+<msg timestamp="20150819 10:53:59.525" level="INFO">Click clicking element 'id =address.phone_del' in coordinates '10', '10'.</msg>
+<msg timestamp="20150819 10:53:59.526" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "address.phone_del"}</msg>
+<msg timestamp="20150819 10:53:59.556" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:00.557" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/moveto {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "element": ":wdc:1439949199761"}</msg>
+<msg timestamp="20150819 10:54:00.590" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:01.590" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/moveto {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "xoffset": 10, "yoffset": 10}</msg>
+<msg timestamp="20150819 10:54:01.598" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:02.599" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/click {"button": 0, "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51"}</msg>
+<msg timestamp="20150819 10:54:02.626" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:03.626" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:03.626" starttime="20150819 10:53:59.525"></status>
+</kw>
+<msg timestamp="20150819 10:54:03.626" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:03.626" starttime="20150819 10:53:23.872"></status>
+</kw>
+<msg timestamp="20150819 10:54:03.627" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:03.627" starttime="20150819 10:53:23.870"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${address_variable}" == "AUK"</arg>
+<arg>AUK Address</arg>
+</arguments>
+<msg timestamp="20150819 10:54:03.628" level="TRACE">Arguments: [ u'"AOP" == "AUK"' | u'AUK Address' ]</msg>
+<msg timestamp="20150819 10:54:03.628" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:03.628" starttime="20150819 10:54:03.627"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${address_variable}" == "AFR"</arg>
+<arg>AFR Address</arg>
+</arguments>
+<msg timestamp="20150819 10:54:03.629" level="TRACE">Arguments: [ u'"AOP" == "AFR"' | u'AFR Address' ]</msg>
+<msg timestamp="20150819 10:54:03.629" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:03.629" starttime="20150819 10:54:03.629"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${address_variable}" == "AIT"</arg>
+<arg>AIT Address</arg>
+</arguments>
+<msg timestamp="20150819 10:54:03.630" level="TRACE">Arguments: [ u'"AOP" == "AIT"' | u'AIT Address' ]</msg>
+<msg timestamp="20150819 10:54:03.631" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:03.631" starttime="20150819 10:54:03.630"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${address_variable}" == "AES"</arg>
+<arg>AES Address</arg>
+</arguments>
+<msg timestamp="20150819 10:54:03.632" level="TRACE">Arguments: [ u'"AOP" == "AES"' | u'AES Address' ]</msg>
+<msg timestamp="20150819 10:54:03.632" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:03.632" starttime="20150819 10:54:03.631"></status>
+</kw>
+<msg timestamp="20150819 10:54:03.632" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:03.632" starttime="20150819 10:53:14.703"></status>
+</kw>
+<kw type="kw" name="checkout.Proceed with Payment">
+<doc>Sequence will depend on the country.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:54:03.635" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="${status} = Selenium2Library.Element Should Not Be Visible">
+<doc>Verifies that the element identified by `locator` is NOT visible.</doc>
+<arguments>
+<arg>id=usingDeliveryAddress</arg>
+</arguments>
+<msg timestamp="20150819 10:54:03.636" level="TRACE">Arguments: [ u'id=usingDeliveryAddress' ]</msg>
+<msg timestamp="20150819 10:54:03.636" level="INFO">Verifying element 'id=usingDeliveryAddress' is not visible.</msg>
+<msg timestamp="20150819 10:54:03.636" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "usingDeliveryAddress"}</msg>
+<msg timestamp="20150819 10:54:03.660" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:04.661" level="TRACE">Return: None</msg>
+<msg timestamp="20150819 10:54:04.661" level="INFO">${status} = None</msg>
+<status status="PASS" endtime="20150819 10:54:04.661" starttime="20150819 10:54:03.635"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>${status} == True</arg>
+<arg>Select Checkbox</arg>
+<arg>id = usingDeliveryAddress</arg>
+</arguments>
+<msg timestamp="20150819 10:54:04.662" level="TRACE">Arguments: [ u'None == True' | u'Select Checkbox' | u'id = usingDeliveryAddress' ]</msg>
+<msg timestamp="20150819 10:54:04.663" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:04.663" starttime="20150819 10:54:04.662"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${payment_variable}" == "AEB"</arg>
+<arg>Run Keywords</arg>
+<arg>Place Order</arg>
+<arg>AND</arg>
+<arg>AEB- Ogone Payment</arg>
+</arguments>
+<msg timestamp="20150819 10:54:04.664" level="TRACE">Arguments: [ u'"AOP" == "AEB"' | u'Run Keywords' | u'Place Order' | u'AND' | u'AEB- Ogone Payment' ]</msg>
+<msg timestamp="20150819 10:54:04.665" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:04.664" starttime="20150819 10:54:04.664"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${payment_variable}" == "AOP"</arg>
+<arg>Run Keywords</arg>
+<arg>Place Order</arg>
+<arg>AND</arg>
+<arg>AOP - Paypal Visa</arg>
+</arguments>
+<msg timestamp="20150819 10:54:04.666" level="TRACE">Arguments: [ u'"AOP" == "AOP"' | u'Run Keywords' | u'Place Order' | u'AND' | u'AOP - Paypal Visa' ]</msg>
+<kw type="kw" name="BuiltIn.Run Keywords">
+<doc>Executes all the given keywords in a sequence.</doc>
+<arguments>
+<arg>Place Order</arg>
+<arg>AND</arg>
+<arg>AOP - Paypal Visa</arg>
+</arguments>
+<msg timestamp="20150819 10:54:04.667" level="TRACE">Arguments: [ u'Place Order' | u'AND' | u'AOP - Paypal Visa' ]</msg>
+<kw type="kw" name="checkout.Place Order">
+<doc>Applies to all regions.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:54:04.669" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Click Element">
+<doc>Click element identified by `locator`.</doc>
+<arguments>
+<arg>xpath=//*[@id='placeOrderForm']/div[2]/button</arg>
+</arguments>
+<msg timestamp="20150819 10:54:04.670" level="TRACE">Arguments: [ u"xpath=//*[@id='placeOrderForm']/div[2]/button" ]</msg>
+<msg timestamp="20150819 10:54:04.671" level="INFO">Clicking element 'xpath=//*[@id='placeOrderForm']/div[2]/button'.</msg>
+<msg timestamp="20150819 10:54:04.671" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "xpath", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "//*[@id='placeOrderForm']/div[2]/button"}</msg>
+<msg timestamp="20150819 10:54:04.701" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:05.701" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/element/:wdc:1439949199762/click {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "id": ":wdc:1439949199762"}</msg>
+<msg timestamp="20150819 10:54:05.817" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:06.817" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:06.817" starttime="20150819 10:54:04.670"></status>
+</kw>
+<msg timestamp="20150819 10:54:06.817" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:06.817" starttime="20150819 10:54:04.668"></status>
+</kw>
+<kw type="kw" name="payment.AOP - Paypal Visa">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:54:06.819" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Wait Until Page Contains Element">
+<doc>Waits until element specified with `locator` appears on current page.</doc>
+<arguments>
+<arg>id=credit_card_number</arg>
+<arg>20 seconds</arg>
+</arguments>
+<msg timestamp="20150819 10:54:06.820" level="TRACE">Arguments: [ u'id=credit_card_number' | u'20 seconds' ]</msg>
+<msg timestamp="20150819 10:54:06.820" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:06.842" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:08.044" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:08.056" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:09.256" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:09.266" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:10.466" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:10.484" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:11.684" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:11.703" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:12.904" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:12.914" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:14.115" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:14.126" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:15.326" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:15.341" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:16.541" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:16.571" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:17.774" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:17.783" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:18.986" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:18.995" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:20.196" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:20.211" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:21.411" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:21.430" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:22.631" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:22.649" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:23.850" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:23.865" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:25.066" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:25.086" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:26.286" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "credit_card_number"}</msg>
+<msg timestamp="20150819 10:54:26.304" level="DEBUG">Finished Request</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:54:27.305" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150819 10:54:27.306" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/screenshot {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51"}</msg>
+<msg timestamp="20150819 10:54:27.975" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:28.993" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20150819 10:54:28.993" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:28.993" starttime="20150819 10:54:27.304"></status>
+</kw>
+<msg timestamp="20150819 10:54:28.996" level="FAIL">Element 'id=credit_card_number' did not appear in 20 seconds</msg>
+<msg timestamp="20150819 10:54:28.997" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in wait_until_page_contains_element
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_waiting.py", line 63, in wait_until_page_contains_element
+    self._wait_until(timeout, error, self._is_element_present, locator)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_waiting.py", line 94, in _wait_until
+    self._wait_until_no_error(timeout, wait_func)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_waiting.py", line 103, in _wait_until_no_error
+    raise AssertionError(timeout_error)</msg>
+<status status="FAIL" endtime="20150819 10:54:28.997" starttime="20150819 10:54:06.820"></status>
+</kw>
+<status status="FAIL" endtime="20150819 10:54:28.997" starttime="20150819 10:54:06.818"></status>
+</kw>
+<status status="FAIL" endtime="20150819 10:54:28.998" starttime="20150819 10:54:04.667"></status>
+</kw>
+<status status="FAIL" endtime="20150819 10:54:28.998" starttime="20150819 10:54:04.665"></status>
+</kw>
+<status status="FAIL" endtime="20150819 10:54:29.000" starttime="20150819 10:54:03.633"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>checkout</tag>
+<tag>otat</tag>
+</tags>
+<status status="FAIL" endtime="20150819 10:54:29.001" critical="yes" starttime="20150819 10:51:43.680">Element 'id=credit_card_number' did not appear in 20 seconds</status>
+</test>
+<test id="s1-t2" name="Registered Checkout">
+<kw type="kw" name="search.Search">
+<doc></doc>
+<arguments>
+<arg>${search_product}</arg>
+</arguments>
+<msg timestamp="20150819 10:54:29.007" level="TRACE">Arguments: [ ${keyword}=u'0010223100.1212' ]</msg>
+<kw type="kw" name="Selenium2Library.Input Text">
+<doc>Types the given `text` into text field identified by `locator`.</doc>
+<arguments>
+<arg>id=search</arg>
+<arg>${keyword}</arg>
+</arguments>
+<msg timestamp="20150819 10:54:29.008" level="TRACE">Arguments: [ u'id=search' | u'0010223100.1212' ]</msg>
+<msg timestamp="20150819 10:54:29.009" level="INFO">Typing text '0010223100.1212' into text field 'id=search'</msg>
+<msg timestamp="20150819 10:54:29.009" level="DEBUG">POST http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/elements {"using": "id", "sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51", "value": "search"}</msg>
+<msg timestamp="20150819 10:54:29.039" level="DEBUG">Finished Request</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:54:30.040" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150819 10:54:30.041" level="DEBUG">GET http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51/screenshot {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51"}</msg>
+<msg timestamp="20150819 10:54:30.678" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:31.713" html="yes" level="INFO">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20150819 10:54:31.714" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:31.714" starttime="20150819 10:54:30.039"></status>
+</kw>
+<msg timestamp="20150819 10:54:31.717" level="FAIL">ValueError: Element locator 'id=search' did not match any elements.</msg>
+<msg timestamp="20150819 10:54:31.718" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in input_text
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_formelement.py", line 198, in input_text
+    self._input_text_into_text_field(locator, text)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_formelement.py", line 361, in _input_text_into_text_field
+    element = self._element_find(locator, True, True)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_element.py", line 593, in _element_find
+    raise ValueError("Element locator '" + locator + "' did not match any elements.")</msg>
+<status status="FAIL" endtime="20150819 10:54:31.718" starttime="20150819 10:54:29.008"></status>
+</kw>
+<status status="FAIL" endtime="20150819 10:54:31.719" starttime="20150819 10:54:29.005"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>checkout</tag>
+<tag>otat</tag>
+<tag>registered</tag>
+</tags>
+<status status="FAIL" endtime="20150819 10:54:31.719" critical="yes" starttime="20150819 10:54:29.002">ValueError: Element locator 'id=search' did not match any elements.</status>
+</test>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150819 10:54:31.720" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150819 10:54:31.721" level="DEBUG">Closing browser with session id c57a1230-4614-11e5-8bed-7b83a93c4c51</msg>
+<msg timestamp="20150819 10:54:31.721" level="DEBUG">DELETE http://127.0.0.1:8910//session/c57a1230-4614-11e5-8bed-7b83a93c4c51 {"sessionId": "c57a1230-4614-11e5-8bed-7b83a93c4c51"}</msg>
+<msg timestamp="20150819 10:54:31.729" level="DEBUG">Finished Request</msg>
+<msg timestamp="20150819 10:54:32.729" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150819 10:54:32.729" starttime="20150819 10:54:31.720"></status>
+</kw>
+<doc></doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20150819 10:54:32.729" starttime="20150819 10:51:12.503"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="2" pass="0">Critical Tests</stat>
+<stat fail="2" pass="0">All Tests</stat>
+</total>
+<tag>
+<stat info="" links="" doc="" combined="" pass="0" fail="2">checkout</stat>
+<stat info="" links="" doc="" combined="" pass="0" fail="2">otat</stat>
+<stat info="" links="" doc="" combined="" pass="0" fail="1">registered</stat>
+</tag>
+<suite>
+<stat fail="2" pass="0" id="s1" name="OT">OT</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

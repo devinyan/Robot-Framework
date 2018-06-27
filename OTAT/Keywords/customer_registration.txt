@@ -1,0 +1,79 @@
+*** Settings ***
+Library           Selenium2Library
+Library           String
+Resource          login.txt
+Resource          ../variables/Common/userdetails.txt
+
+*** Variables ***
+${notification_registration_complete}    THANKS FOR REGISTERING.
+
+*** Keywords ***
+Enter First Name
+    [Arguments]    ${firstname}
+    Wait until Page contains Element    id=register.firstName    30 seconds
+    Input Text    id=register.firstName    ${firstname}
+
+Enter Last Name
+    [Arguments]    ${lastname}
+    Wait until Page contains Element    id=register.lastName    30 seconds
+    Input Text    id=register.lastName    ${lastname}
+
+Enter Phonetic Last Name
+    [Arguments]    ${phonetic_lastname}
+    Input Text    id=register.phoneticLastName    ${phonetic_lastname}
+
+Enter Phonetic First Name
+    [Arguments]    ${phonetic_firstname}
+    Input Text    id=register.phoneticFirstName    ${phonetic_firstname}
+
+Enter Email Address
+    [Arguments]    ${email_address}
+    Wait until Page Contains Element    id=register.email    30 seconds
+    Input Text    id=register.email    ${email_address}
+
+Enter Password
+    [Arguments]    ${password}
+    Input Text    id=password    ${password}
+
+Enter Confirmed Password
+    [Arguments]    ${confirmed_password}
+    Input Text    id=register.checkPwd    ${confirmed_password}
+
+Personal Information Checkbox shouldn't be checked
+    Checkbox should not be selected    id=termsAndConditions
+
+Email Checkbox shouldn't be checked
+    Run Keyword if    "${COUNTRY}" == "AAC"    Checkbox should be selected    id=newsletter
+    Run Keyword if    "${COUNTRY}" != "AAC"    Checkbox should not be selected    id=newsletter
+
+Uncheck Newsletter
+    [Documentation]    To prevent additional spam while testing.
+    Unselect Checkbox    id=newsletter
+
+Check Personal Information Checkbox
+    Select Checkbox    id=termsAndConditions
+
+Register
+    [Documentation]    ADE apparently has a different xpath.
+    Click Element    xpath=(//button[@type='submit'])[2]
+    Comment    Run Keyword if    "${country}" != "ADE"    Click Element    xpath=.//form[@id='registerForm']/div[2]/button
+    Comment    Run Keyword if    "${country}" != "ADE"    Click Element    xpath=.//form[@id='registerForm']/div[1]/button
+
+Cancel Registration
+
+Error Message should appear
+    [Arguments]    ${text}
+    Page should contain    ${text}
+
+Welcome Message should appear
+    [Documentation]    Currently not using the same text from the resource.txt file
+    Wait Until Page Contains    ${my_account_header}
+    Page should Contain    ${notification_registration_complete}
+
+Generate Dummy email
+    [Documentation]    Used to be able to create emails to use for customer registration. The idea is that the email should be unique each time, to prevent the test from failing.
+    ...
+    ...    This will only be used for Succesful Registration.
+    ${username}    Generate Random String    10    [LOWER]
+    ${dummyEmail}    Set variable    ${username}@asics.com
+    [Return]    ${dummyEmail}

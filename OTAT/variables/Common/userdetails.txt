@@ -1,0 +1,15 @@
+*** Settings ***
+Documentation     User credentials for testing for AT/OT sites
+
+*** Variables ***
+#Customer Registration - PLEASE DELETE IN THE BACKEND BEFORE USE
+${registration_firstname}    Natalie
+${registration_lastname}    Dormer
+${registration_phonetic_firstname}    ナタリ
+${registration_phonetic_lastname}    ドルメル
+${guestemaill}    nicole.toledo@asics.com
+${registration_password}    123456n
+${registration_confirm_password}    123456n
+#Login Details - For Registered Users
+${login_email}    nicole.toledo.test@outlook.com    #nicole.toledo@asics.com
+${login_password}    123456n

@@ -1,0 +1,18 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for AU
+
+*** Variables ***
+${site_url}       http://www.ecstage.onitsukatiger.com/au/en-au/
+${url_production}    http://www.onitsukatiger.com/au
+${home_title_prefix}    Onitsuka Tiger Australia
+${home_title_suffix}    | Homepage
+@{shoe_size2}     Mens 6    \    \    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    /    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    \    Womens 7.5
+${search_product}    0010228136.0146    #mex
+${search_keyword}    mexico
+${search_keyword2}    edr
+${local_site_url}    http://onitsukatiger-au:9001/au/en-au/    #http://onitsukatiger-au:9001/au/en-au/
+${search_prod}    shoe

@@ -1,0 +1,19 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for US
+
+*** Variables ***
+${site_url}       http://www.ecstage.asicstiger.com/be/be-fr/
+${url_production}    http://www.asicstiger.com/be/be-fr/
+${home_title_prefix}    ASICS Tiger Belgium
+${home_title_suffix}    | Homepage
+${search_keyword}    gel
+${search_product}    gel    # 0010236804.1159
+${search_results_title}    Rechercher...
+@{shoe_size2}     Mens 6    \    \    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    /    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    \    Womens 7.5
+${shipping_header}    Informations sur la livraison
+${local_site_url}    http://asicstiger-fr:9001/be/be-fr/
+${search_prod}    gel

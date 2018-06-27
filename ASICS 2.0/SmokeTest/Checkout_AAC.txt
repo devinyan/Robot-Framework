@@ -1,0 +1,33 @@
+*** Settings ***
+Suite Setup       Open Homepage for SmokeTest    AAC
+Suite Teardown    Close Browser
+Force Tags        smoketestaac
+Resource          ../keywords/checkout.txt
+Resource          ../keywords/cart.txt
+Resource          ../variables/AAC/resource.txt
+
+*** Test Cases ***
+Guest Checkout
+    [Documentation]    Need to set test variable to make sure the keywords are correct.
+    Set Test Variable    ${COUNTRY}    AAC
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Guest
+    Enter AAC Address
+
+Registered Checkout
+    [Setup]    Go to    ${asics_production_url}
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Registered User
+    Enter Security Code    123

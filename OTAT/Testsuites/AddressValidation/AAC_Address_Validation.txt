@@ -1,0 +1,110 @@
+*** Settings ***
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        aac_address    otatus    uscheckout
+Resource          ../../Keywords/address_validation.txt
+Resource          ../../variables/AAC/CommonResource.txt
+
+*** Test Cases ***
+Blank First Name
+    [Setup]    Go To Summary Page Use Guest User
+    Run Keyword if    "${COUNTRY}"=="AAC"    Run Keywords    Select Title    ${titleForShippingAddress}
+    ...    AND    Enter First Name    ${EMPTY}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Address Line1    ${addressLine1}
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Select State    ${state}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Place Order
+    ...    AND    Address Validation Error Message Should Show    id=address.firstName_del-error
+
+Blank Last Name
+    [Setup]    Go To Summary Page Use Guest User
+    Run Keyword if    "${COUNTRY}"=="AAC"    Run Keywords    Select Title    ${titleForShippingAddress}
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${EMPTY}
+    ...    AND    Enter Address Line1    ${addressLine1}
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Select State    ${state}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Place Order
+    ...    AND    Address Validation Error Message Should Show    id=address.surname_del-error
+
+Blank Address Line1
+    [Setup]    Go To Summary Page Use Guest User
+    Run Keyword if    "${COUNTRY}"=="AAC"    Run Keywords    Select Title    ${titleForShippingAddress}
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Address Line1    ${EMPTY}
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Select State    ${state}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Place Order
+    ...    AND    Address Validation Error Message Should Show    id=address.line1_del-error
+
+Blank Town/City
+    [Setup]    Go To Summary Page Use Guest User
+    Run Keyword if    "${COUNTRY}"=="AAC"    Run Keywords    Select Title    ${titleForShippingAddress}
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Address Line1    ${addressLine1}
+    ...    AND    Enter TownCity    ${EMPTY}
+    ...    AND    Select State    ${state}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Place Order
+    ...    AND    Address Validation Error Message Should Show    id=address.townCity_del-error
+
+No State Selected
+    [Setup]    Go To Summary Page Use Guest User
+    Run Keyword if    "${COUNTRY}"=="AAC"    Run Keywords    Select Title    ${titleForShippingAddress}
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Address Line1    ${addressLine1}
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Place Order
+    ...    AND    Address Validation Error Message Should Show    id=address.region_del-error
+
+No Zip Code
+    [Setup]    Go To Summary Page Use Guest User
+    Run Keyword if    "${COUNTRY}"=="AAC"    Run Keywords    Select Title    ${titleForShippingAddress}
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Address Line1    ${addressLine1}
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Select State    ${state}
+    ...    AND    Enter Post Code    ${EMPTY}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Place Order
+    ...    AND    Address Validation Error Message Should Show    id=address.postcode_del-error
+
+Invalid Address
+    [Setup]    Go To Summary Page Use Guest User
+    Run Keyword if    "${COUNTRY}"=="AAC"    Run Keywords    Select Title    ${titleForShippingAddress}
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Address Line1    a
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Select State    ${state}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Click Element at Coordinates    id=address.line1_del    10    10
+    ...    AND    Address Validation Error Message Should Show    css=.alert.negative.errorMessage
+
+Valid Address
+    [Setup]    Go To Summary Page Use Guest User
+    Run Keyword if    "${COUNTRY}"=="AAC"    Run Keywords    Select Title    ${titleForShippingAddress}
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Address Line1    ${addressLine1}
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Select State    ${state}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Click Element at Coordinates    id=address.line1_del    10    10
+    ...    AND    Address Validation Error Message Should Show    css=.alert.positive.infoMessage

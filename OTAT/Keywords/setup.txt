@@ -1,0 +1,108 @@
+*** Settings ***
+Documentation     This does the suite setup for all test cases.
+Library           Selenium2Library
+Library           String
+Library           Collections
+Library           OperatingSystem
+Resource          ../variables/AOP/importaop.txt
+Resource          ../variables/ADE/importADE.txt
+Resource          ../variables/AAC/importaac.txt
+Resource          ../variables/AFR/importAFR.txt
+Resource          ../variables/AUK/importAUK.txt
+Resource          ../variables/AIT/importAIT.txt
+Resource          ../variables/AES/importAES.txt
+Resource          ../variables/Common/GlobalResource.txt
+Resource          ../variables/Common/BrowserstackResource.txt
+Resource          browserstack.txt
+Resource          ../variables/ASE/importASE.txt
+Resource          ../variables/ADK/importADK.txt
+Resource          ../variables/AIE/importAIE.txt
+Resource          ../variables/ABE_FR/importABE_FR.txt
+
+*** Variables ***
+${site_url}       \    # http://asicstiger-fr:9001/fr/fr-fr/
+${home_title_prefix}    \    # ASICS Tiger France
+
+*** Keywords ***
+Open Homepage
+    Set Selenium Timeout    60 second
+    Set Selenium Speed    1 second
+    Set log level    TRACE
+    Log    Current site is ${site}... \ Current country is ${COUNTRY}...
+    Run Keyword    ${COUNTRY}
+    Comment    Set Suite Variable    ${site_url}    ${local_site_url}    children=true
+    Comment    Set Site Variables    ${site}
+    Check Site Is Up    ${site_url}    ${home_title_prefix}    ${Browser}
+    Maximize Browser Window
+    Close the cookie banner    ${COUNTRY}
+
+Open Homepage For Smoke
+    [Arguments]    ${CountryForSmoke}
+    Set Selenium Timeout    60 second
+    Set Selenium Speed    1 second
+    Set log level    TRACE
+    Run Keyword    ${CountryForSmoke}
+    Log    Current site is ${site}... \ Current country is ${CountryForSmoke}...
+    Check Site Is Up    ${url_production}    ${home_title_prefix}    ${Browser}
+    Maximize Browser Window
+    Close the cookie banner    ${CountryForSmoke}
+
+Check Site Is Up
+    [Arguments]    ${URL}    ${homepageTitlePrefix}    ${browser}=chrome    # default browser type is the chrome
+    ${DESIRED_CAPABILITIES_BROWSERSTACK}    Setup Browserstack Desired Capabilities
+    Run Keyword if    "${ENV}"=="local"    Open Browser    ${URL}    ${browser}
+    Run Keyword if    "${ENV}"=="phantomjs"    Open Browser    ${URL}    phantomjs    remote_url=${phantomjs_remote_url}
+    Run Keyword if    "${ENV}"=="browserstack"    Open Browser    ${URL}    ${browser}    remote_url=${COMMAND_EXECUTOR_BROWSERSTACK}    desired_capabilities=${DESIRED_CAPABILITIES_BROWSERSTACK}
+    Page should contain    ${homepageTitlePrefix}
+    Wait until Page contains Element    header    60 seconds
+
+Close the Cookie Banner
+    [Arguments]    ${country}
+    [Documentation]    Run this for AEB due to their cookie banner blocking elements needed during the checkout
+    ${countryList}    create list    "ADE"    "AFR"    "AUK"    "AIT"    "AES"
+    ...    "ABE_FR"    "ASE"    "ADK"    "AIE"
+    ${count}=    Get Match Count    ${countryList}    "${country}"
+    Run keyword if    ${count} > 0    Click Element    xpath=//*[@id="cookie-bar"]/a[3]
+    Comment    xpath=//a[contains(@href, '#')]
+
+Set Site Variables
+    [Arguments]    ${site}
+    Run keyword if    "${site}" == "AT"    Set AT Site Variables
+    Run keyword if    "${site}" == "OT"    Set OT Site Variables
+
+Set AT Site Variables
+    Set Suite Variable    ${site_url}    ${at_url_staging}    children=true
+    Set Suite Variable    ${home_title_prefix}    ${at_home_title_prefix}    children=true
+
+Set OT Site Variables
+    Set Suite Variable    ${site_url}    ${ot_url_staging}    children=true
+    Set Suite Variable    ${home_title_prefix}    ${ot_home_title_prefix}    children=true
+
+IsAEBSite
+    [Arguments]    ${country}
+    [Documentation]    Run this for AEB due to their cookie banner blocking elements needed during the checkout
+    ${countryList}    create list    "ADE"    "AFR"    "AUK"    "AIT"    "AES"
+    ...    "ABE_FR"    "ASE"    "ADK"    "AIE"
+    ${count}=    Get Match Count    ${countryList}    "${country}"
+    Comment    Run keyword if    ${count} > 0    Click Element    xpath=//a[contains(@href, '#')]
+    Return From Keyword If    ${count} > 0    'True'
+
+Go To Homepage
+    Go to    ${site_url}
+
+Open Homepage For Mobile
+    [Tags]    mobile
+    Set Selenium Timeout    60 second
+    Set Selenium Speed    1 second
+    Set log level    TRACE
+    Log    Current site is ${site}... \ Current country is ${COUNTRY}...
+    Run Keyword    ${COUNTRY}
+    Comment    Set Suite Variable    ${site_url}    ${local_site_url}    children=true
+    Comment    Set Site Variables    ${site}
+    ${devname}=    Create Dictionary    deviceName=${Device Model}
+    ${chromeoptions}=    Evaluate    sys.modules['selenium.webdriver.chrome.options'].Options()    sys,selenium.webdriver.chrome.options
+    Call Method    ${chromeoptions}    add_experimental_option    mobileEmulation    ${devname}
+    Create Webdriver    ${DriverName}    chrome_options=${chromeoptions}
+    Check Site Is Up    ${site_url}    ${home_title_prefix}    ${Browser}
+    Maximize Browser Window
+    Close the cookie banner    ${COUNTRY}

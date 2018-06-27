@@ -1,0 +1,35 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          search.txt
+Resource          setup.txt
+
+*** Keywords ***
+Get total Product on PLP
+    ${totalProductCounts}=    Execute Javascript    return parseInt($(".found em").html().replace(/[^0-9]/ig,""));
+
+Clear All
+    Click Element    css=.remove_item_left .remove
+
+Click First Facet
+    Execute Javascript    $(".facet_block-label input").first().click();
+
+Count number of Facet Products
+    ${totalProductCountsAfterSelectedFirstFacet}=    Execute Javascript    return parseInt($(".found em").html().replace(/[^0-9]/ig,""));
+
+Results Found should be present
+    Page Should Contain Element    css= .prod-wrap a
+
+Product Image must be present
+    Page Should Contain Element    css= .prod-wrap a
+
+Get Total Product Count In PLP
+    ${totalProductCounts}=    Execute Javascript    return parseInt($(".found em").html().replace(/[^0-9]/ig,""));
+    [Return]    ${totalProductCounts}
+
+Get Current Page Product Count In PLP
+    ${currentPageProductCount}=    Execute JavaScript    return $('.product-list > .gridProduct').length;
+    [Return]    ${currentPageProductCount}
+
+Have Next Page
+    ${hasNextPageLink}=    Execute JavaScript    return $('#nextPageLink').length;
+    [Return]    ${hasNextPageLink}

@@ -1,0 +1,23 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Keywords ***
+Login to Rakuten
+    Input Text    xpath=//input[@id='loginInner']    nicole.toledo@asics.com
+    Input Password    xpath=(//input[@id='loginInner'])[2]    zaq12wsx
+    Click Element    xpath=//input[@name='submit']
+    Wait Until Page Contains Element    id=confirm_top_button
+
+Rakuten Login Page should appear
+    Wait Until Page contains Element    loginInner    20 seconds
+
+Enter Security Code for Rakuten
+    Wait Until Page Contains Element    xpath=//input[@name='securityCd']    10 seconds
+    Input Text    xpath=//input[@name='securityCd']    123
+
+Confirm Order Button
+    Click Element    id=confirm_top_button
+
+Rakuten Process Payment
+    Click Element    id=order1
+    Wait Until Page Contains Element    xpath=//*[@id='order_finish_link']

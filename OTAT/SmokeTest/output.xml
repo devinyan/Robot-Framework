@@ -1,0 +1,1846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20150818 19:19:56.157" generator="Robot 2.8.7 (Python 2.7.9 on win32)">
+<suite source="C:\Users\toledo-ni\My Documents\Codebase\TIGER B2C\robotTest\OTAT\SmokeTest\Checkout_OT.txt" id="s1" name="SmokeTest OT">
+<test id="s1-t1" name="US- Guest">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>AAC</arg>
+</arguments>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<status status="PASS" endtime="20150818 19:19:56.648" starttime="20150818 19:19:56.648"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.649" level="INFO">Log level changed from INFO to TRACE</msg>
+<msg timestamp="20150818 19:19:56.649" level="TRACE">Return: 'INFO'</msg>
+<status status="PASS" endtime="20150818 19:19:56.649" starttime="20150818 19:19:56.648"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.649" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.650" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.651" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.663" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.663" starttime="20150818 19:19:56.651"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.663" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.663" starttime="20150818 19:19:56.650"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.664" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.664" starttime="20150818 19:19:56.649"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.664" level="TRACE">Arguments: [ u'"AAC" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.664" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.664" starttime="20150818 19:19:56.664"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.665" level="TRACE">Arguments: [ u'"AAC" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.665" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.665" starttime="20150818 19:19:56.665"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.666" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.666" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.668" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.668" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.668" starttime="20150818 19:19:56.666"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.668" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.669" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.669" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.669" starttime="20150818 19:19:56.666"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.670" starttime="20150818 19:19:56.647"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.671" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.671" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.671" starttime="20150818 19:19:56.670"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otus</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.671" critical="yes" starttime="20150818 19:19:56.646">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t2" name="US-Registered">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>AAC</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.675" level="TRACE">Arguments: [ ${site}=u'AAC' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.676" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.676" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.676" starttime="20150818 19:19:56.676"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.677" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.677" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.677" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.677" starttime="20150818 19:19:56.677"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.678" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.679" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.680" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.686" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.686" starttime="20150818 19:19:56.680"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.686" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.686" starttime="20150818 19:19:56.679"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.687" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.687" starttime="20150818 19:19:56.678"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.688" level="TRACE">Arguments: [ u'"AAC" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.688" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.688" starttime="20150818 19:19:56.687"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.688" level="TRACE">Arguments: [ u'"AAC" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.689" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.689" starttime="20150818 19:19:56.688"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.689" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.690" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.691" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.691" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.691" starttime="20150818 19:19:56.690"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.691" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.691" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.692" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.692" starttime="20150818 19:19:56.689"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.692" starttime="20150818 19:19:56.673"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.692" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.693" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.693" starttime="20150818 19:19:56.692"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otus</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.693" critical="yes" starttime="20150818 19:19:56.671">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t3" name="AU-Guest">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>AOP</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.695" level="TRACE">Arguments: [ ${site}=u'AOP' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.695" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.696" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.696" starttime="20150818 19:19:56.695"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.696" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.696" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.696" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.696" starttime="20150818 19:19:56.696"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.697" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.697" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.698" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.702" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.702" starttime="20150818 19:19:56.698"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.702" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.702" starttime="20150818 19:19:56.697"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.702" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.702" starttime="20150818 19:19:56.696"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.703" level="TRACE">Arguments: [ u'"AOP" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.703" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.703" starttime="20150818 19:19:56.702"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.703" level="TRACE">Arguments: [ u'"AOP" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.704" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.704" starttime="20150818 19:19:56.703"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.704" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.705" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.705" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.706" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.706" starttime="20150818 19:19:56.705"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.706" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.706" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.706" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.706" starttime="20150818 19:19:56.704"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.706" starttime="20150818 19:19:56.694"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.707" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.707" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.707" starttime="20150818 19:19:56.707"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otau</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.707" critical="yes" starttime="20150818 19:19:56.693">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t4" name="AU-Registered">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>AOP</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.710" level="TRACE">Arguments: [ ${site}=u'AOP' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.711" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.711" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.711" starttime="20150818 19:19:56.711"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.711" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.712" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.712" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.712" starttime="20150818 19:19:56.711"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.712" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.713" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.713" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.718" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.718" starttime="20150818 19:19:56.713"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.718" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.718" starttime="20150818 19:19:56.712"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.719" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.719" starttime="20150818 19:19:56.712"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.720" level="TRACE">Arguments: [ u'"AOP" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.720" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.720" starttime="20150818 19:19:56.719"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.721" level="TRACE">Arguments: [ u'"AOP" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.721" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.721" starttime="20150818 19:19:56.720"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.722" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.722" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.723" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.724" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.724" starttime="20150818 19:19:56.722"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.724" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.724" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.724" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.724" starttime="20150818 19:19:56.722"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.725" starttime="20150818 19:19:56.709"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.725" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.725" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.725" starttime="20150818 19:19:56.725"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otau</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.725" critical="yes" starttime="20150818 19:19:56.708">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t5" name="UK-Guest">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>AUK</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.729" level="TRACE">Arguments: [ ${site}=u'AUK' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.730" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.730" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.730" starttime="20150818 19:19:56.729"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.730" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.731" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.731" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.731" starttime="20150818 19:19:56.730"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.731" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.732" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.733" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.738" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.737" starttime="20150818 19:19:56.733"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.738" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.738" starttime="20150818 19:19:56.731"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.738" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.738" starttime="20150818 19:19:56.731"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.739" level="TRACE">Arguments: [ u'"AUK" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.739" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.739" starttime="20150818 19:19:56.738"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.740" level="TRACE">Arguments: [ u'"AUK" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.740" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.740" starttime="20150818 19:19:56.740"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.741" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.741" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.742" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.742" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.742" starttime="20150818 19:19:56.741"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.742" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.743" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.743" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.743" starttime="20150818 19:19:56.741"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.743" starttime="20150818 19:19:56.728"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.744" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.744" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.744" starttime="20150818 19:19:56.743"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otuk</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.744" critical="yes" starttime="20150818 19:19:56.726">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t6" name="UK-Registered">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>AUK</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.747" level="TRACE">Arguments: [ ${site}=u'AUK' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.747" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.748" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.748" starttime="20150818 19:19:56.747"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.748" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.748" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.749" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.749" starttime="20150818 19:19:56.748"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.749" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.751" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.751" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.757" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.757" starttime="20150818 19:19:56.751"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.757" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.757" starttime="20150818 19:19:56.750"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.758" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.758" starttime="20150818 19:19:56.749"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.759" level="TRACE">Arguments: [ u'"AUK" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.759" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.759" starttime="20150818 19:19:56.758"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.760" level="TRACE">Arguments: [ u'"AUK" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.760" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.760" starttime="20150818 19:19:56.760"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.761" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.761" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.762" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.763" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.763" starttime="20150818 19:19:56.761"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.763" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.764" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.764" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.764" starttime="20150818 19:19:56.761"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.764" starttime="20150818 19:19:56.746"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.764" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.765" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.765" starttime="20150818 19:19:56.764"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otuk</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.765" critical="yes" starttime="20150818 19:19:56.744">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t7" name="FR-Guest">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>AFR</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.768" level="TRACE">Arguments: [ ${site}=u'AFR' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.769" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.769" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.769" starttime="20150818 19:19:56.769"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.770" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.770" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.770" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.770" starttime="20150818 19:19:56.770"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.771" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.773" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.773" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.779" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.779" starttime="20150818 19:19:56.773"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.779" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.779" starttime="20150818 19:19:56.771"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.780" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.780" starttime="20150818 19:19:56.770"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.781" level="TRACE">Arguments: [ u'"AFR" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.781" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.781" starttime="20150818 19:19:56.780"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.782" level="TRACE">Arguments: [ u'"AFR" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.782" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.782" starttime="20150818 19:19:56.781"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.782" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.783" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.783" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.783" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.784" starttime="20150818 19:19:56.783"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.784" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.784" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.784" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.784" starttime="20150818 19:19:56.782"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.784" starttime="20150818 19:19:56.767"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.785" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.785" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.785" starttime="20150818 19:19:56.785"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otfr</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.785" critical="yes" starttime="20150818 19:19:56.765">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t8" name="FR-Registered">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>AFR</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.789" level="TRACE">Arguments: [ ${site}=u'AFR' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.790" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.790" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.790" starttime="20150818 19:19:56.789"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.790" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.791" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.791" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.791" starttime="20150818 19:19:56.790"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.791" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.792" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.793" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.798" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.798" starttime="20150818 19:19:56.793"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.798" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.798" starttime="20150818 19:19:56.791"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.799" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.799" starttime="20150818 19:19:56.791"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.800" level="TRACE">Arguments: [ u'"AFR" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.800" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.800" starttime="20150818 19:19:56.799"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.801" level="TRACE">Arguments: [ u'"AFR" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.801" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.801" starttime="20150818 19:19:56.801"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.802" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.803" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.804" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.804" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.804" starttime="20150818 19:19:56.802"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.804" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.805" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.805" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.805" starttime="20150818 19:19:56.802"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.806" starttime="20150818 19:19:56.788"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.807" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.807" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.807" starttime="20150818 19:19:56.806"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otfr</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.807" critical="yes" starttime="20150818 19:19:56.785">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t9" name="ES-Guest">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>AES</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.811" level="TRACE">Arguments: [ ${site}=u'AES' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.812" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.812" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.812" starttime="20150818 19:19:56.811"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.813" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.813" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.813" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.813" starttime="20150818 19:19:56.812"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.813" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.814" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.815" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.819" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.819" starttime="20150818 19:19:56.815"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.819" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.819" starttime="20150818 19:19:56.813"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.820" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.820" starttime="20150818 19:19:56.813"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.821" level="TRACE">Arguments: [ u'"AES" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.821" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.821" starttime="20150818 19:19:56.820"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.822" level="TRACE">Arguments: [ u'"AES" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.822" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.822" starttime="20150818 19:19:56.822"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.823" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.823" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.824" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.824" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.824" starttime="20150818 19:19:56.823"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.824" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.824" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.824" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.825" starttime="20150818 19:19:56.822"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.825" starttime="20150818 19:19:56.810"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.825" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.826" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.825" starttime="20150818 19:19:56.825"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otes</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.826" critical="yes" starttime="20150818 19:19:56.808">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t10" name="ES-Registered">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>AES</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.829" level="TRACE">Arguments: [ ${site}=u'AES' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.830" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.830" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.830" starttime="20150818 19:19:56.829"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.831" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.831" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.831" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.831" starttime="20150818 19:19:56.831"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.831" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.832" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.833" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.837" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.837" starttime="20150818 19:19:56.833"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.837" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.837" starttime="20150818 19:19:56.832"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.838" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.837" starttime="20150818 19:19:56.831"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.838" level="TRACE">Arguments: [ u'"AES" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.838" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.838" starttime="20150818 19:19:56.838"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.839" level="TRACE">Arguments: [ u'"AES" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.840" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.840" starttime="20150818 19:19:56.839"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.841" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.841" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.842" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.842" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.842" starttime="20150818 19:19:56.841"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.842" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.843" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.843" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.843" starttime="20150818 19:19:56.840"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.843" starttime="20150818 19:19:56.828"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.844" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.844" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.844" starttime="20150818 19:19:56.844"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otes</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.844" critical="yes" starttime="20150818 19:19:56.826">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t11" name="IT-Guest">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>AIT</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.847" level="TRACE">Arguments: [ ${site}=u'AIT' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.847" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.848" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.848" starttime="20150818 19:19:56.847"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.849" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.850" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.850" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.850" starttime="20150818 19:19:56.849"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.851" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.853" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.853" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.860" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.860" starttime="20150818 19:19:56.853"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.861" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.861" starttime="20150818 19:19:56.851"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.861" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.861" starttime="20150818 19:19:56.851"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.862" level="TRACE">Arguments: [ u'"AIT" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.863" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.863" starttime="20150818 19:19:56.862"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.864" level="TRACE">Arguments: [ u'"AIT" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.864" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.864" starttime="20150818 19:19:56.863"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.865" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.866" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.867" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.868" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.868" starttime="20150818 19:19:56.866"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.868" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.869" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.869" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.869" starttime="20150818 19:19:56.865"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.869" starttime="20150818 19:19:56.846"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.870" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.870" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.870" starttime="20150818 19:19:56.870"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otit</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.871" critical="yes" starttime="20150818 19:19:56.844">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t12" name="IT-Registered">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>AIT</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.882" level="TRACE">Arguments: [ ${site}=u'AIT' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.883" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.884" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.884" starttime="20150818 19:19:56.883"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.885" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.886" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.887" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.886" starttime="20150818 19:19:56.885"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.887" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.900" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.900" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.907" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.907" starttime="20150818 19:19:56.900"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.908" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.908" starttime="20150818 19:19:56.896"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.908" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.908" starttime="20150818 19:19:56.887"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.909" level="TRACE">Arguments: [ u'"AIT" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.909" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.909" starttime="20150818 19:19:56.908"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.910" level="TRACE">Arguments: [ u'"AIT" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.910" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.910" starttime="20150818 19:19:56.910"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.911" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.912" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.913" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.913" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.914" starttime="20150818 19:19:56.912"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.914" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.915" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.915" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.915" starttime="20150818 19:19:56.911"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.915" starttime="20150818 19:19:56.873"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.916" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.916" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.916" starttime="20150818 19:19:56.916"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otit</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.916" critical="yes" starttime="20150818 19:19:56.871">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t13" name="DE-Guest">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>ADE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.920" level="TRACE">Arguments: [ ${site}=u'ADE' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.921" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.921" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.921" starttime="20150818 19:19:56.921"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.922" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.922" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.923" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.923" starttime="20150818 19:19:56.922"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.923" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.925" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.926" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.932" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.932" starttime="20150818 19:19:56.926"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.932" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.932" starttime="20150818 19:19:56.924"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.932" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.932" starttime="20150818 19:19:56.923"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.933" level="TRACE">Arguments: [ u'"ADE" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.933" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.933" starttime="20150818 19:19:56.933"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.934" level="TRACE">Arguments: [ u'"ADE" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.934" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.934" starttime="20150818 19:19:56.934"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.935" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.935" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.936" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.936" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.937" starttime="20150818 19:19:56.935"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.937" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.937" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.937" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.938" starttime="20150818 19:19:56.935"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.938" starttime="20150818 19:19:56.919"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.940" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.940" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.940" starttime="20150818 19:19:56.940"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otde</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.941" critical="yes" starttime="20150818 19:19:56.917">Setup failed:
+No browser is open</status>
+</test>
+<test id="s1-t14" name="DE-Registered">
+<kw type="setup" name="setup.Open Homepage">
+<doc></doc>
+<arguments>
+<arg>ADE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.945" level="TRACE">Arguments: [ ${site}=u'ADE' ]</msg>
+<kw type="kw" name="Selenium2Library.Set Selenium Speed">
+<doc>Sets the delay in seconds that is waited after each Selenium command.</doc>
+<arguments>
+<arg>1 second</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.946" level="TRACE">Arguments: [ u'1 second' ]</msg>
+<msg timestamp="20150818 19:19:56.946" level="TRACE">Return: '1 second'</msg>
+<status status="PASS" endtime="20150818 19:19:56.946" starttime="20150818 19:19:56.945"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Set Log Level">
+<doc>Sets the log threshold to the specified level and returns the old level.</doc>
+<arguments>
+<arg>TRACE</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.947" level="TRACE">Arguments: [ u'TRACE' ]</msg>
+<msg timestamp="20150818 19:19:56.947" level="INFO">Log level changed from TRACE to TRACE</msg>
+<msg timestamp="20150818 19:19:56.948" level="TRACE">Return: u'TRACE'</msg>
+<status status="PASS" endtime="20150818 19:19:56.948" starttime="20150818 19:19:56.947"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword">
+<doc>Executes the given keyword with the given arguments.</doc>
+<arguments>
+<arg>${COUNTRY}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.948" level="TRACE">Arguments: [ u'AAC' ]</msg>
+<kw type="kw" name="importaac.AAC">
+<doc></doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.950" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="BuiltIn.Import Resource">
+<doc>Imports a resource file with the given path.</doc>
+<arguments>
+<arg>C:\\Users\\toledo-ni\\My Documents\\Codebase\\TIGER B2C\\robotTest\\OTAT\\variables\\AAC\\Resource.txt</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.951" level="TRACE">Arguments: [ u'C:\\\\Users\\\\toledo-ni\\\\My Documents\\\\Codebase\\\\TIGER B2C\\\\robotTest\\\\OTAT\\\\variables\\\\AAC\\\\Resource.txt' ]</msg>
+<msg timestamp="20150818 19:19:56.956" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.955" starttime="20150818 19:19:56.951"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.956" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.956" starttime="20150818 19:19:56.949"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.956" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.956" starttime="20150818 19:19:56.948"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "OT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${ot_url_staging}</arg>
+<arg>${ot_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.957" level="TRACE">Arguments: [ u'"ADE" == "OT"' | u'Open Homepage And Check Site Is Up' | u'${ot_url_staging}' | u'${ot_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.957" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.957" starttime="20150818 19:19:56.957"></status>
+</kw>
+<kw type="kw" name="BuiltIn.Run Keyword If">
+<doc>Runs the given keyword with the given arguments, if `condition` is true.</doc>
+<arguments>
+<arg>"${site}" == "AT"</arg>
+<arg>Open Homepage And Check Site Is Up</arg>
+<arg>${at_url_staging}</arg>
+<arg>${at_home_title_prefix}</arg>
+<arg>${Browser}</arg>
+</arguments>
+<msg timestamp="20150818 19:19:56.958" level="TRACE">Arguments: [ u'"ADE" == "AT"' | u'Open Homepage And Check Site Is Up' | u'${at_url_staging}' | u'${at_home_title_prefix}' | u'${Browser}' ]</msg>
+<msg timestamp="20150818 19:19:56.958" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.958" starttime="20150818 19:19:56.958"></status>
+</kw>
+<kw type="kw" name="Selenium2Library.Maximize Browser Window">
+<doc>Maximizes current browser window.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.959" level="TRACE">Arguments: [  ]</msg>
+<kw type="kw" name="Selenium2Library.Capture Page Screenshot">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.960" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.961" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.961" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in capture_page_screenshot
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_screenshot.py", line 28, in capture_page_screenshot
+    if hasattr(self._current_browser(), 'get_screenshot_as_file'):
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.961" starttime="20150818 19:19:56.959"></status>
+</kw>
+<msg timestamp="20150818 19:19:56.961" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.962" level="FAIL">No browser is open</msg>
+<msg timestamp="20150818 19:19:56.962" level="DEBUG">Traceback (most recent call last):
+  File "&lt;string&gt;", line 2, in maximize_browser_window
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\keywordgroup.py", line 12, in _run_on_failure_decorator
+    return method(*args, **kwargs)
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 239, in maximize_browser_window
+    self._current_browser().maximize_window()
+  File "C:\Python27\lib\site-packages\Selenium2Library\keywords\_browsermanagement.py", line 477, in _current_browser
+    raise RuntimeError('No browser is open')</msg>
+<status status="FAIL" endtime="20150818 19:19:56.962" starttime="20150818 19:19:56.959"></status>
+</kw>
+<status status="FAIL" endtime="20150818 19:19:56.962" starttime="20150818 19:19:56.943"></status>
+</kw>
+<kw type="teardown" name="Selenium2Library.Close Browser">
+<doc>Closes the current browser.</doc>
+<arguments>
+</arguments>
+<msg timestamp="20150818 19:19:56.963" level="TRACE">Arguments: [  ]</msg>
+<msg timestamp="20150818 19:19:56.964" level="TRACE">Return: None</msg>
+<status status="PASS" endtime="20150818 19:19:56.964" starttime="20150818 19:19:56.963"></status>
+</kw>
+<doc></doc>
+<tags>
+<tag>ot</tag>
+<tag>otde</tag>
+</tags>
+<status status="FAIL" endtime="20150818 19:19:56.964" critical="yes" starttime="20150818 19:19:56.941">Setup failed:
+No browser is open</status>
+</test>
+<doc>US, AU and UK are definitely working.</doc>
+<metadata>
+</metadata>
+<status status="FAIL" endtime="20150818 19:19:56.965" starttime="20150818 19:19:56.158"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="14" pass="0">Critical Tests</stat>
+<stat fail="14" pass="0">All Tests</stat>
+</total>
+<tag>
+<stat info="" links="" doc="" combined="" pass="0" fail="14">ot</stat>
+<stat info="" links="" doc="" combined="" pass="0" fail="2">otau</stat>
+<stat info="" links="" doc="" combined="" pass="0" fail="2">otde</stat>
+<stat info="" links="" doc="" combined="" pass="0" fail="2">otes</stat>
+<stat info="" links="" doc="" combined="" pass="0" fail="2">otfr</stat>
+<stat info="" links="" doc="" combined="" pass="0" fail="2">otit</stat>
+<stat info="" links="" doc="" combined="" pass="0" fail="2">otuk</stat>
+<stat info="" links="" doc="" combined="" pass="0" fail="2">otus</stat>
+</tag>
+<suite>
+<stat fail="14" pass="0" id="s1" name="SmokeTest OT">SmokeTest OT</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20150818 19:19:56.668" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.691" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.706" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.724" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.742" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.763" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.784" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.804" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.824" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.842" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.868" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.914" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.937" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20150818 19:19:56.961" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+</errors>
+</robot>

@@ -1,0 +1,3 @@
+*** Keywords ***
+AAC
+    Import Resource    ${CURDIR}\\resource.txt

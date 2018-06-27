@@ -1,0 +1,140 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          ../variables/userdetails.txt
+Resource          login.txt
+
+*** Keywords ***
+Modify First Name
+    [Arguments]    ${firstname}
+    Clear Element Text    id=profile.firstName
+    Input Text    id=profile.firstName    ${firstname}
+
+Modify Last Name
+    [Arguments]    ${lastname}
+    Clear Element Text    id=profile.lastName
+    Input Text    id=profile.lastName    ${lastname}
+
+Modify Phonetic First Name
+    [Arguments]    ${phonetic_firstname}
+    Clear Element Text    id=profile.phoneticFirstName
+    Input Text    id=profile.phoneticFirstName    ${phonetic_firstname}
+
+Modify Phonetic Last Name
+    [Arguments]    ${phonetic_lastname}
+    Clear Element Text    id=profile.phoneticLastName
+    Input Text    id=profile.phoneticLastName    ${phonetic_lastname}
+
+Go to Personal Details Page
+    Go To    ${asics_url}${my_account_url}/${profile_url}
+    Wait Until Page Contains Element    id=profile.firstName
+
+Update Personal Details
+    Comment    Click Element    xpath=//*[@id='updateProfileForm']/ul/li[6]/div/button
+    Click Element    id=updateName
+
+Notification message should be displayed
+    [Arguments]    ${notification_message}
+    Page should contain    ${notification_message}
+
+Error Message should appear
+    [Arguments]    ${error_message_text}
+    Page Should Contain    ${error_message_text}
+
+Check if First Name was updated
+    [Arguments]    ${firstname}
+    Textfield Should Contain    profile.firstName    ${firstname}
+    ${status} =    Run Keyword and Return Status    Textfield Should Contain    profile.firstName    ${firstname}
+    Run Keyword if    ${status} == True    Run Keywords    Modify First Name    Nicole
+    ...    AND    Update Personal Details
+
+Check if Last Name was updated
+    [Arguments]    ${lastname}
+    Textfield Should Contain    profile.lastName    ${lastname}
+    ${status} =    Run Keyword and Return Status    Textfield Should Contain    profile.lastName    ${lastname}
+    Run Keyword if    ${status} == True    Run Keywords    Modify Last Name    Toledo
+    ...    AND    Update Personal Details
+
+Check if Phonetic first name was updated
+    [Arguments]    ${phonetic_firstname}
+    Textfield Should Contain    profile.phoneticFirstName    ${phonetic_firstname}
+    ${status} =    Run Keyword and Return Status    Textfield Should Contain    profile.phoneticFirstName    ${phonetic_firstname}
+    Run Keyword if    ${status} == True    Run Keywords    Modify Phonetic First Name    ニコール
+    ...    AND    Update Personal Details
+
+Check if Phonetic last name was updated
+    [Arguments]    ${phonetic_lastname}
+    Textfield Should Contain    profile.phoneticLastName    ${phonetic_lastname}
+    ${status} =    Run Keyword and Return Status    Textfield Should Contain    profile.phoneticLastName    ${phonetic_lastname}
+    Run Keyword if    ${status} == True    Run Keywords    Modify Phonetic Last Name    トレド
+    ...    AND    Update Personal Details
+
+Cancel My Account Details
+    Click Element    link=${button_cancel}
+    Wait until Page Contains Element    link=${personal_details_modify_text}    10 seconds
+
+Modify Email Address
+    [Arguments]    ${email_address}
+    Input Text    id=profile.newEmail    ${email_address}
+
+Update Email Address
+    Comment    Click Element    xpath=(//button[@type='submit'])[3]
+    Click Element    id=update_button
+
+Enter Current Password
+    [Arguments]    ${password}
+    [Documentation]    This keyword refers to the password field in the email header.
+    Input Password    id=profile.currentPassword    ${password}
+
+Confirm Email Address
+    [Arguments]    ${email_address}
+    Input Text    id=profile.checkEmail    ${email_address}
+
+Check if email was updated
+    [Arguments]    ${changed_email}
+    [Documentation]    If verification passes, it reverts the change to make sure that user can login again with previous email address.
+    Textfield should contain    id=profile.email    ${changed_email}
+    ${status}=    Run Keyword and Return Status    Textfield should contain    id=profile.email    ${changed_email}
+    Run Keyword if    ${status} == True    Run Keywords    Modify Email Address    ${login_email}
+    ...    AND    Confirm Email Address    ${login_email}
+    ...    AND    Enter Current Password    ${login_password}
+    ...    AND    Update Email Address
+
+Modify Password
+    [Arguments]    ${new_password}
+    Input Password    id=profile-newPassword    ${new_password}
+
+Confirm New Password
+    [Arguments]    ${confirm_password}
+    Input Password    id=profile.checkNewPassword    ${confirm_password}
+
+Update Password
+    Comment    Click Element    xpath=(//button[@type='submit'])[4]
+    Click Element    id= update_password
+
+Enter the current Password
+    [Arguments]    ${password}
+    [Documentation]    This keyword refers to the password field in the password header
+    Input Password    name=currentPassword    ${password}
+
+Check if password was updated
+    [Documentation]    Reverts all changes assuming password was changed successfully.
+    Logout
+    Go to    ${asics_url}${login_url}
+    ${canyoulogin}=    Run Keyword and Return Status    Login    ${update_password_case_user_email}    ${login_updated_password}
+    Log    Password Completed. Reverting Password
+    Run Keyword if    ${canyoulogin}    Revert Password
+
+Revert Password
+    [Documentation]    Used to Reset the test before the teardown
+    Go to Personal Details Page
+    Enter the current Password    ${login_updated_password}
+    Modify Password    ${login_password}
+    Confirm New Password    ${login_password}
+    Update Password
+    Notification message should be displayed    ${notification_password_update}
+
+Cancel Email Update
+    Click Element    id=cancel_button
+
+Cancel Password
+    Click Element    id=cancel_password

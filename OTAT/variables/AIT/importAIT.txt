@@ -1,0 +1,11 @@
+*** Settings ***
+Documentation     Imports the variable files for DE.
+Resource          ../Common/GlobalResource.txt
+
+*** Keywords ***
+AIT
+    [Documentation]    CURDIR refers to the current directory.
+    Import Resource    ${CURDIR}\\CommonResource.txt
+    Import Resource    ${CURDIR}\\${site}_Resource.txt
+    Comment    Run Keyword If    "AT" == "${site}"    Import Resource    ${CURDIR}\\AT_Resource.txt
+    Comment    Run Keyword If    "OT" == "${site}"    Import Resource    ${CURDIR}\\OT_Resource.txt

@@ -1,0 +1,15 @@
+*** Settings ***
+Documentation     The file put all the global variables.
+...
+...               The BrowserLocation can be local,browserstack or phantomjs. When It is broswerstack, you need to confirm the parameter in the BrowserstackResource file. When It is the phantomjs, we mush make sure the phantomjs_remote_url is correct. Ofcause we mush start the phantomjs sever first.
+...
+...               Only you assign the COUNTRY, the code can load the resources file in the corresponding folder.
+
+*** Variables ***
+${ENV}            local    # The value is local or browserstack or phantomjs \ .When it's browserstack, it will to test using the browserstack.
+${Browser}        chrome    # chrome | IE | firefox
+${COUNTRY}        AOP    # AAC/ABE_FR/ ADE/ADK/AES/AFR/AIE/AIT/AOP/ASE/AUK
+${site}           OT    # AT/OT
+${phantomjs_remote_url}    http://127.0.0.1:8910/
+${Device Model}    Apple iPhone 5    # Apple iPhone 5 (Device Model must be specific)
+${DriverName}     Chrome    # Firefox, Chrome, Ie, Opera, Safari, PhantomJS (Name is case sensitive)

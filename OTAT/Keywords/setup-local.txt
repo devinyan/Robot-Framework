@@ -1,0 +1,48 @@
+*** Settings ***
+Documentation     This handles the suite setup for the smoke tests or any test that requires to use a specific country file.
+Library           Selenium2Library
+Resource          ../variables/AAC/importaac.txt
+Resource          ../variables/ADE/importADE.txt
+Resource          ../variables/AOP/importaop.txt
+Resource          ../variables/AIT/importait.txt
+Resource          ../variables/AFR/importAFR.txt
+Resource          ../variables/AES/importAES.txt
+Resource          ../variables/AUK/importAUK.txt
+Resource          setup.txt
+
+*** Variables ***
+${COUNTRY}        AAC
+
+*** Keywords ***
+Open Local Homepage
+    [Arguments]    ${COUNTRY}
+    Set Selenium Speed    1 second
+    Set log level    TRACE
+    Run Keyword    ${COUNTRY}
+    Open Browser    ${ot_home_title_prefix}    phantomjs    remote_url=http://127.0.0.1:8910/
+    Comment    Open Browser    ${ot_url_production}    chrome
+    Check title page    ${ot_home_title_prefix}
+    Maximize Browser Window
+    Run Keyword if    "${COUNTRY}" == "ADE"    Close the cookie banner
+    Run Keyword if    "${COUNTRY}" == "AFR"    Close the cookie banner
+    Run Keyword if    "${COUNTRY}" == "AUK"    Close the cookie banner
+    Run Keyword if    "${COUNTRY}" == "AIT"    Close the cookie banner
+    Run Keyword if    "${COUNTRY}" == "AES"    Close the cookie banner
+
+Homepage should be open (AT)
+    [Arguments]    ${COUNTRY}
+    Set Selenium Speed    1 second
+    Set log level    TRACE
+    Run Keyword    ${COUNTRY}
+    Open Browser    ${at_url_production}    chrome
+    Check title page    ${at_home_title_prefix}
+    Maximize Browser Window
+    Run Keyword if    "${COUNTRY}" == "ADE"    Close the cookie banner
+    Run Keyword if    "${COUNTRY}" == "AFR"    Close the cookie banner
+    Run Keyword if    "${COUNTRY}" == "AUK"    Close the cookie banner
+    Run Keyword if    "${COUNTRY}" == "AIT"    Close the cookie banner
+    Run Keyword if    "${COUNTRY}" == "AES"    Close the cookie banner
+
+Check title page
+    [Arguments]    ${titlepage}
+    Page should contain    ${titlepage}

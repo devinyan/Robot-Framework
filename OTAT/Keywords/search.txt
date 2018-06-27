@@ -1,0 +1,45 @@
+*** Settings ***
+Documentation     For the search bar feature on OT/AT websites
+Library           Selenium2Library
+
+*** Keywords ***
+Autosuggest
+    [Arguments]    ${search_text}
+    Input Text    //input[starts-with(@id,'search-component')]    ${search_text}
+    Comment    Wait until Element is visible    xpath=//*[@id='quick-search']/li[1]/a[2]/p    10 seconds
+    Wait until Element is visible    xpath=//*[@id='quick-search']/li[1]/a/p[1]    10 seconds
+
+Search
+    [Arguments]    ${keyword}
+    Input Text    //input[starts-with(@id,'search-component')]    ${keyword}
+    Press Key    //input[starts-with(@id,'search-component')]    \\13
+    Page Should Contain Element    //input[starts-with(@id,'search-component')]
+
+Search Result Page should be Open
+    [Arguments]    ${keyword}    ${results_title}    ${title}
+    ${search_title}    Catenate    ${results_title}    ${keyword}    |    ${title}
+    Title should be    ${search_title}
+
+Click More Button
+    Click Element    css=.more_button
+
+Get First Suggested Product Name
+    ${productName}=    Execute Javascript    return $('#quick-search p')[0].textContent;
+    [Return]    ${productName}
+
+PDP should appear
+    [Arguments]    ${firstSuggestedProductName}
+    Comment    ${pdp_title}=    Catenate    ${firstSuggestedProductName}    |    ${home_title_prefix}
+    Comment    Title should be    ${pdp_title}
+    ${ProductDetailPageTitle}=    Get Title
+    Should Start With    ${ProductDetailPageTitle}    ${firstSuggestedProductName}
+
+Click first autosuggest item
+    Click Element    xpath=.//*[@id='quick-search']/li[1]/a/p[1]
+
+Search For Mobile
+    [Arguments]    ${search_text}
+    sleep    10 seconds
+    Page Should Contain Element    id=searchBoxMobileContainer
+    Execute Javascript    $("#searchBoxMobileContainer input[id^='search-component']").val('${search_text}');
+    Press Key    css=#searchBoxMobileContainer input[id^='search-component']    \\13

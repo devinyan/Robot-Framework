@@ -1,0 +1,35 @@
+*** Settings ***
+Documentation     Since an .exe file needs to be downloaded, it will end up at the checkout page.
+...
+...               Obviously won't work on Browserstack
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        akr    cycle1    checkoutakr
+Resource          ../keywords/checkout.txt
+Resource          ../keywords/cart.txt
+
+*** Test Cases ***
+Guest Checkout
+    [Tags]
+    Search    ${search_product_keyword}
+    Select in Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to Checkout
+    Checkout as Guest
+    Accept Terms and Conditions
+    Comment    Trigger AKR Address
+    [Teardown]    Run Keywords    Select Window    title=ASICS Korea
+    ...    AND    Go to    ${asics_url}
+
+Registered Checkout
+    Search    ${search_product_keyword}
+    Select in Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to Checkout
+    Checkout as Registered User

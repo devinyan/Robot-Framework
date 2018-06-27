@@ -1,0 +1,12 @@
+*** Settings ***
+Documentation     Text file that imports all the variables used by AT/OT AOP.
+Library           Selenium2Library
+Resource          ../Common/GlobalResource.txt
+
+*** Keywords ***
+AOP
+    [Documentation]    Initializes the AOP keyword variables
+    Import Resource    ${CURDIR}\\CommonResource.txt
+    Import Resource    ${CURDIR}\\${site}_Resource.txt
+    Comment    Run Keyword If    "AT" == "${site}"    Import Resource    ${CURDIR}\\AT_Resource.txt
+    Comment    Run Keyword If    "OT" == "${site}"    Import Resource    ${CURDIR}\\OT_Resource.txt

@@ -1,0 +1,17 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for US
+
+*** Variables ***
+${site_url}       http://www.ecstage.asicstiger.com/us/en-us/    # http://www.ecstage.asicstiger.com/us/en-us/ #www.ecdev.asicstiger.com/us/en-us/
+${local_site_url}    http://asicstiger-us:9001/us/en-us/
+${url_production}    http://www.asicstiger.com/us
+${home_title_prefix}    ASICS Tiger United States
+@{shoe_size2}     Mens 6    \    \    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    /    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    \    Womens 7.5
+${search_product}    0010291214.0202    # 0010236786.1052
+${search_keyword}    gel
+${search_prod}    shoe    # Because stock levels are different from prod and staging.
+${shipping_header}    Shipping

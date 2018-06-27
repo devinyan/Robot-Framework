@@ -1,0 +1,233 @@
+*** Settings ***
+Resource          search.txt
+Resource          cart.txt
+Resource          ../variables/Common/userdetails.txt
+Resource          login.txt
+Resource          dummy_addresses.txt
+Resource          payment.txt
+
+*** Keywords ***
+Proceed to Checkout
+    Click Element    id=minicart-total
+    Wait Until Element is visible    id=checkoutButtonTop    20 seconds
+    Click Element    id=checkoutButtonTop
+
+Checkout as Guest
+    Comment    Wait Until Element is Visible    id=guest.email    20 seconds
+    Comment    Input Text    id=guest.email    ${guestemaill}
+    Wait until Element is visible    xpath=//form[@id='guestForm']/div/button    20 seconds
+    Click Element    xpath=//form[@id='guestForm']/div/button
+    Run Keyword if    "${address_variable}" == "AAC"    Set Registered setting    False
+
+Checkout as Registered User
+    Login    ${login_email}    ${login_password}
+    Run Keyword if    "${address_variable}" == "AAC"    Set Registered setting    True
+
+Enter AAC Address
+    Select from List    id=address.title_del    Miss
+    Input Text    id=address.firstName_del    Nicole
+    Input Text    id=address.surname_del    Toledo
+    Input Text    id=address.line1_del    80 Technology
+    Input Text    id=address.townCity_del    Irvine
+    Select from List    id=address.region_del    California
+    Input Text    id=address.postcode_del    92618
+    Input Text    id =address.phone_del    07700900698
+    Input Text    id=address.emailAddress_del    nicole.toledo@asics.com
+    Click Element at Coordinates    id=address.firstName_del    10    10
+    Sleep    5 seconds
+    Wait Until Element Is Visible    css=.alert.positive.infoMessage    10
+
+Enter AAC Address If Not Exist
+    ${isAddNewDeliveryAddressPanelHidden}=    Execute Javascript    return $(".addNewDeliveryAddressPanel").is(":hidden");
+    Run Keyword If    ${isAddNewDeliveryAddressPanelHidden}    AAC Address
+
+Pay with Visa
+    [Documentation]    Only applies for AAC
+    Select from List    id=payment.cardType    Visa
+    Input Text    id=payment.nameOnCard    Nicole Toledo
+    Input Text    id=payment.cardNumber    4111111111111111
+    Select from List    id=ExpiryMonth    10
+    Select from List    id=ExpiryYear    2017
+    Input Text    id=securityCode    123
+    Sleep    10 seconds
+
+Uncheck newsletter checkbox
+    Unselect Checkbox    id=NewsLetter
+
+Place Order
+    [Documentation]    Applies to all regions.
+    ...
+    ...    Since AEB has an ogone payment, the wait for the order number was moved to the Get Order Number Keyword
+    Comment    Click Element    xpath=//*[@id='placeOrderForm']/div[2]/button
+    Focus    id=PlaceOrder
+    Click Element    id=PlaceOrder
+
+Get Order Number
+    [Documentation]    Only applies for Guest Orders.
+    Wait Until Page Contains Element    xpath=//*[@id='content']/div[2]/div/div[1]/p[2]    30 seconds
+    ${ordernumber}=    Get Text    xpath=//*[@id='content']/div[2]/div/div[1]/p[2]
+
+Enter Security Code
+    [Documentation]    Testing Javascript
+    ...
+    ...    This will only work ideally for Visa and Mastercard.
+    Comment    Execute Javascript    var sc = document.getElementById("securityCode"); sc.value = "123";
+    Comment    Input Text    id=securityCode    "123"
+    Execute Javascript    $(".controls>input").val("123");
+    Sleep    5 seconds
+    Wait until Element is Visible    id=PlaceOrder    10 seconds
+
+Accept Terms and Conditions
+    [Documentation]    Accept them blindly
+    ...
+    ...    for AEB and AOP
+    Sleep    5 seconds
+    Run Keyword Unless    "${address_variable}" == "AAC"    Execute Javascript    document.getElementById("Terms").checked=true;
+
+Ogone Payment (Visa)
+    [Documentation]    Only applies to AEB
+    ...
+    ...    Uses VISA only, on the assumption Visa was chosen in the script.
+    Wait Until Page contains Element    id=Ecom_Payment_Card_Number    20 seconds
+    Input Text    id=Ecom_Payment_Card_Number    4111111111111111
+    Select from list    id=Ecom_Payment_Card_ExpDate_Month    10
+    Select from List    id=Ecom_Payment_Card_ExpDate_Year    2031
+    Input Text    id=Ecom_Payment_Card_Verification    321
+    Click Element    submit3
+    Sleep    5 seconds
+
+AOP - Pay with Paypal Credit Card
+    Wait until Page Contains Element    id=credit_card_number    20 seconds
+    Input Text    id=credit_card_number    4222626995915762
+    Input Text    css=input[name="expiryMonth"]    10
+    Input Text    css=input[name="expiryYear"]    2018
+    Input Text    id=cvv2    123
+    Click Element    id=btn_pay_cc
+    Wait Until Element is Visible    css=.col-sm-6    45 seconds
+
+Go to this Product
+    [Arguments]    ${product_number}
+    ${url}=    Catenate    http://www.ecstage.onitsukatiger.com/au/en-au/    p/    ${product_number}
+    Go to    ${url}
+
+Enter Shipping Details
+    [Documentation]    Calls the address populating library and chooses which one based on the country
+    Run Keyword if    "${address_variable}" == "ADE"    ADE Address
+    Run Keyword if    "${payment_variable}" == "AEB"    Accept Terms and Conditions
+    Comment    Run Keyword if    "${payment_variable}" == "AOP"    Accept Terms and Conditions
+    Run Keyword if    "${address_variable}" == "AAC"    AAC Address
+    Run Keyword if    "${address_variable}" == "AOP"    AOP Address
+    Run Keyword if    "${address_variable}" == "AUK"    AUK Address
+    Run Keyword if    "${address_variable}" == "AFR"    AFR Address
+    Run Keyword if    "${address_variable}" == "AIT"    AIT Address
+    Run Keyword if    "${address_variable}" == "AES"    AES Address
+    Run Keyword if    "${address_variable}" == "ADK"    ADK Address
+    Run Keyword if    "${address_variable}" == "AIE"    AIE Address
+
+Enter Shipping Details If Not Exist For Registered User
+    [Documentation]    Calls the address populating library and chooses which one based on the country
+    ${isDefaultShippingAddressExist}=    Is AEB Sites Default Shipping Address Exist
+    ${isACCDefaultPaymentInfoExist}=    Is ACC Site Default Payment Info Exist
+    Run Keyword if    "${address_variable}" == "ADE" and "${isDefaultShippingAddressExist}"=="False"    ADE Address
+    Run Keyword if    "${payment_variable}" == "AEB"    Accept Terms and Conditions
+    Comment    Run Keyword if    "${payment_variable}" == "AOP"    Accept Terms and Conditions
+    Run Keyword if    "${address_variable}" == "AAC"    Enter AAC Address If Not Exist
+    Run Keyword if    "${address_variable}" == "AAC" and ${isACCDefaultPaymentInfoExist}    Enter Security Code
+    Run Keyword if    "${address_variable}" == "AOP" and "${isDefaultShippingAddressExist}"=="False"    AOP Address
+    Run Keyword if    "${address_variable}" == "AUK" and "${isDefaultShippingAddressExist}"=="False"    AUK Address
+    Run Keyword if    "${address_variable}" == "AFR" and "${isDefaultShippingAddressExist}"=="False"    AFR Address
+    Run Keyword if    "${address_variable}" == "AIT" and "${isDefaultShippingAddressExist}"=="False"    AIT Address
+    Run Keyword if    "${address_variable}" == "AES" and "${isDefaultShippingAddressExist}"=="False"    AES Address
+    Run Keyword IF    "${address_variable}" == "ASE" and "${isDefaultShippingAddressExist}"=="False"    ASE Address
+    Run Keyword IF    "${address_variable}" == "ADK" and "${isDefaultShippingAddressExist}"=="False"    ADK Address
+    Run Keyword IF    "${address_variable}" == "AIE" and "${isDefaultShippingAddressExist}"=="False"    AIE Address
+
+Proceed with Payment
+    [Documentation]    Sequence will depend on the country.
+    ...
+    ...    This will be for Guest Payment. I am still trying to figure out how registered payment will work
+    ${status}=    Element Should not be visible    id=usingDeliveryAddress
+    ${isACCDefaultPaymentInfoExist}=    Is ACC Site Default Payment Info Exist
+    Run Keyword if    ${status} == True    Select Checkbox    id = usingDeliveryAddress
+    Run Keyword if    "${payment_variable}" == "AEB"    Run Keywords    Place Order
+    ...    AND    AEB- Ogone Payment
+    Run Keyword if    "${payment_variable}" == "AOP"    Run Keywords    Place Order
+    ...    AND    AOP - Paypal Visa
+    Run Keyword if    "${payment_variable}" == "AAC" and \ "${isACCDefaultPaymentInfoExist}"== "False"    Pay with Visa
+    Run Keyword if    "${payment_variable}" == "AAC"    Place Order
+
+Enter Payment Information For AAC
+    [Documentation]    Sequence will depend on the country.
+    ...
+    ...    This will be for Guest Payment. I am still trying to figure out how registered payment will work
+    ${status}=    Element Should not be visible    id=usingDeliveryAddress
+    Run Keyword if    ${status} == True    Select Checkbox    id = usingDeliveryAddress
+    ${isACCDefaultPaymentInfoExist}=    Is ACC Site Default Payment Info Exist
+    Run Keyword if    "${payment_variable}" == "AAC" and "${isACCDefaultPaymentInfoExist}"== "False"    Pay with Visa
+    Run Keyword if    ${isACCDefaultPaymentInfoExist}    Enter Security Code
+
+Set Registered Setting
+    [Arguments]    ${boolean}
+    ${registereduser}=    Set Variable    ${boolean}
+
+Paypal Page should have loaded
+    [Documentation]    Used for AOP
+    ...
+    ...    Mainly for Smoke tests
+    Wait until Page Contains Element    id=credit_card_number    20 seconds
+
+Ogone Page should have appeared
+    [Documentation]    Used for AEB
+    ...
+    ...    Mainly for smoke tests
+    Run Keyword If    '${COUNTRY}'=='ADE'    Wait Until Page contains Element    css=.ncoltable2    20 seconds
+    Run Keyword Unless    '${COUNTRY}'=='ADE'    Wait Until Page contains Element    id=Ecom_Payment_Card_Number    20 seconds
+
+Find Security Code
+    Page should contain Element    id=PlaceOrder
+    Comment    Page should contain Element    xpath=//form[@id='placeOrderForm']/div/div[2]/div/input
+
+Is AEB Sites Default Shipping Address Exist
+    ${isDefaultShippingAddressExist}=    Execute Javascript    return $(".addNewDeliveryAddressPanel").is(":visible");
+    [Return]    ${isDefaultShippingAddressExist}
+
+Is ACC Site Default Payment Info Exist
+    ${isDefaultPaymentInfoExist}=    Execute Javascript    return $(".addNewPymentMethosPanel").is(":visible");
+    [Return]    ${isDefaultPaymentInfoExist}
+
+Pay with Mastercard
+    Select from List    id=payment.cardType    Mastercard
+    Input Text    id=payment.nameOnCard    Nicole Toledo
+    Input Text    id=payment.cardNumber    5555555555554444
+    Select from List    id=ExpiryMonth    10
+    Select from List    id=ExpiryYear    2017
+    Input Text    id=securityCode    123
+    Sleep    10 seconds
+
+Switch To Paypal Payment Method
+    execute javascript    document.getElementById('cybersource').checked='checked';document.getElementById('paypal').checked=true;document.getElementById('cybersourceTab').style.display='none';document.getElementById('paypalTab').style.display='block';
+
+Proceed to Checkout For Mobile
+    Execute Javascript    $('#minicart-total').click();
+    Wait Until Element is visible    //*[@id="content"]/div[1]/div[3]/div[5]/a[1]    20 seconds
+    Run Keyword If    '${COUNTRY}' == 'AOP'    Increase Cart Quantity
+    Execute Javascript    $(".doCheckoutBut[id!='checkoutButtonTop']").click();
+
+Checkout as Guest For Mobile
+    sleep    20 seconds
+    Wait until Element is visible    id=guestForm    20 seconds
+    Execute Javascript    $("#guestForm .form-actions button").click();
+    Run Keyword if    "${address_variable}" == "AAC"    Set Registered setting    False
+
+Proceed with Payment For Mobile
+    ${status}=    Element Should not be visible    id=usingDeliveryAddress
+    ${isACCDefaultPaymentInfoExist}=    Is ACC Site Default Payment Info Exist
+    Run Keyword if    ${status} == True    Select Checkbox    id = usingDeliveryAddress
+    Run Keyword if    "${payment_variable}" == "AEB"    Run Keywords    AEB- Ogone Payment
+    Run Keyword if    "${payment_variable}" == "AOP" and \ "${isACCDefaultPaymentInfoExist}"== "False"    Run Keywords    AOP - Paypal Visa For Mobile
+    Run Keyword if    "${payment_variable}" == "AAC" and \ "${isACCDefaultPaymentInfoExist}"== "False"    Pay with Visa
+    Place Order For Mobile
+
+Place Order For Mobile
+    Wait Until Page contains element    id=PlaceOrder
+    Execute Javascript    $("#PlaceOrder").click();

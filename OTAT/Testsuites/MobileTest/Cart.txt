@@ -1,0 +1,42 @@
+*** Settings ***
+Suite Setup       Open Homepage For Mobile
+Suite Teardown    Close Browser
+Resource          ../../Keywords/setup.txt
+Resource          ../../Keywords/search.txt
+Resource          ../../Keywords/cart.txt
+
+*** Test Cases ***
+Add to Cart
+    [Tags]    mobile
+    Search For Mobile    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to Cart For Mobile
+    MiniCart Quantity should have increased
+    [Teardown]    Run Keyword if Test Passed    Run Keywords    Go to Cart Page For Mobile
+    ...    AND    Remove Item from Cart
+
+Update Cart Quantity
+    [Tags]    mobile
+    Search For Mobile    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to Cart For Mobile
+    MiniCart Quantity should have increased
+    Go to Cart Page For Mobile
+    Increase Cart Quantity
+    Cart Quantity should have been changed
+    [Teardown]    Remove Item from Cart
+
+Shipping Links are working
+    [Tags]    mobile
+    [Setup]
+    Search For Mobile    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to Cart For Mobile
+    MiniCart Quantity should have increased
+    Go to Cart Page For Mobile
+    Check shipping info link
+    [Teardown]    Run Keywords    Go to Cart Page For Mobile
+    ...    AND    Remove Item from Cart

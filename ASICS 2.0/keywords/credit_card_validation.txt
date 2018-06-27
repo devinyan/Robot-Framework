@@ -1,0 +1,36 @@
+*** Settings ***
+Resource          address_validation.txt
+
+*** Keywords ***
+Select Card Type
+    [Arguments]    ${cardtype}
+    Select from List    id=payment.cardType    ${cardtype}
+
+Enter Card Name
+    [Arguments]    ${cardname}
+    Input Text    id=payment.nameOnCard    ${cardname}
+
+Enter Card Number
+    [Arguments]    ${cardNumber}
+    Input Text    id=payment.cardNumber    ${cardNumber}
+
+Select Expiry Month
+    [Arguments]    ${expiry_month}
+    Select from List    id=ExpiryMonth    ${expiry_month}
+
+Select Expiry Year
+    [Arguments]    ${expiry_year}
+    Select from List    id=ExpiryYear    ${expiry_year}
+
+Enter Security Code
+    [Arguments]    ${securityCode}
+    Input Text    id=securityCode    ${securityCode}
+
+Go To Summary Page And Input Valid Address Using Guest User
+    Go To Summary Page Use Guest User
+    Run keyword if    "${COUNTRY}" == "AJP"    Enter AJP Address
+    Run Keyword if    "${COUNTRY}" == "AAC"    Enter AAC Address
+
+Credit Card Validation Error Message Should Appear
+    [Arguments]    ${errorMessageLocator}
+    Wait Until Page Contains Element    ${errorMessageLocator}    15

@@ -1,0 +1,22 @@
+*** Settings ***
+Suite Setup       Open Homepage for SmokeTest    AKR
+Suite Teardown    Close Browser
+Force Tags        smoketestaac
+Resource          ../keywords/checkout.txt
+Resource          ../keywords/cart.txt
+Resource          ../variables/AKR/resource.txt
+
+*** Test Cases ***
+Guest Checkout
+    [Documentation]    Need to set test variable to make sure the keywords are correct.
+    Set Test Variable    ${COUNTRY}    AKR
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Guest
+    Click Element    xpath=//*[@id="accept-button"]/a
+    Enter AKR Address

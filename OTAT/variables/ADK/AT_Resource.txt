@@ -1,0 +1,17 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for US
+
+*** Variables ***
+${site_url}       http://www.ecstage.asicstiger.com/dk/en-dk/
+${url_production}    http://www.asicstiger.com/dk/
+${home_title_prefix}    ASICS Tiger Denmark
+@{shoe_size2}     Mens 6    \    \    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    /    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    \    Womens 7.5
+${search_product}    gel    # 0010236804.1159
+${search_keyword}    gel
+${search_keyword2}    edr
+${local_site_url}    http://asicstiger-gb:9001/gb/en-gb/
+${search_prod}    0010299797.0101

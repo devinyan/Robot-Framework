@@ -1,0 +1,110 @@
+*** Settings ***
+Documentation     Used by AJP and AAC
+...
+...               Best to use via Browserstack. First test case always fails locally due to loading issues.
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        credit_card_validation    aac    ajp
+Resource          ../variables/creditcardinfo.txt
+Resource          ../keywords/address_validation.txt
+Resource          ../keywords/credit_card_validation.txt
+
+*** Test Cases ***
+Validate Credit Card Name
+    [Documentation]    AJP does real-time validation. AAC doesn't care until you hit "Place Order"
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page And Input Valid Address Using Guest User
+    Comment    Run Keyword if    "${COUNTRY}" == "AJP"    Click Element    id=cybersource
+    Select Card Type    ${VisaCardType}
+    Enter Card Name    ${EMPTY}
+    Enter Card Number    ${VisaCardNumber}
+    Select Expiry Month    ${ExpiryMonth}
+    Select Expiry Year    ${ExpiryYear}
+    Run Keyword if    "${COUNTRY}" == "AAC"    Place Order
+    Credit Card Validation Error Message Should Appear    id=payment.nameOnCard-error
+    [Teardown]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go to Cart Page
+    ...    AND    Remove item from Cart
+
+Validate Credit Card Type
+    [Documentation]    March 29,2017
+    ...    AOP has a feature that can detect the credit card type based on the Credit card number which is why i'm placing a keyword on the last script.
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page And Input Valid Address Using Guest User
+    Comment    Run Keyword if    "${COUNTRY}" == "AJP"    Click Element    id=cybersource
+    Comment    Double Click Element    id=payment.cardType
+    Enter Card Name    ${NameOnCard}
+    Enter Card Number    ${VisaCardNumber}
+    Select Expiry Month    ${ExpiryMonth}
+    Select Expiry Year    ${ExpiryYear}
+    Enter Security Code    123
+    Place Order
+    Run keyword if    "${COUNTRY}" != "AOP"    Credit Card Validation Error Message Should Appear    id=payment.cardType-error
+    [Teardown]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go to Cart Page
+    ...    AND    Remove item from Cart
+
+Validate Credit Card Number
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page And Input Valid Address Using Guest User
+    Comment    Run Keyword if    "${COUNTRY}" == "AJP"    Click Element    id=cybersource
+    Select Card Type    ${VisaCardType}
+    Enter Card Name    ${NameOnCard}
+    Run Keyword if    "${COUNTRY}" == "AJP"    Enter Card Number    4111
+    Run keyword if    "${COUNTRY}" == "AAC"    Enter Card Number    ${EMPTY}
+    Select Expiry Month    ${ExpiryMonth}
+    Run Keyword if    "${COUNTRY}" == "AAC"    Place Order
+    Credit Card Validation Error Message Should Appear    id=payment.cardNumber-error
+    [Teardown]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go to Cart Page
+    ...    AND    Remove item from Cart
+
+Validate Expiry Month
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page And Input Valid Address Using Guest User
+    Comment    Run Keyword if    "${COUNTRY}" == "AJP"    Click Element    id=cybersource
+    Select Card Type    ${VisaCardType}
+    Enter Card Name    ${NameOnCard}
+    Enter Card Number    ${VisaCardNumber}
+    Comment    Double Click Element    id=ExpiryMonth
+    Select Expiry Year    ${ExpiryYear}
+    Comment    Run Keyword if    "${COUNTRY}" == "AAC"    Place Order
+    Place Order
+    Credit Card Validation Error Message Should Appear    id=ExpiryMonth-error
+    [Teardown]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go to Cart Page
+    ...    AND    Remove item from Cart
+
+Validate Expiry Year
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page And Input Valid Address Using Guest User
+    Comment    Run Keyword if    "${COUNTRY}" == "AJP"    Click Element    id=cybersource
+    Select Card Type    ${VisaCardType}
+    Enter Card Name    ${NameOnCard}
+    Enter Card Number    ${VisaCardNumber}
+    Select Expiry Month    ${ExpiryMonth}
+    Comment    Double Click Element    id=ExpiryYear
+    Enter Security Code    123
+    Comment    Run Keyword if    "${COUNTRY}" == "AAC"    Place Order
+    Place Order
+    Credit Card Validation Error Message Should Appear    id=ExpiryYear-error
+    [Teardown]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go to Cart Page
+    ...    AND    Remove item from Cart
+
+Validate Security Code
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page And Input Valid Address Using Guest User
+    Comment    Run Keyword if    "${COUNTRY}" == "AJP"    Click Element    id=cybersource
+    Select Card Type    ${VisaCardType}
+    Enter Card Name    ${NameOnCard}
+    Enter Card Number    ${VisaCardNumber}
+    Select Expiry Month    ${ExpiryMonth}
+    Select Expiry Year    ${ExpiryYear}
+    Enter Security Code    ${EMPTY}
+    Run Keyword if    "${COUNTRY}" == "AAC"    Place Order
+    Comment    Focus    id=payment.nameOnCard
+    Credit Card Validation Error Message Should Appear    id=securityCode-error
+    [Teardown]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go to Cart Page
+    ...    AND    Remove item from Cart

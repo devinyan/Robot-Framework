@@ -1,0 +1,24 @@
+*** Settings ***
+Documentation     Tests valid and invalid login
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        login
+Resource          ../keywords/login.txt
+Resource          ../keywords/customer_registration.txt
+Resource          ../keywords/setup.txt
+
+*** Test Cases ***
+Valid Login
+    Login to my Account
+    [Teardown]    Log out
+
+Invalid Password
+    [Setup]    Go to    ${asics_url}${login_url}
+    Login    nicole.toledo@asics.com    test
+    Error message should appear    ${error_invalid_login}
+
+Invalid Username
+    [Documentation]    Uses a username that's not in email format.
+    [Setup]    Go to    ${asics_url}${login_url}
+    Login    whatever@    asics123
+    Error message should appear    ${error_invalid_login}

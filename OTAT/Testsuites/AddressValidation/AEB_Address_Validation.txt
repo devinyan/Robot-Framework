@@ -1,0 +1,103 @@
+*** Settings ***
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        aeb_address
+Resource          ../../Keywords/address_validation.txt
+
+*** Test Cases ***
+Blank First Name
+    ${isAEBSite}=    IsAEBSite    ${COUNTRY}
+    Run Keyword if    ${isAEBSite}    Run Keywords    Go To Summary Page Use Guest User
+    ...    AND    Enter First Name    ${EMPTY}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Click Edit Your Address Link For AEB Sites
+    ...    AND    Enter Address Line1    ${addressLine1}
+    ...    AND    Enter Address Line2    ${addressLine2}
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Place Order
+    ...    AND    Address Validation Error Message Should Show    id=address.firstName_del-error
+
+Blank Last Name
+    ${isAEBSite}=    IsAEBSite    ${COUNTRY}
+    Run Keyword if    ${isAEBSite}    Run Keywords    Go To Summary Page Use Guest User
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${EMPTY}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Click Edit Your Address Link For AEB Sites
+    ...    AND    Enter Address Line1    ${addressLine1}
+    ...    AND    Enter Address Line2    ${addressLine2}
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Place Order
+    ...    AND    Address Validation Error Message Should Show    id=address.surname_del-error
+
+Blank Address Line1
+    ${isAEBSite}=    IsAEBSite    ${COUNTRY}
+    Run Keyword if    ${isAEBSite}    Run Keywords    Go To Summary Page Use Guest User
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Click Edit Your Address Link For AEB Sites
+    ...    AND    Enter Address Line1    ${EMPTY}
+    ...    AND    Enter Address Line2    ${addressLine2}
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Place Order
+    ...    AND    Address Validation Error Message Should Show    id=address.line1_del-error
+
+Blank Town/City
+    ${isAEBSite}=    IsAEBSite    ${COUNTRY}
+    Run Keyword if    ${isAEBSite}    Run Keywords    Go To Summary Page Use Guest User
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Click Edit Your Address Link For AEB Sites
+    ...    AND    Enter Address Line1    ${addressLine1}
+    ...    AND    Enter Address Line2    ${addressLine2}
+    ...    AND    Enter TownCity    ${EMPTY}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Place Order
+    ...    AND    Address Validation Error Message Should Show    id=address.townCity_del-error
+
+No Zip Code
+    ${isAEBSite}=    IsAEBSite    ${COUNTRY}
+    Run Keyword if    ${isAEBSite}    Run Keywords    Go To Summary Page Use Guest User
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Click Edit Your Address Link For AEB Sites
+    ...    AND    Enter Address Line1    ${addressLine1}
+    ...    AND    Enter Address Line2    ${addressLine2}
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Enter Post Code    ${EMPTY}
+    ...    AND    Place Order
+    ...    AND    Address Validation Error Message Should Show    id=address.postcode_del-error
+
+Valid Address
+    ${isAEBSite}=    IsAEBSite    ${COUNTRY}
+    Comment    Run Keyword if    ${isAEBSite}    Run Keywords    Go To Summary Page Use Guest User
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Click Edit Your Address Link For AEB Sites
+    ...    AND    Enter Address Line1    ${addressLine1}
+    ...    AND    Enter Address Line2    ${addressLine2}
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Place Order
+    ...    AND    Address Validation Error Message Should Show    css=.alert.positive.infoMessage
+    Run Keyword if    ${isAEBSite}    Run Keywords    Go To Summary Page Use Guest User
+    ...    AND    Enter First Name    ${firstNameForShippingAddress}
+    ...    AND    Enter Last Name    ${lastNameForShiipingAddress}
+    ...    AND    Enter Phone Number    ${phonenumber}
+    ...    AND    Click Edit Your Address Link For AEB Sites
+    ...    AND    Enter Address Line1    ${addressLine1}
+    ...    AND    Enter Address Line2    ${addressLine2}
+    ...    AND    Enter TownCity    ${townCity}
+    ...    AND    Enter Post Code    ${postcode}
+    ...    AND    Triger Address Validation For AEB Sites
+    ...    AND    Accept Terms and Conditions
+    ...    AND    Place Order
+    ...    AND    Page Should Not Contain Element    css=.alert.positive.infoMessage

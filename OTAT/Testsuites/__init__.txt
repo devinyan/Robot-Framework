@@ -1,0 +1,4 @@
+*** Settings ***
+Documentation     These contains all the test cases for AT or OT.
+Force Tags        otat
+Resource          ../Keywords/setup.txt

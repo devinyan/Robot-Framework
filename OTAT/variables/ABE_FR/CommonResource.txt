@@ -1,0 +1,33 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for US
+
+*** Variables ***
+${error_invalid_firstname}    Indiquez votre prénom
+${error_invalid_lastname}    Indiquez votre nom
+${error_weak_password}    Entrez un mot de passe sécurisé
+${error_invalid_email}    Veuillez indiquer une adresse valide
+${error_no_password}    Entrez un mot de passe sécurisé (au moins 6 caractères)
+${error_no_confirm_password}    Veuillez confirmer votre mot de passe
+${error_invalid_login}    Votre nom d'utilisateur et votre mot de passe ne sont pas reconnus. Essayez à nouveau
+${error_general_message}    Veuillez corriger les erreurs ci-dessous
+${notification_registration_complete}    Nous vous remercions pour votre inscription
+${login_url}      login
+${error_existing_email}    Un compte a déjà été créé à partir de cette adresse
+${error_password_no_match}    Les champs Mot de passe et Confirmation du mot de passe ne correspondent pas
+${search_results_title}    Rechercher...
+${notification_quantity_updated}    Le nombre d'articles a été mis à jour
+${my_account_header}    Mon compte
+${payment_variable}    AEB
+${shipping_link}    Cliquez ici pour plus dinformations sur les options dexpédition
+${shipping_url}    delivery
+${address_variable}    ABE_FR
+${shipping_header}    Informations sur la livraison
+${titleForShippingAddress}    Ms
+${firstNameForShippingAddress}    Nicole
+${lastNameForShiipingAddress}    Toledo
+${addressLine1}    Stationstraat 5
+${addressLine2}    ${EMPTY}
+${townCity}       Turnhout
+${state}          ${EMPTY}
+${postcode}       2300
+${phonenumber}    3214820202

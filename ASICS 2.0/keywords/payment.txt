@@ -1,0 +1,60 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Keywords ***
+Pay with Visa For ACC
+    Execute Javascript    $("#payment\\\\.cardType").val("visa");
+    Input Text    id=payment.nameOnCard    Nicole Toledo
+    Input Text    id=payment.cardNumber    4111111111111111
+    Select from List    id=ExpiryMonth    10
+    Select from List    id=ExpiryYear    2018
+    Input Text    id=securityCode    123
+
+Pay with Mastercard
+    Click Element    id=cybersource
+    Select from List    id=payment.cardType    Mastercard
+    Input Text    id=payment.nameOnCard    Nicole Toledo
+    Input Text    id=payment.cardNumber    5555555555554444
+    Select from List    id=ExpiryMonth    10
+    Select from List    id=ExpiryYear    2017
+    Input Text    id=securityCode    123
+
+Pay with Visa
+    [Documentation]    Shortcut keyword for the sake of testing with Visa
+    Comment    Click Element    id=cybersource
+    Comment    Select from List    id=payment.cardType    Visa
+    Execute Javascript    $("#payment\\\\.cardType").val("001");
+    Input Text    id=payment.nameOnCard    Nicole Toledo
+    Input Text    id=payment.cardNumber    4111111111111111
+    Select from List    id=ExpiryMonth    10
+    Select from List    id=ExpiryYear    2018
+    Input Text    id=securityCode    123
+
+Pay with Paypal Visa
+    Wait until Page Contains Element    id=credit_card_number    20 seconds
+    Input Text    id=credit_card_number    4222626995915762
+    Input Text    css=input[name="expiryMonth"]    10
+    Input Text    css=input[name="expiryYear"]    2018
+    Input Text    id=cvv2    123
+    Click Element    id=btn_pay_cc
+    Wait Until Element is Visible    css=.col-sm-6    45 seconds
+
+Ogone- Visa
+    Wait Until Page contains Element    id=Ecom_Payment_Card_Number    20 seconds
+    Input Text    id=Ecom_Payment_Card_Number    4111111111111111
+    Select from list    id=Ecom_Payment_Card_ExpDate_Month    10
+    Select from List    id=Ecom_Payment_Card_ExpDate_Year    2031
+    Input Text    id=Ecom_Payment_Card_Verification    321
+    Click Element    submit3
+    Sleep    5 seconds
+
+Pay with Klarna
+    [Documentation]    For DE and AT
+    Wait until page contains element    .Ecom_ShipTo_DOB_day    1 minute
+    Select from List    .Ecom_ShipTo_DOB_day    7
+    Select from List    .Ecom_ShipTo_DOB_month    7
+    Select from List    .Ecom_ShipTo_DOB_year    1960
+    Select Checkbox    GPP_Klarna
+    Click Element    btn_Confirm
+    Wait until Page Contains Element    btn_Agree
+    Click Element    btn_Agree

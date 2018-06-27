@@ -1,0 +1,110 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Keywords ***
+Enter AJP Address
+    Input Text    id=address.surname_del    トレド
+    Input Text    id=address.firstName_del    ニコール
+    Input Text    id=address.middlename_del    トレド
+    Input Text    address.middlename2_del    ニコール
+    Input Text    address.phone_del    09023483498
+    Input Text    address.emailAddress_del    nicole.toledo@asics.com
+    Input Text    address.postcode_del    2650025
+    Select from List    id=address.region_del    千葉県
+    Input Text    id=address.townCity_del    花見川区
+    Input Text    id=address.line1_del    花園
+    Comment    Focus    id=ajp-standard-shipping
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit()
+    Sleep    3 seconds
+    Wait Until Element Is Visible    css=.alert.positive.infoMessage    10
+
+Enter AOP Address
+    Input Text    id=address.surname_del    Toledo
+    Input Text    id=address.firstName_del    Nicole
+    Input Text    id=address.phone_del    09023483498
+    Input text    id=address.emailAddress_del    nicole.toledo@asics.com
+    Input Text    id=address.postcode_del    3000
+    Select from List    id=address.region_del    Victoria
+    Input Text    id=address.townCity_del    Melbourne
+    Input Text    id=address.line1_del    33 Spencer Street
+    Comment    Focus    id=aop-standard-shipping
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit()
+    Sleep    3 seconds
+
+Enter AAC Address
+    [Documentation]    We now use Wait until page contains element vs wait until element is visible since we get issues that the element is not placed in the DOM.
+    ...
+    ...    This is probably because the element isnt actually "visible" as it is blocked by another element.
+    Input Text    id=address.firstName_del    Nicole
+    Input Text    id=address.surname_del    Toledo
+    Input Text    id=address.phone_del    7033187111
+    Input Text    id=address.emailAddress_del    nicole.toledo@asics.com
+    Input Text    id=address.postcode_del    92618
+    Input Text    id=address.line1_del    80 Technology Drive
+    Input Text    id=address.townCity_del    Irvine
+    Select from List    id=address.region_del    California
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit()
+    Wait until Page Contains Element    css=.alert.positive.infoMessage
+    Comment    Wait Until Element Is Visible    css=.alert.positive.infoMessage
+
+Enter AGB Address
+    Input Text    id=address.firstName_del    Nicole
+    Input Text    id=address.surname_del    Toledo
+    Input Text    id=address.phone_del    442392863147
+    Input Text    address.emailAddress_del    nicole.toledo@asics.com
+    Input Text    id=address.postcode_del    P01 3TZ
+    Input Text    id=address.townCity_del    Portsmouth
+    Input Text    id=address.line1_del    Gunwharf Quays
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit()
+    Sleep    3 seconds
+
+Enter AEB Address
+    Run Keyword If    "${COUNTRY}" == "AGB"    Enter AGB Address
+    Run Keyword if    "${COUNTRY}" == "ADE"    Enter ADE Address
+
+Enter ADE Address
+    Input Text    id=address.firstName_del    Nicole
+    Input Text    id=address.surname_del    Toledo
+    Input Text    address.phone_del    49 30 26050
+    Input Text    address.emailAddress_del    nicole.toledo@asics.com
+    Input Text    address.postcode_del    10785
+    Input Text    id=address.townCity_del    Berlin
+    Input Text    id=address.line1_del    Lützowpl. 17
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit()
+    Sleep    3 seconds
+
+Enter Klarna Test Address
+    [Documentation]    Specific to AT and DE and using Klarna
+    Input Text    id=address.firstName_del    Testperson-de
+    Input Text    id=address.surname_del    Approved
+    Input Text    address.phone_del    01522113356
+    Input Text    address.emailAddress_del    nicole.toledo@asics.com
+    Input Text    address.postcode_del    41460
+    Input Text    id=address.townCity_del    Neuss
+    Input Text    id=address.line1_del    Hellersbergstraße 14
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit()
+
+Enter ANZ Address
+    Input Text    id=address.surname_del    Toledo
+    Input Text    id=address.firstName_del    Nicole
+    Input Text    id=address.phone_del    09023483498
+    Input text    id=address.emailAddress_del    nicole.toledo@asics.com
+    Input Text    id=address.postcode_del    1010
+    Select from List    id=address.region_del    Auckland
+    Input Text    id=address.townCity_del    Grafton
+    Input Text    id=address.line1_del    83 Symonds St
+    Comment    Focus    id=aop-standard-shipping
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit()
+    Sleep    3 seconds
+
+Enter AKR Address
+    Input Text    xpath=//*[@id="lastName"]    Toledo
+    Input Text    xpath=//*[@id="firstName"]    Nicole
+    ${winlst}    List Windows
+    log    ${winlst}
+    ${w}    ${h}    Get Window Size
+    execute javascript    document.getElementById("postcode").value='46702';document.getElementById("line1").value='부산 강서구 대저로235번길 9 (대저1동)';
+    Input Text    xpath=//*[@id="phone"]    7033187111
+    Input Text    xpath=//*[@id="emailAddress"]    nicole.toledo@asics.com
+    Wait until Page Contains Element    xpath=//*[@id="PlaceOrder"]    10 seconds
+    click element    xpath=//*[@id="PlaceOrder"]

@@ -1,0 +1,39 @@
+*** Settings ***
+Documentation     AJP Checkout
+Suite Setup       Open Homepage For SmokeTest    AJP
+Suite Teardown    Close Browser
+Force Tags        checkout    ajp    smoketestajp
+Resource          ../keywords/checkout.txt
+Resource          ../keywords/cart.txt
+Resource          ../variables/AJP/resource.txt
+
+*** Test Cases ***
+Guest Checkout
+    [Tags]    creditcard
+    [Setup]    Go to    ${asics_production_url}
+    Set Test Variable    ${COUNTRY}    AJP
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to Checkout
+    Checkout as Guest
+    Accept Terms and Conditions
+    Enter AJP Address
+
+Registered Checkout
+    [Documentation]    Credit Card has been saved to the account.
+    [Tags]    creditcard
+    [Setup]    Go to    ${asics_production_url}
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to Checkout
+    Checkout as Registered User
+    Enter Japan Delivery Address If Not Exist
+    [Teardown]    Logout

@@ -1,0 +1,92 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          login.txt
+Library           String
+
+*** Variables ***
+${notification_registration_complete}    ご登録ありがとうございます。
+${finaltext}      桜坂桜坂桜坂桜
+
+*** Keywords ***
+Enter First Name
+    [Arguments]    ${firstname}
+    Wait Until Page Contains Element    id=register.firstName    30 seconds
+    Input Text    id=register.firstName    ${firstname}
+
+Enter Last Name
+    [Arguments]    ${lastname}
+    Input Text    id=register.lastName    ${lastname}
+
+Enter Phonetic Last Name
+    [Arguments]    ${phonetic_lastname}
+    Input Text    id=register.phoneticLastName    ${phonetic_lastname}
+
+Enter Phonetic First Name
+    [Arguments]    ${phonetic_firstname}
+    Input Text    id=register.phoneticFirstName    ${phonetic_firstname}
+
+Enter Email Address
+    [Arguments]    ${email_address}
+    Input Text    id=register.email    ${email_address}
+
+Enter Password
+    [Arguments]    ${password}
+    Input Password    id=password    ${password}
+
+Enter Confirmed Password
+    [Arguments]    ${confirmed_password}
+    Input Text    id=register.checkPwd    ${confirmed_password}
+
+Personal Information Checkbox shouldn't be checked
+    Checkbox should not be selected    id=termsAndConditions
+
+Email Checkbox shouldn't be checked
+    Checkbox should not be selected    id=newsletter
+
+Uncheck Newsletter
+    [Documentation]    To prevent additional spam while testing.
+    Unselect Checkbox    id=newsletter
+
+Check Personal Information Checkbox
+    Comment    Select Checkbox    id=termsAndConditions
+    Click Element    xpath=.//*[@id='AJPRegisterForm']/div[2]/label/div
+
+Register
+    Comment    Click Element    xpath=.//*[@id='AJPRegisterForm']/div[3]/button
+    Click Element    id=registerButton
+
+Cancel Registration
+
+Error Message should appear
+    [Arguments]    ${text}
+    [Documentation]    Checks if the error message text specified in the keyword appears
+    Wait until Page Contains    ${text}
+    Page should Contain    ${text}
+
+Welcome Message should appear
+    [Documentation]    Currently not using the same text from the resource.txt file
+    Page should Contain    ${notification_registration_complete}
+
+Byte count should be correct
+    ${returntext}=    Get Value    id=register.firstName
+    ${returntext2}=    Get Value    id=register.lastName
+    Should be equal as strings    桜坂桜坂桜坂桜    ${returntext}
+    Should be equal as strings    桜坂桜坂桜坂桜    ${returntext2}
+
+Generate Dummy Email
+    [Documentation]    To be able to create dummy emails during automated tests.
+    ...
+    ...    Taken from ATOT
+    ...
+    ...    ONLY TO BE USED FOR SUCCESSFUL REGISTRATION
+    ${username}    Generate Random String    10    [LOWER]
+    ${dummyEmail}    Set variable    ${username}@mailinator.com
+    [Return]    ${dummyEmail}
+
+Registration Error Message should appear
+    [Arguments]    ${errorMessageLocator}
+    [Documentation]    Checks if the error message text specified in the keyword appears
+    Wait Until Page Contains Element    ${errorMessageLocator}    30
+
+Email checkbox should be checked
+    Checkbox should be selected    id=newsletter

@@ -1,0 +1,17 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for AU
+
+*** Variables ***
+${site_url}       http://www.ecstage.asicstiger.com/au/en-au/
+${url_production}    http://www.asicstiger.com/au
+${home_title_prefix}    ASICS Tiger Australia
+@{shoe_size2}     Mens 6    \    \    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    /    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    \    Womens 7.5
+${home_title_prefix}    ASICS Tiger Australia
+${search_product}    0010284141.1212    # 0010236785.1159 #gel
+${search_keyword}    gel
+${local_site_url}    http://asicstiger-au:9001/au/en-au/
+${search_prod}    gel

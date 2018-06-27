@@ -1,0 +1,3 @@
+*** Keywords ***
+ADE
+    Import Resource    ${CURDIR}\\resource.txt

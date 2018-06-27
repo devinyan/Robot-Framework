@@ -1,0 +1,60 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          checkout.txt
+
+*** Keywords ***
+Go To Summary Page Use Guest User
+    Comment    Open Homepage
+    Go To Homepage
+    Search    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to cart
+    Proceed to Checkout
+    Checkout as Guest
+
+Select Title
+    [Arguments]    ${titleForShippingAddress}
+    Select from List    id=address.title_del    ${titleForShippingAddress}
+
+Enter First Name
+    [Arguments]    ${firstName}
+    Input Text    id=address.firstName_del    ${firstName}
+
+Enter Last Name
+    [Arguments]    ${lastName}
+    Input Text    id=address.surname_del    ${lastName}
+
+Enter Address Line1
+    [Arguments]    ${addressLine1}
+    Input Text    id=address.line1_del    ${addressLine1}
+
+Enter Address Line2
+    [Arguments]    ${addressLine2}
+    Input Text    id=address.line2_del    ${addressLine2}
+
+Enter TownCity
+    [Arguments]    ${townCity}
+    Input Text    id=address.townCity_del    ${townCity}
+
+Select State
+    [Arguments]    ${region}
+    Select from List    id=address.region_del    ${region}
+
+Enter Post Code
+    [Arguments]    ${postcode}
+    Input Text    id=address.postcode_del    ${postcode}
+
+Enter Phone Number
+    [Arguments]    ${phoneNumber}
+    Input Text    id=address.phone_del    ${phoneNumber}
+
+Address Validation Error Message Should Show
+    [Arguments]    ${errorMessageLocator}
+    Wait Until Page Contains Element    ${errorMessageLocator}    30
+
+Click Edit Your Address Link For AEB Sites
+    Click Element    xpath=//*[@id='deliveryAddressForm']/div[1]/div[3]/ul/li[4]/ul/li/label/a
+
+Triger Address Validation For AEB Sites
+    Click Element at Coordinates    id=address.phone_del    10    10

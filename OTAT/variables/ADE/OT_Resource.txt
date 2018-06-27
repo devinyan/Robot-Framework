@@ -1,0 +1,18 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for US
+
+*** Variables ***
+${site_url}       http://www.ecstage.onitsukatiger.com/de/de-de/
+${url_production}    http://www.onitsukatiger.com/de/
+${home_title_prefix}    Onitsuka Tiger Germany
+${home_title_suffix}    | Homepage
+@{shoe_size2}     Mens 6    \    \    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    /    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    \    Womens 7.5
+${search_keyword}    mexico
+${search_keyword2}    edr
+${search_product}    mex    # 0010141695.1390
+${local_site_url}    http://onitsukatiger-de:9001/de/de-de/
+${search_prod}    0010248021.9494    # used for smoke tests

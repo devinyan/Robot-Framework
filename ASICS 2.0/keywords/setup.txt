@@ -1,0 +1,72 @@
+*** Settings ***
+Library           Selenium2Library
+Library           String
+Resource          ../variables/configuration.txt
+Resource          ../variables/AOP/importAOP.txt
+Resource          ../variables/AJP/importAJP.txt
+Resource          ../variables/AAC/importAAC.txt
+Resource          ../variables/AGB/importAGB.txt
+Resource          ../variables/ADE/importADE.txt
+Resource          ../variables/AKR/importAKR.txt
+Resource          ../variables/ANZ/importANZ.txt
+
+*** Keywords ***
+Open Homepage
+    ${desiredCapabilities}=    Setup Browserstack Desired Capabilities
+    Set log level    TRACE
+    Set Selenium Speed    0.3 seconds
+    Set Selenium Timeout    120 seconds
+    Run Keyword    ${COUNTRY}
+    Log    Current country is ${COUNTRY}
+    Log    ${asics_url}
+    Run Keyword if    "${ENV}" == "local"    Open Browser    ${asics_url}    ${browser}
+    Run Keyword if    "${ENV}" == "browserstack"    Open Browser    ${asics_url}    ${BROWSER_NAME}    remote_url=${COMMAND_EXECUTOR_BROWSERSTACK}    desired_capabilities=${desiredCapabilities}
+    Run Keyword if    "${ENV}" == "phantomjs"    Open Browser    ${asics_url}    phantomjs    remote_url=${phantomjs_remote_url}
+    Run Keyword unless    "${desktop}" == "false"    Maximize Browser Window
+
+Open Homepage For SmokeTest
+    [Arguments]    ${COUNTRY}
+    ${desiredCapabilities}=    Setup Browserstack Desired Capabilities
+    Set log level    TRACE
+    Set Selenium Speed    0.3 seconds
+    Run Keyword    ${COUNTRY}
+    Log    Current country is ${COUNTRY}
+    Log    ${asics_production_url}
+    Run Keyword if    "${ENV}" == "local"    Open Browser    ${asics_production_url}    ${browser}
+    Run Keyword if    "${ENV}" == "browserstack"    Open Browser    ${asics_production_url}    ${browser}    remote_url=${COMMAND_EXECUTOR_BROWSERSTACK}    desired_capabilities=${desiredCapabilities}
+    Run Keyword if    "${ENV}" == "phantomjs"    Open Browser    ${asics_production_url}    phantomjs    remote_url=${phantomjs_remote_url}
+    Run Keyword Unless    "${desktop}" == "false"    Maximize Browser Window
+
+End Test Case
+    Close Browser
+
+Setup Browserstack Desired Capabilities
+    ${shortTestSuiteName}=    Fetch From Right    ${SUITE_NAME}    .
+    ${desiredCapabilities}    Catenate    SEPARATOR=,    os:${OS}    os_version:${OS_VERSION}    browser:${BROWSER_NAME}    browser_version:${BROWSER_VERSION}
+    ...    project:${PROJECT_NAME}    build:${BUILD_NUM}    browserstack.local:${USE_LOCAL_SERVER}    ${BS_SPECS}    browserstack.video:${browserstack_video}    name:${shortTestSuiteName}
+    Log    ${desiredCapabilities}
+    [Return]    ${desiredCapabilities}
+
+IsAJPSite
+    [Arguments]    ${country}
+    Return From Keyword If    "${country}"=="AJP"    "TRUE"
+
+IsAOPSite
+    [Arguments]    ${country}
+    Return From Keyword If    "${country}"=="AOP"    "TRUE"
+
+Open Homepage For Mobile
+    [Tags]    mobile
+    Set Selenium Timeout    60 second
+    Set Selenium Speed    1 second
+    Set log level    TRACE
+    Log    Current site is ${site}... \ Current country is ${COUNTRY}...
+    Run Keyword    ${COUNTRY}
+    Comment    Set Suite Variable    ${site_url}    ${local_site_url}    children=true
+    Comment    Set Site Variables    ${site}
+    ${devname}=    Create Dictionary    deviceName=${Device Model}
+    ${chromeoptions}=    Evaluate    sys.modules['selenium.webdriver.chrome.options'].Options()    sys,selenium.webdriver.chrome.options
+    Call Method    ${chromeoptions}    add_experimental_option    mobileEmulation    ${devname}
+    Create Webdriver    ${DriverName}    chrome_options=${chromeoptions}
+    Maximize Browser Window
+    go to    ${site_url}

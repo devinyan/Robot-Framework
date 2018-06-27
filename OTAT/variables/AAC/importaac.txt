@@ -1,0 +1,9 @@
+*** Settings ***
+Resource          ../Common/GlobalResource.txt
+
+*** Keywords ***
+AAC
+    Import Resource    ${CURDIR}\\CommonResource.txt
+    Import Resource    ${CURDIR}\\${site}_Resource.txt
+    Comment    Run Keyword If    "AT" == "${site}"    Import Resource    ${CURDIR}\\AT_Resource.txt
+    Comment    Run Keyword If    "OT" == "${site}"    Import Resource    ${CURDIR}\\OT_Resource.txt

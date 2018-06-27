@@ -1,0 +1,24 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Keywords ***
+Login
+    [Arguments]    ${username}    ${password}
+    Wait until Element is Visible    id=j_username    20 seconds
+    Input Text    id=j_username    ${username}
+    Input Text    id=j_password    ${password}
+    Click Element    xpath=//button[@type='submit']
+
+Login to My Account
+    [Arguments]    ${url}    ${loginpath}    ${username}    ${password}
+    Go to    ${url}${login}
+    Login    ${username}    ${password}
+
+Log out
+    Comment    ${STATUS}=    Run keyword and return status    Page should contain    Thanks for Registering
+    Comment    Run Keyword if    ${STATUS} == True    Click Element    xpath=//a[contains(text(),${logout_link_text})]
+    Run Keyword if    "${site}" == "OT"    Click Element    id=logout
+    Run keyword if    "${site}" == "AT"    Click Element    id=at_logout
+
+My Account Page should appear
+    Page should Contain    ${my_account_header}

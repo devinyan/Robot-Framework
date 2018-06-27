@@ -1,0 +1,35 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for US
+
+*** Variables ***
+${error_invalid_firstname}    Introduce tu nombre
+${error_invalid_lastname}    Introduce un apellido(s)
+${error_weak_password}    Introduce una contraseña segura (mínimo 6 caracteres)
+${error_invalid_email}    Introduce una dirección de correo electrónico válida
+${error_no_password}    Introduce una contraseña segura (mínimo 6 caracteres)
+${error_no_confirm_password}    Confirma tu contraseña
+${error_general_message}    Corrige los siguientes errores
+${notification_registration_complete}    ¡Gracias por registrarte!
+${login_url}      login
+${error_existing_email}    Ya existe una cuenta asociada a esta dirección de correo electrónico
+${error_password_no_match}    Las contraseñas introducidas en ambos campos no coinciden
+${notification_quantity_updated}    Product quantity has been updated
+${my_account_header}    Mi cuenta
+${shipping_link}    Haz clic aquí para obtener más información acerca de las opciones de envío
+${address_variable}    AES    # Address Population
+${payment_variable}    AEB    # This is only used for AEB due to Ogone Payment
+${shipping_url}    delivery
+${shipping_header}    Información sobre envíos
+${search_results_title}    Buscar
+${ot_url_production}    http://www.onitsukatiger.com/es/
+${at_url_production}    http:///www.asicstiger.com/es/
+${error_invalid_login}    Tu nombre de usuario y tu contraseña no han sido reconocidos. Inténtalo de nuevo más tarde
+${titleForShippingAddress}    Ms
+${firstNameForShippingAddress}    Nicole
+${lastNameForShiipingAddress}    Toledo
+${addressLine1}    Carrera de S. Jerónimo 34
+${addressLine2}    ${EMPTY}
+${townCity}       Mardrid
+${state}          ${EMPTY}
+${postcode}       28014
+${phonenumber}    07700900698

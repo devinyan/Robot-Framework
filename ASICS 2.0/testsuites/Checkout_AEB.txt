@@ -1,0 +1,62 @@
+*** Settings ***
+Documentation     For all of Europe, ideally.
+Force Tags        aeb    checkoutaeb
+Library           Selenium2Library
+Resource          ../keywords/checkout.txt
+
+*** Test Cases ***
+Guest Checkout
+    [Tags]
+    [Setup]    Open Homepage
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Guest
+    Enter AEB Address
+    Run keyword if    "${COUNTRY}" == "ADE"    Select Visa
+    Accept Terms and Conditions
+    Place Order
+    Ogone- Visa
+    Get Order Number
+    [Teardown]    Close Browser
+
+Registered Checkout
+    [Setup]    Open Homepage
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Registered User
+    Enter a Delivery Address if not present
+    Run keyword if    "${COUNTRY}" == "ADE"    Select Visa
+    Accept Terms and Conditions
+    Place Order
+    Ogone - Visa
+    Get Order Number
+    [Teardown]    Close Browser
+
+Guest Checkout -Klarna
+    [Documentation]    Only run this test if the country is ADE or AAT
+    [Tags]    klarna
+    [Setup]    Open Homepage
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Guest
+    Enter Klarna Test Address
+    Accept Terms and Conditions
+    Place Order
+    Pay with Klarna
+    Get Order Number
+    [Teardown]    Close Browser

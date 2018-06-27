@@ -1,0 +1,31 @@
+*** Settings ***
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        checkout    cycle1
+Resource          ../Keywords/setup.txt
+Resource          ../Keywords/checkout.txt
+
+*** Test Cases ***
+Guest Checkout
+    Search    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to cart
+    Proceed to Checkout
+    Checkout as Guest
+    Enter Shipping Details
+    Proceed with Payment
+    Get Order Number
+
+Registered Checkout
+    [Tags]    registered
+    Search    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to cart
+    Proceed to Checkout
+    Checkout as Registered User
+    Enter Shipping Details If Not Exist For Registered User
+    Accept Terms and Conditions
+    Proceed with Payment
+    Get Order Number

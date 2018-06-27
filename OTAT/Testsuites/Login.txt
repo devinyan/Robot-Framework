@@ -1,0 +1,27 @@
+*** Settings ***
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        login    otatus
+Resource          ../Keywords/setup.txt
+Resource          ../Keywords/login.txt
+Resource          ../Keywords/customer_registration.txt
+Resource          ../variables/Common/userdetails.txt
+
+*** Test Cases ***
+Valid Login
+    [Setup]    Go to    ${site_url}${login_url}
+    Login    ${login_email}    ${login_password}
+    My Account Page should appear
+    [Teardown]    Logout
+
+Invalid Password
+    [Setup]    Go to    ${site_url}${login_url}
+    Login    invalidaccount@mailinator.com    test
+    Error message should appear    ${error_invalid_login}
+    [Teardown]
+
+Invalid Username
+    [Setup]    Go to    ${site_url}${login_url}
+    Login    whatever    test
+    Error message should appear    ${error_invalid_login}
+    [Teardown]

@@ -1,0 +1,15 @@
+*** Settings ***
+Documentation     This file setup the browserstack resourece
+
+*** Variables ***
+${OS}             WINDOWS
+# The OS you want to test.
+${OS_VERSION}     7
+${BROWSER_NAME}    chrome
+${BROWSER_VERSION}    42    # Browser version you want to test.
+${PROJECT_NAME}    ATOT
+${BUILD_NUM}      AOP_AT_Test
+${BS_SPECS}       javascriptEnabled:True,browserstack.debug:true,acceptSslCerts:true
+${COMMAND_EXECUTOR_BROWSERSTACK}    http://nicoletoledo1:wmqWLsMSspdjJuvf4uzT@hub.browserstack.com/wd/hub
+${USE_LOCAL_SERVER}    true
+${browserstack_video}    true

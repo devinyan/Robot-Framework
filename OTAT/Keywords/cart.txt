@@ -1,0 +1,84 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          setup.txt
+Resource          search.txt
+
+*** Keywords ***
+Select a Size
+    [Arguments]    ${size}
+    [Documentation]    Might not work. Not sure how to add the size properly that it works
+    Click Element    id=ptpChooseSizeButton
+    Click Element    xpath=//a[contains(text(),'${size}')]
+
+Select the first Product
+    Wait until Page Contains Element    css=.prod-wrap a    30 seconds
+    Click Element    css=.prod-wrap a
+    Wait until Page Contains Element    id=addToCartButton
+
+Select In Stock Product in the PLP
+    [Documentation]    Find the first in stock product and click it. If there no any in stock products, It will cilck the first product in the PLP page.
+    Wait Until Page contains element    css=.prod-wrap a    10 seconds
+    Execute Javascript    var shoes = document.getElementsByClassName("price center"); var shoeInStockIndex = 0; for (var x=0;x<shoes.length;x++) { \ \ if (shoes[x].textContent.match(/\\d+/g)) { \ \ \ \ shoeInStockIndex = x; \ \ \ \ break; \ \ } } shoes[shoeInStockIndex].parentNode.getElementsByTagName("a")[0].click();
+    Wait until Page Contains Element    id=addToCartButton
+
+Select Any Size
+    [Documentation]    Picks the first available size in the list
+    Wait Until Element is Visible    id=ptpChooseSizeButton    30 seconds
+    Click Element    id=ptpChooseSizeButton
+    Wait Until Element is Visible    css=.dropdown-menu .SizeOption a:not(.SizeUnavailable)    30 seconds
+    Click Element    css=.dropdown-menu .SizeOption a:not(.SizeUnavailable)
+
+Add to Cart
+    ${status}=    Run Keyword and Return Status    Element should be visible    id=addToCartButton
+    Run Keyword if    ${Status} == False    Log    Item might be out of stock
+    Run Keyword if    ${Status} == True    Click Element    id=addToCartButton
+    Sleep    5 seconds
+
+Get Cart Quantity
+    ${quantity}=    Get Text    id=minicart-total
+    [Return]    ${quantity}
+
+MiniCart Quantity should have increased
+    ${quantity}=    Get Text    id=minicart-total
+    Should be True    ${quantity} > 0
+
+Go to Cart Page
+    Click Element    id=minicart-total
+
+Increase Cart Quantity
+    Clear Element Text    id=quantity0
+    Input Text    id=quantity0    2
+    Click Element    id=QuantityProduct_0
+
+Cart Quantity should have been changed
+    ${quantity}=    Get Value    quantity0
+    Should be True    ${quantity} > 1
+
+Remove Item from Cart
+    [Documentation]    Will remove the first item in the cart
+    ...    Will not work for multiple items in cart
+    Click Element    id=RemoveProduct_0
+
+Check shipping info link
+    [Documentation]    Currently only supported by the US
+    Comment    Click Element    link=${shipping_link}
+    Click Element    xpath=.//*[@id='shippingInfo']/p/em/a
+    Location should contain    ${shipping_url}
+    ${full_title} =    Catenate    ${shipping_header}    |    ${home_title_prefix}
+    Title should be    ${full_title}
+
+Go to Product Page
+    [Arguments]    ${article_number}
+    [Documentation]    Used because items in Staging Run out of stock easily.
+    ...
+    ...    You can also use Search instead.
+    Go to    ${ot_url_staging}p/${article_number}
+
+Add To Cart For Mobile
+    ${status}=    Run Keyword and Return Status    Element should be visible    id=addToCartButton
+    Run Keyword if    ${Status} == False    Log    Item might be out of stock
+    Run Keyword if    ${Status} == True    Execute Javascript    $('#addToCartButton').click();
+    Sleep    20 seconds
+
+Go to Cart Page For Mobile
+    Execute Javascript    $('#minicart-total').click();

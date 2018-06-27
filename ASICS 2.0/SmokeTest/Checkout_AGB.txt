@@ -1,0 +1,36 @@
+*** Settings ***
+Suite Setup       Open Homepage For SmokeTest    AGB
+Suite Teardown    Close Browser
+Force Tags        smoketestagb
+Resource          ../keywords/checkout.txt
+
+*** Test Cases ***
+Guest Checkout
+    Set Test Variable    ${COUNTRY}    AGB
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Guest
+    Enter AGB Address
+    Accept Terms and Conditions
+    Place Order
+    Ogone Page should appear
+
+Registered Checkout
+    [Setup]    Go to    ${asics_production_url}
+    Set Test Variable    ${COUNTRY}    AGB
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Checkout as Registered User
+    Accept Terms and Conditions
+    Place Order
+    Ogone Page should appear

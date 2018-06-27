@@ -1,0 +1,4 @@
+*** Settings ***
+Force Tags        smoketest
+Resource          ../keywords/cart.txt
+Resource          ../keywords/checkout.txt

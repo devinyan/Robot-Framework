@@ -1,0 +1,49 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Keywords ***
+Search
+    [Arguments]    ${keyword}
+    Wait until page contains element    xpath=//input[starts-with(@id,'search-component')]    1 minute
+    Input Text    xpath=//input[starts-with(@id,'search-component')]    ${keyword}
+    Press Key    xpath=//input[starts-with(@id,'search-component')]    \\13
+
+Autosuggest
+    [Arguments]    ${search_text}
+    ${search_visible}=    Run Keyword and Return Status    Input Text    xpath=//input[starts-with(@id,'search-component')]    ${search_text}
+    Run Keyword if    ${search_visible} == True    Input Text    xpath=//input[starts-with(@id,'search-component')]    ${search_text}
+    Run Keyword if    ${search_visible} == False    Mobile Autosuggest    ${search_text}
+    Comment    Wait until Element is visible    xpath=//*[@id='quick-search']/li[1]/a[2]/p    10 seconds
+    Wait until element is visible    xpath=.//li[@class='ui-menu-item']    30 seconds
+
+Mobile Autosuggest
+    [Arguments]    ${search_text}
+    [Documentation]    Responsive layouts make this ever more so tricky.
+    Wait Until Element is Visible    css=button.navbar-toggle    30 seconds
+    Click Element    css=button.navbar-toggle
+    Input Text    xpath=(//input[@id='search'])[2]    ${search_text}
+
+Results Page should appear
+    [Arguments]    ${keyword}
+    [Documentation]    Checks if any results come up
+    ...
+    ...    This is based on the title page, but AAC has changed how their Title page looks so had to stop using this for now.
+    ${search_title}    Catenate    ${resultstitle}    ${keyword}    |    ${asics_home_title_prefix}
+    ${search_title}    Run keyword if    "${COUNTRY}"=="AAC"    Catenate    ${resultstitle}    ${keyword}    ${asics_home_title_suffix}
+    Title should be    ${search_title}
+
+Click More button
+    Click Element    css=.more_button
+
+Get First Suggested Product Name
+    ${productName}=    Execute Javascript    return $('#quick-search p')[0].textContent;
+    [Return]    ${productName}
+
+Click first autosuggest item
+    Comment    Click Element    xpath=//p
+    Click Element    xpath=.//*[@id='quick-search']/li[1]/a/p[1]
+
+PDP should appear
+    [Arguments]    ${firstSuggestedProductName}
+    ${ProductDetailPageTitle}=    Get Title
+    Should Start With    ${ProductDetailPageTitle}    ${firstSuggestedProductName}

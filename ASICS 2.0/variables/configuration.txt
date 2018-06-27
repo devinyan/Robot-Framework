@@ -1,0 +1,18 @@
+*** Settings ***
+Documentation     This resource file contain specific global variables and resources for running
+...               Robotframework and Selenium Lib on ASICS 2.0
+Library           Selenium2Library
+Library           String
+Resource          ../variables/AJP/importAJP.txt
+Resource          ../variables/AOP/importAOP.txt
+Resource          BrowserstackResource.txt
+
+*** Variables ***
+${COUNTRY}        ADE
+${ENV}            local    # This can be local or browserstack
+${COMMAND_EXECUTOR_BROWSERSTACK}    http://nicoletoledo1:wmqWLsMSspdjJuvf4uzT@hub.browserstack.com/wd/hub
+${desktop}        true
+${browser}        chrome
+${phantomjs_remote_url}    http://127.0.0.1:8910/
+${Device Model}    Apple iPhone 5    # Apple iPhone 5 (Device Model must be specific)
+${DriverName}     Chrome    # Firefox, Chrome, Ie, Opera, Safari, PhantomJS (Name is case sensitive)

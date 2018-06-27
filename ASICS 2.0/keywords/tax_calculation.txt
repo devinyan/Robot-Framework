@@ -1,0 +1,19 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          checkout.txt
+
+*** Keywords ***
+Get Tax From Summary Page For AAC
+    ${taxVal}=    Execute Javascript    return $('#reviewInfoSection .taxesRow .asicsRight').html().trim().substr(1);
+    [Return]    ${taxVal}
+
+Calculate Tax According Tax Rate For AAC
+    ${totalPricel}=    Execute Javascript    return $('#reviewInfoSection .summaryAsicsRow').first().find('.asicsRight').text().trim().substr(1);
+    ${taxVal}=    Evaluate    ${totalPricel} * 0.08
+    [Return]    ${taxVal}
+
+Tax Should Be Correct For AAC
+    ${taxFromPage}=    Get Tax From Summary Page For AAC
+    ${expectTax}=    Calculate Tax According Tax Rate For AAC
+    ${convertedExpectTax}=    Convert To Number    ${expectTax}    2
+    Should Be Equal As Numbers    ${taxFromPage}    ${convertedExpectTax}    precision=2

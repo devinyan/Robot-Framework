@@ -1,0 +1,187 @@
+*** Settings ***
+Documentation     These are the cases similar to Customer Registration.
+...
+...               Depending on the country, certain test cases won't run. (Eg. Phonetic text field test cases will automatically pass if the country is NOT AJP)
+...
+...               Either way these can also be set by tags, but the pass execution is another measure.
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Test Teardown     Run Keywords    Go to Cart Page
+...               AND    Remove item from Cart
+Force Tags        registeratcheckout    cycle1
+Resource          ../keywords/customer_registration.txt
+Resource          ../keywords/checkout.txt
+Resource          ../keywords/setup.txt
+Resource          ../keywords/cart.txt
+
+*** Test Cases ***
+Blank First Name
+    [Tags]
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Register from Checkout
+    customer_registration.Enter First Name    ${EMPTY}
+    customer_registration.Enter Last Name    ${registration_lastname}
+    customer_registration.Enter Email Address    nicole.toledo@asics.com
+    Register
+    Run Keyword if    "${COUNTRY}" == "AJP"    Registration Error Message should appear    id=register.firstName-error
+    Run keyword if    "${COUNTRY}" == "AOP"    Registration Error Message should appear    id=firstName.errors
+
+Blank Last Name
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Register from Checkout
+    customer_registration.Enter First Name    ${registration_firstname}
+    customer_registration.Enter Last Name    ${EMPTY}
+    customer_registration.Enter Email Address    nicole.toledo@asics.com
+    Register
+    Run Keyword if    "${COUNTRY}" == "AJP"    Registration Error Message should appear    id=register.lastName-error
+    Run Keyword if    "${COUNTRY}" == "AOP"    Registration Error Message should appear    id=lastName.errors
+
+Invalid Email Address
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Register from Checkout
+    customer_registration.Enter First Name    ${registration_firstname}
+    customer_registration.Enter Last Name    ${registration_lastname}
+    customer_registration.Enter Email Address    whatever@
+    Register
+    Run Keyword if    "${COUNTRY}" == "AJP"    Registration Error Message should appear    id=register.email-error
+    Run keyword if    "${COUNTRY}" == "AOP"    Registration Error Message should appear    id=email-error
+
+Existing Email Address
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Register from Checkout
+    customer_registration.Enter First Name    ${registration_firstname}
+    customer_registration.Enter Last Name    ${registration_lastname}
+    Run Keyword If    "${COUNTRY}" == "AJP"    customer_registration.Enter Phonetic First Name    ニコール
+    Run Keyword If    "${COUNTRY}" == "AJP"    customer_registration.Enter Phonetic Last Name    トレド
+    Run Keyword if    "${COUNTRY}" == "AJP"    Check Personal Information Checkbox
+    customer_registration.Enter Email Address    nicole.toledo@asics.com
+    Enter Password    asics123
+    Enter Confirmed Password    asics123
+    Register
+    Registration Error Message should appear    id=email.errors
+    Comment    Run Keyword if    "${COUNTRY}" == "AJP"    Registration Error Message should appear    id=register.email-error
+    Comment    Run keyword if    "${COUNTRY}" == "AOP"    Registration Error Message should appear    id=email-error
+    Error Message should appear    ${error_general_message}
+
+Weak Password
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Register from Checkout
+    customer_registration.Enter First Name    ${registration_firstname}
+    customer_registration.Enter Last Name    ${registration_lastname}
+    Run Keyword If    "${COUNTRY}" == "AJP"    customer_registration.Enter Phonetic First Name    ニコール
+    Run Keyword If    "${COUNTRY}" == "AJP"    customer_registration.Enter Phonetic Last Name    トレド
+    customer_registration.Enter Email Address    ${registration_email}
+    Enter Password    1234
+    Enter Confirmed Password    1234
+    Register
+    Registration Error Message should appear    id=pwd.errors
+    Error Message should appear    ${error_general_message}
+
+Passwords don't match
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Register from Checkout
+    customer_registration.Enter First Name    ${registration_firstname}
+    customer_registration.Enter Last Name    ${registration_lastname}
+    Run Keyword If    "${COUNTRY}" == "AJP"    customer_registration.Enter Phonetic First Name    ニコール
+    Run Keyword If    "${COUNTRY}" == "AJP"    customer_registration.Enter Phonetic Last Name    トレド
+    customer_registration.Enter Email Address    ${registration_email}
+    Enter Password    123456
+    Enter Confirmed Password    1234567
+    Register
+    Error Message should appear    ${error_password_no_match}
+    Error Message should appear    ${error_general_message}
+
+Successful Registration
+    [Documentation]    Sliiiigtly different from the test case at the Checkout suite in the sense that this doesn't checkout.
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to Checkout
+    Register from Checkout
+    customer_registration.Enter First Name    ${registration_firstname}
+    customer_registration.Enter Last Name    ${registration_lastname}
+    Run Keyword If    "${COUNTRY}" == "AJP"    customer_registration.Enter Phonetic First Name    ニコール
+    Run Keyword If    "${COUNTRY}" == "AJP"    customer_registration.Enter Phonetic Last Name    トレド
+    Run Keyword if    "${COUNTRY}" == "AJP"    Check Personal Information Checkbox
+    ${dummyEmail}=    Generate Dummy Email
+    customer_registration.Enter Email Address    ${dummyEmail}
+    Enter Password    ${registration_password}
+    Enter Confirmed Password    ${registration_password}
+    Register
+    Welcome Message should appear
+    [Teardown]    Log out
+
+Blank Phonetic First Name
+    [Documentation]    Test should only run if it is an AJP site
+    [Tags]    ajp
+    [Setup]
+    Pass Execution if    '${COUNTRY}' != 'AJP'    This is not an AJP test
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Register from Checkout
+    customer_registration.Enter Phonetic First Name    ${EMPTY}
+    customer_registration.Enter Phonetic Last Name    ${registration_phonetic_firstname}
+    Register
+    Registration Error Message should appear    id=register.phoneticLastName
+    [Teardown]    Run Keyword if    '${COUNTRY}' != 'AJP'    No Operation
+
+Blank Phonetic Last Name
+    [Tags]    ajp
+    Pass Execution if    '${COUNTRY}' != 'AJP'    This is not an AJP test
+    Search    ${search_product_keyword}
+    Select In Stock Product in the PLP
+    Select any available size
+    Add to Cart
+    Minicart Quantity should have been increased
+    Go to Cart Page
+    Proceed to checkout
+    Register from Checkout
+    customer_registration.Enter Phonetic First Name    ${registration_phonetic_lastname}
+    customer_registration.Enter Phonetic Last Name    ${EMPTY}
+    Register
+    Registration Error Message should appear    id=register.phoneticLastName
+    [Teardown]    Run Keyword if    '${COUNTRY}' != 'AJP'    No Operation

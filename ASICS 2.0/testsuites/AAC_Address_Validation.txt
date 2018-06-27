@@ -1,0 +1,126 @@
+*** Settings ***
+Documentation     AAC has a specific way to validate their addresses.
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Test Setup        Go To Summary Page Use Guest User
+Test Teardown     Run Keywords    Go to    ${asics_url}
+...               AND    Go to Cart Page
+...               AND    Remove item from Cart
+Force Tags        aac_address    aac
+Resource          ../keywords/address_validation.txt
+Resource          ../keywords/checkout.txt
+
+*** Test Cases ***
+Blank Last Name
+    Enter First Name    Nicole
+    Enter Last Name    ${EMPTY}
+    Enter AddressLine1    80 Technology
+    Enter Town    Irvine
+    Select Region    California
+    Enter Post Code    92618
+    Enter Email Address    nicole.toledo@asics.com
+    Enter Phone Number    0123456789012
+    Place Order
+    Address Validation Error Message Should Appear By Locator    id=address.surname_del-error
+
+Blank First Name
+    [Tags]
+    [Setup]    Go To Summary Page Use Guest User
+    Enter First Name    ${EMPTY}
+    Enter Last Name    Toledo
+    Enter AddressLine1    80 Technology
+    Enter Town    Irvine
+    Select Region    California
+    Enter Post Code    92618
+    Enter Phone Number    0123456789012
+    Enter Email Address    nicole.toledo@asics.com
+    Place Order
+    Address Validation Error Message Should Appear By Locator    id=address.firstName_del-error
+
+Blank Address Line1
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    ${EMPTY}
+    Enter Town    Irvine
+    Select Region    California
+    Enter Post Code    92618
+    Enter Phone Number    0123456789012
+    Place Order
+    Address Validation Error Message Should Appear By Locator    id=address.line1_del-error
+
+Blank Suburb
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    80 Technology
+    Enter Town    ${EMPTY}
+    Select Region    California
+    Enter Post Code    92618
+    Enter Phone Number    0123456789012
+    Enter Email Address    nicole.toledo@asics.com
+    Place Order
+    Address Validation Error Message Should Appear By Locator    id=address.townCity_del-error
+
+Blank Region
+    [Tags]
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    80 Technology
+    Enter Town    Irvine
+    Select Region    ${EMPTY}
+    Enter Post Code    92618
+    Enter Phone Number    0123456789012
+    Enter Email Address    nicole.toledo@asics.com
+    Place Order
+    Address Validation Error Message Should Appear By Locator    id=address.region_del-error
+
+Check if Postcode is valid
+    [Documentation]    Less than 4 and numeric only
+    [Tags]
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    80 Technology
+    Enter Town    Irvine
+    Select Region    California
+    Enter Post Code    0001134352345
+    Enter Phone Number    0123456789012
+    Enter Email Address    nicole.toledo@asics.com
+    Place Order
+    Address Validation Error Message Should Appear By Locator    css=.alert.negative.errorMessage
+
+Blank Email Address
+    [Documentation]    Added test case due to CE2 to add the email address in the checkout page
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    80 Technology Drive
+    Enter Town    Irvine
+    Select Region    California
+    Enter Post Code    92618
+    Enter Phone Number    0123456789012
+    Enter Email Address    ${EMPTY}
+    Place Order
+    Address Validation Error Message Should Appear By Locator    address.emailAddress_del-error
+
+Invalid Email Address
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    80 Technology Drive
+    Enter Town    Irvine
+    Select Region    California
+    Enter Post Code    92618
+    Enter Phone Number    0123456789012
+    Enter Email Address    whatever
+    Place Order
+    Address Validation Error Message Should Appear By Locator    css=.alert.negative.errorMessage
+
+Check if Phone Number is Valid
+    [Tags]    aac_phone
+    Enter First Name    Nicole
+    Enter Last Name    Toledo
+    Enter AddressLine1    80 Technology Drive
+    Enter Town    Irvine
+    Select Region    California
+    Enter Post Code    92618
+    Enter Phone Number    0123456789012testing
+    Enter Email Address    nicole.toledo@asics.com
+    Comment    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit()
+    Check Phone no Value (AAC)

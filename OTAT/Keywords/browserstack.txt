@@ -1,0 +1,11 @@
+*** Settings ***
+Resource          ../variables/Common/BrowserstackResource.txt    #Library    Selenium2Library
+Library           String
+
+*** Keywords ***
+Setup Browserstack Desired Capabilities
+    ${shortTestSuiteName}=    Fetch From Right    ${SUITE_NAME}    .
+    ${desiredCapabilities}    Catenate    SEPARATOR=,    os:${OS}    os_version:${OS_VERSION}    browser:${BROWSER_NAME}    browser_version:${BROWSER_VERSION}
+    ...    project:${PROJECT_NAME}    build:${BUILD_NUM}    browserstack.local:${USE_LOCAL_SERVER}    ${BS_SPECS}    browserstack_video:${BROWSERSTACK_VIDEO}    name:${shortTestSuiteName}
+    LOG    ${desiredCapabilities}
+    [Return]    ${desiredCapabilities}

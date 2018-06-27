@@ -1,0 +1,55 @@
+*** Settings ***
+Documentation     These contain keywords for localziations or url paths for ASICS 2.0 New Zealand
+
+*** Variables ***
+${asics_url}      http://www.ecstage.asics.com/nz/en-nz/    # http://www.ecdev.asics.com/nz/en-nz/ # http://www.ecstage.asics.com/au/en-au/ \ # http://asics-jp.local:9001/nz/en-nz/
+${asics_home_title_prefix}    ASICS New Zealand
+${asics_home_title_suffix}    | Homepage
+#Login Page
+${login_title}    Login
+${login_url}      login
+${logout_link_text}    Sign Out
+#Registration Page
+${error_invalid_firstname}    Please enter a first name
+${error_invalid_lastname}    Please enter a last name
+${error_weak_password}    Please enter a strong password (at least 6 chars)
+${error_invalid_email}    有効なEメールアドレスを入力してください。
+${error_existing_email}    この電子メール アドレスに対してすでにメールのアカウントが存在します
+${error_email_no_match}    Email and Re-enter email address does not match
+${error_no_password}    Please enter a strong password (at least 6 chars)
+${error_no_confirm_password}    パスワードを再入力してください
+${error_password_no_match}    Password and password confirmation do not match
+${error_general_message}    Please correct the errors below
+${error_phonetic_first_name}    メイ（お名前）をカナでご入力ください
+${error_phonetic_last_name}    セイ（名字）をカナでご入力ください
+${error_byte_validation}    姓名が入力文字数を超えたため、省略してご記入ください
+${notification_registration_complete}    Thanks for registering
+#My Account Page
+${my_account_url}    my-account
+${my_account_title}    My Account
+${notification_update_details}    Your profile has been updated
+${error_incorrect_current_password}    Please enter your current password
+${button_cancel}    Cancel
+${error_personal_details_blank_email}    Please confirm your email address
+${notification_password_update}    パスワードが変更されています
+${profile_url}    profile
+${personal_details_modify_text}    会員情報を設定する
+${personal_details_title}    会員情報
+#Store Finder
+${store_finder_url}    store-finder
+${store_finder_title}    StoreFinder
+${store_finder_page_title}    店舗検索
+${checkout_text}    購入する
+${continue_shopping_text}    ショッピングを続ける
+${error_mandatory_text}    このフィールドは必須です
+${error_personal_info_notchecked}    個人情報の取扱を承諾してください。
+${resultstitle}    Search
+${error_invalid_login}    Your username or password was incorrect.
+${error_blank_email}    Please enter a valid email    # for personal details
+${search_product_keyword}    0010163328.9000
+${search_prod}    0010266033.9093
+${asics_production_url}    https://www.asics.com/nz/
+${asics_dev_url}    http://www.ecdev.asics.com/nz/en-nz/
+${shoesCatalogURL}    mens-trail-shoes/c/mens-trail-shoes
+${apparelCatalogURL}    mens-clothing/c/mens-clothing
+${accessoriesCatalogURL}    womens-accessories/c/womens-accessories

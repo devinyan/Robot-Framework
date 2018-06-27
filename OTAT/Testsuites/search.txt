@@ -1,0 +1,29 @@
+*** Settings ***
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        search    otatus    cycle1
+Library           Selenium2Library
+Resource          ../Keywords/setup.txt
+Resource          ../Keywords/search.txt
+
+*** Test Cases ***
+Autosuggest
+    [Setup]
+    Autosuggest    ${search_keyword}
+    [Teardown]
+
+Search by search bar
+    Search    ${search_keyword}
+    Search Result Page should be Open    ${search_keyword}    ${search_results_title}    ${home_title_prefix}
+
+Click More
+    [Documentation]    Passes if More button is visible and clickable
+    Autosuggest    ${search_keyword}
+    Click More Button
+    Search Result Page should be open    ${search_keyword}    ${search_results_title}    ${home_title_prefix}
+
+Select an item from the Autosuggest
+    Autosuggest    ${search_keyword}
+    ${firstSuggestedProductName}=    Get First Suggested Product Name
+    Click first autosuggest item
+    PDP should appear    ${firstSuggestedProductName}

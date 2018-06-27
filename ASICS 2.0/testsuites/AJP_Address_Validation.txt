@@ -1,0 +1,154 @@
+*** Settings ***
+Documentation     Checks if the validation errors pop up.
+...
+...               Does NOT check for localisation.
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        ajp_address    ajp
+Resource          ../keywords/address_validation.txt
+Resource          ../keywords/checkout.txt
+Resource          ../variables/AJP/resource.txt
+
+*** Test Cases ***
+Blank First Name
+    [Tags]
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page Use Guest User
+    Enter First Name    ${EMPTY}
+    Enter Last Name    ${checkout_delivery_surname}
+    Address Validation Error Message Should Display By ID    firstName_del-error
+
+Blank Last Name
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page Use Guest User
+    Enter Last Name    ${EMPTY}
+    Enter First Name    ${checkout_delivery_firstname}
+    Comment    Address Validation Error Message Should Appear By Locator    id=address.surname_del-error
+    Address Validation Error Message Should Display By ID    surname_del-error
+
+Blank Phonetic First Name
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page Use Guest User
+    Enter Last Name    ${checkout_delivery_surname}
+    Enter First Name    ${checkout_delivery_firstname}
+    Enter Phonetic First Name    ${EMPTY}
+    Enter Phoentic Surname    ${checkout_delivery_sei}
+    Address Validation Error Message Should Display By ID    middlename2_del-error
+
+Blank Phoentic Surname
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page Use Guest User
+    Enter Last Name    ${checkout_delivery_surname}
+    Enter First Name    ${checkout_delivery_firstname}
+    Enter Phoentic Surname    ${EMPTY}
+    Enter Phonetic First Name    ${checkout_delivery_mei}
+    Address Validation Error Message Should Display By ID    middlename_del-error
+
+Invalid Phone Number
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page Use Guest User
+    Enter Last Name    ${checkout_delivery_surname}
+    Enter First Name    ${checkout_delivery_firstname}
+    Enter Phoentic Surname    ${checkout_delivery_sei}
+    Enter Phonetic First Name    ${checkout_delivery_mei}
+    Enter Phone Number    a123456
+    Enter Post Code    ${checkout_delivery_postcode}
+    Address Validation Error Message Should Display By ID    phone_del-error
+
+Blank Email Address
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page Use Guest User
+    Enter Last Name    ${checkout_delivery_surname}
+    Enter First Name    ${checkout_delivery_firstname}
+    Enter Phoentic Surname    ${checkout_delivery_sei}
+    Enter Phonetic First Name    ${checkout_delivery_mei}
+    Enter Phone Number    ${checkout_delivery_phonenumber}
+    Enter Email Address    ${EMPTY}
+    Enter Post Code    ${checkout_delivery_postcode}
+    Address Validation Error Message Should Display By ID    address.emailAddress_del-error
+    [Teardown]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go to Cart Page
+    ...    AND    Remove item from Cart
+
+Invalid Email Address
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page Use Guest User
+    Enter Last Name    ${checkout_delivery_surname}
+    Enter First Name    ${checkout_delivery_firstname}
+    Enter Phoentic Surname    ${checkout_delivery_sei}
+    Enter Phonetic First Name    ${checkout_delivery_mei}
+    Enter Phone Number    ${checkout_delivery_phonenumber}
+    Enter Email Address    whatever
+    Enter Post Code    ${checkout_delivery_postcode}
+    Select Region    ${checkout_delivery_region}
+    Enter Town    ${checkout_delivery_town}
+    Place Order
+    Address Validation Error Message Should Display By ID    css=.alert.negative.errorMessage
+    [Teardown]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go to Cart Page
+    ...    AND    Remove item from Cart
+
+Invalid Region
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page Use Guest User
+    Enter Last Name    ${checkout_delivery_surname}
+    Enter First Name    ${checkout_delivery_firstname}
+    Enter Phoentic Surname    ${checkout_delivery_sei}
+    Enter Phonetic First Name    ${checkout_delivery_mei}
+    Enter Phone Number    ${checkout_delivery_phonenumber}
+    Enter Invalid Region
+    Enter Post Code    ${checkout_delivery_postcode}
+    Address Validation Error Message Should Display By ID    region_del-error
+
+Invalid Post Code
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page Use Guest User
+    Enter Last Name    ${checkout_delivery_surname}
+    Enter First Name    ${checkout_delivery_firstname}
+    Enter Phoentic Surname    ${checkout_delivery_sei}
+    Enter Phonetic First Name    ${checkout_delivery_mei}
+    Enter Phone Number    ${checkout_delivery_phonenumber}
+    Enter Post Code    123
+    Select Region    ${checkout_delivery_region}
+    Enter Town    ${checkout_delivery_town}
+    Enter Address Line1    ${checkout_delivery_address1}
+    Enter Email Address    nicole.toledo@asics.com
+    Execute Javascript    ACC.address.singleCheckoutAddNewDeliveryAddressFormSubmit()
+    Comment    Focus    id=ajp-standard-shipping
+    Comment    Sleep    3 seconds
+    Address Validation Error Message Should Appear By Locator    css=.alert.negative.errorMessage
+
+Invalid Town
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page Use Guest User
+    Enter Last Name    ${checkout_delivery_surname}
+    Enter First Name    ${checkout_delivery_firstname}
+    Enter Phoentic Surname    ${checkout_delivery_sei}
+    Enter Phonetic First Name    ${checkout_delivery_mei}
+    Enter Phone Number    ${checkout_delivery_phonenumber}
+    Enter Post Code    ${checkout_delivery_postcode}
+    Select Region    ${checkout_delivery_region}
+    Enter Town    ${EMPTY}
+    Enter Address Line1    ${checkout_delivery_address1}
+    Address Validation Error Message Should Display By ID    townCity_del-error
+
+Invalid Address Line1
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page Use Guest User
+    Enter Last Name    ${checkout_delivery_surname}
+    Enter First Name    ${checkout_delivery_firstname}
+    Enter Phoentic Surname    ${checkout_delivery_sei}
+    Enter Phonetic First Name    ${checkout_delivery_mei}
+    Enter Phone Number    ${checkout_delivery_phonenumber}
+    Select Region    ${checkout_delivery_region}
+    Enter Post Code    ${checkout_delivery_postcode}
+    Enter Town    ${checkout_delivery_town}
+    Enter Address Line1    ${EMPTY}
+    Focus    id=ajp-standard-shipping
+    Address Validation Error Message Should Display By ID    line1_del-error
+
+Valid Address
+    [Setup]    Run Keywords    Go to    ${asics_url}
+    ...    AND    Go To Summary Page Use Guest User
+    Enter AJP Address
+    Address Validation Error Message Should Appear By Locator    css=.alert.positive.infoMessage

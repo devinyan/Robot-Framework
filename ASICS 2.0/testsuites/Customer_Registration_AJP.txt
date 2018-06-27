@@ -1,0 +1,165 @@
+*** Settings ***
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        customer_registration    --noncritical    ajp
+Resource          ../keywords/customer_registration.txt
+Resource          ../variables/AJP/resource.txt
+Resource          ../variables/userdetails.txt
+Resource          ../keywords/setup.txt
+
+*** Test Cases ***
+Invalid First Name
+    [Documentation]    Leaving the first name blank should cause an error
+    [Setup]    Go to    ${asics_url}${login_url}
+    Enter First Name    ${EMPTY}
+    Enter Last Name    ${registration_lastname}
+    Enter Phonetic Last Name    ${registration_phonetic_lastname}
+    Enter Phonetic First Name    ${registration_phonetic_firstname}
+    Register
+    Registration Error Message should appear    id=register.firstName-error
+    [Teardown]
+
+Invalid Last Name
+    [Documentation]    Leaving the last name blank should cause an error
+    [Setup]    Go to    ${asics_url}${login_url}
+    Enter Last Name    ${EMPTY}
+    Enter First Name    ${registration_firstname}
+    Enter Phonetic Last Name    ${registration_phonetic_lastname}
+    Enter Phonetic First Name    ${registration_phonetic_firstname}
+    Register
+    Comment    Error message should appear    ${error_invalid_lastname}
+    Comment    Error Message should appear    ${error_mandatory_text}
+    Registration Error Message should appear    id=register.lastName-error
+
+Byte Level Validation
+    [Documentation]    Check if combination of first name and last name do not exceed the byte limit upon form submission (No Longer necessary to test)
+    [Tags]
+    [Setup]    Go to    ${asics_url}${login_url}
+    Enter first name    桜坂桜坂桜坂桜坂桜坂桜坂
+    Enter last name    桜坂桜坂桜坂桜坂桜坂桜坂
+    Byte count should be correct
+
+Invalid Phonetic Surname
+    [Setup]    Go to    ${asics_url}${login_url}
+    Enter Phonetic Last Name    ${EMPTY}
+    Enter Phonetic First Name    ${registration_phonetic_firstname}
+    Register
+    Registration Error Message should appear    id=register.phoneticLastName
+
+Invalid Phonetic Firstname
+    [Setup]    Go to    ${asics_url}${login_url}
+    Enter Phonetic First Name    ${EMPTY}
+    Enter Phonetic Last Name    ${registration_phonetic_lastname}
+    Register
+    Comment    Error Message should appear    ${error_phonetic_last_name}
+    Comment    Error Message should appear    ${error_mandatory_text}
+    Registration Error Message should appear    id=register.phoneticFirstName-error
+
+Invalid Email Address
+    [Setup]    Go to    ${asics_url}${login_url}
+    Enter Email Address    whatever@
+    Register
+    Comment    Error Message should appear    ${error_invalid_email}
+    Registration Error Message should appear    id=register.email-error
+
+Existing Email Address
+    [Documentation]    Error message should appear if the email address is already in the database
+    [Setup]    Go to    ${asics_url}${login_url}
+    Enter First Name    ${registration_firstname}
+    Enter Last Name    ${registration_lastname}
+    Enter Phonetic Last Name    ${registration_phonetic_lastname}
+    Enter Phonetic First Name    ${registration_phonetic_firstname}
+    Enter Email Address    nicole.toledo.test@outlook.com
+    Enter Password    asics123
+    Enter Confirmed Password    asics123
+    Check Personal Information Checkbox
+    Register
+    Comment    Error Message should appear    ${error_existing_email}
+    Registration Error Message should appear    id=email.errors
+    Error Message should appear    ${error_general_message}
+
+Weak Password
+    [Documentation]    If the password is less than 6 characters, it will contain an error
+    [Setup]    Go to    ${asics_url}${login_url}
+    Enter First Name    ${registration_firstname}
+    Enter Last Name    ${registration_lastname}
+    Enter Phonetic Last Name    ${registration_phonetic_lastname}
+    Enter Phonetic First Name    ${registration_phonetic_firstname}
+    Enter Email Address    ${registration_email}
+    Enter Password    1234
+    Enter Confirmed Password    1234
+    Check Personal Information Checkbox
+    Register
+    Comment    Error Message should appear    ${error_weak_password}
+    Registration Error Message should appear    id=pwd.errors
+    Error Message should appear    ${error_general_message}
+
+Blank Confirm Password
+    [Documentation]    Error message should appear if password field has been filled but not the blank confirm password
+    [Setup]    Go to    ${asics_url}${login_url}
+    Enter First Name    ${registration_firstname}
+    Enter Last Name    ${registration_lastname}
+    Enter Phonetic Last Name    ${registration_phonetic_lastname}
+    Enter Phonetic First Name    ${registration_phonetic_firstname}
+    Enter Email Address    ${registration_email}
+    Enter Password    123456n
+    Enter Confirmed Password    ${EMPTY}
+    Register
+    Comment    Error Message should appear    ${error_general_message}
+    Registration Error Message should appear    id=checkPwd.errors
+    Error Message should appear    ${error_no_confirm_password}
+
+Newsletter checkbox should be checked
+    [Documentation]    Newsletter checkbox upon loading should be checked by default
+    [Setup]    Go to    ${asics_url}${login_url}
+    Email Checkbox shouldn't be checked
+
+Personal Information box should be unchecked
+    [Setup]    Go to    ${asics_url}${login_url}
+    Personal Information Checkbox shouldn't be checked
+
+Passwords do not match
+    [Setup]    Go to    ${asics_url}${login_url}
+    Enter First Name    ${registration_firstname}
+    Enter Last Name    ${registration_lastname}
+    Enter Phonetic First Name    ${registration_phonetic_firstname}
+    Enter Phonetic Last Name    ${registration_phonetic_lastname}
+    Enter Email Address    ${registration_email}
+    Enter Password    123456
+    Enter Confirmed Password    1234567
+    Check Personal Information Checkbox
+    Register
+    Error Message should appear    ${error_password_no_match}
+    Error Message should appear    ${error_general_message}
+
+Personal Information box should be checked
+    [Documentation]    Personal Information checkbox should be checked upon form submission
+    [Setup]    Go to    ${asics_url}${login_url}
+    Enter First Name    ${registration_firstname}
+    Enter Last Name    ${registration_lastname}
+    Enter Phonetic Firstname    ${registration_phonetic_firstname}
+    Enter Phonetic Lastname    ${registration_phonetic_lastname}
+    Enter Email Address    ${registration_email}
+    Enter Password    ${registration_password}
+    Enter Confirmed Password    ${registration_confirm_password}
+    Register
+    Error message should appear    ${error_general_message}
+    Error message should appear    ${error_personal_info_notchecked}
+
+Successful Registration
+    [Documentation]    Make sure the test address has been deleted before running this script.
+    [Tags]
+    [Setup]    Go to    ${asics_url}${login_url}
+    Enter First Name    ${registration_firstname}
+    Enter Last Name    ${registration_lastname}
+    Enter Phonetic Last Name    ${registration_phonetic_lastname}
+    Enter Phonetic First Name    ${registration_phonetic_firstname}
+    ${dummyEmail}=    Generate Dummy Email
+    Enter Email Address    ${dummyEmail}
+    Enter Password    ${registration_password}
+    Enter Confirmed Password    ${registration_password}
+    Check Personal Information Checkbox
+    Uncheck Newsletter
+    Register
+    Welcome Message should appear
+    [Teardown]    Run Keyword if Test Passed    Log Out

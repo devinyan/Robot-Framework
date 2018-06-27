@@ -1,0 +1,7 @@
+*** Variables ***
+${VisaCardType}    Visa
+${NameOnCard}     Nicole Toledo
+${VisaCardNumber}    4111111111111111
+${ExpiryMonth}    10
+${ExpiryYear}     2020
+${VisaSecurityCode}    123

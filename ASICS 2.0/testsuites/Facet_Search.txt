@@ -1,0 +1,131 @@
+*** Settings ***
+Documentation     Facet search tests if the PLP is returning the right results based on the facets
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        facetsearch    cycle1    sandbox
+Resource          ../keywords/facet_search.txt
+
+*** Test Cases ***
+Clear All with Non-Pretty URL facets
+    [Documentation]    1. Checks if there are products on the PLP
+    ...    2. Clicks the first facet
+    ...    3. Clear All
+    ...    4. Check if there are products
+    [Tags]
+    [Setup]    Go to    ${asics_url}c/shoes/
+    Results Found should be present
+    Click Element    css=ul.facet_block.indent > li > a
+    Clear All
+    Product Image must be present
+    [Teardown]    Go to    ${asics_url}
+
+Clear All after Search
+    [Documentation]    1. Search for a product
+    ...    2. Select a random facet
+    ...    3. Clear all
+    ...    4. Product Images should be there.
+    [Tags]
+    [Setup]    Search    gel
+    Product Image must be present
+    Click Element    css=ul.facet_block.indent > li > a
+    Clear All
+    Product Image must be present
+    [Teardown]    Go to    ${asics_url}
+
+Clear all with Pretty-URL Facets
+    [Documentation]    1. Go to a PLP
+    ...    2. There should be a results page
+    ...    3. Product images should be there
+    ...    4. Click on a random facet.
+    ...    5. Clear All
+    ...    6. Product Images should be present.
+    [Setup]    Go to    ${asics_url}c/shoes
+    Results Found should be present
+    Product Image must be present
+    Execute Javascript    $(".facet_block-label input").first().click();
+    Clear All
+    Product Image must be present
+
+Clear All Selected facets
+    [Documentation]    1. Check if there are products on the page
+    ...    2. Get the total number of products on the PLP
+    ...    3. Get the number of products from the facet
+    [Setup]    Go to    ${asics_url}c/shoes/
+    Page Should Contain Element    css= .found
+    ${totalProductCounts}=    Get Total Product Count In PLP
+    ${firstFacetValueCount}=    Execute Javascript    return parseInt($(".facet_block-label .facetValueCount").first().html().replace(/[^0-9]/ig,""));
+    Execute Javascript    $(".facet_block-label input").first().click();
+    ${totalProductCountsAfterSelectedFirstFacet}=    Get Total Product Count In PLP
+    Should Be Equal    ${firstFacetValueCount}    ${totalProductCountsAfterSelectedFirstFacet}
+    Comment    Execute Javascript    $(".facet_block-label input").first().click();
+    Click Element    css=.remove_item_left .remove
+    ${totalProductCountsAfterClickClearAllLink}=    Get Total Product Count In PLP
+    Should Be Equal    ${totalProductCountsAfterClickClearAllLink}    ${totalProductCounts}
+    [Teardown]    Go to    ${asics_url}
+
+Search Result Product Pagination
+    [Documentation]    Passes if a search page appears
+    Search    gel
+    Results Page should Appear    gel
+    : FOR    ${i}    IN RANGE    5
+    \    ${hasNextPageLink}=    Execute JavaScript    return $('#nextPageLink').length;
+    \    Run Keyword If    '${hasNextPageLink}' == '0'    Exit For Loop
+    \    ${currentPageProductCount}=    Get Current Page Product Count In PLP
+    \    Should Be Equal As Integers    ${currentPageProductCount}    24
+    \    Click Element    id=nextPageLink
+
+Shoes Product Pagination
+    [Documentation]    1. Go to the shoes page
+    ...    2. Get the total number of products in the Shoe PLP page
+    ...    3. Go through each page in the PLP and count the number of products and get the sum
+    ...    4. Check if it matches
+    [Setup]    Go to    ${asics_url}${shoesCatalogURL}
+    ${totalProductCounts}=    Get Total Product Count In PLP
+    ${maxPagedSize}=    Evaluate    int((${totalProductCounts} + 23)/24)
+    ${actualTotalProductCounts}    Set variable    0
+    : FOR    ${i}    IN RANGE    ${maxPagedSize}
+    \    ${currentPageProductCount}=    Get Current Page Product Count In PLP
+    \    ${actualTotalProductCounts}=    Evaluate    ${actualTotalProductCounts}+${currentPageProductCount}
+    \    ${haveNextPage}=    Have Next Page
+    \    Run Keyword If    '${haveNextPage}' == '0'    Exit For Loop
+    \    Click Element    id=nextPageLink
+    Should Be Equal As Integers    ${actualTotalProductCounts}    ${totalProductCounts}
+    [Teardown]    Go to    ${asics_url}
+
+Apparel Product Pagination
+    [Documentation]    1. Go to an Apparel PDP
+    ...    2. Get all the page numbers.
+    ...    3. Go to a next page if there is until it reaches the end of the page
+    ...    4. Numbers should match.
+    [Setup]    Go to    ${asics_url}${apparelCatalogURL}
+    ${totalProductCounts}=    Get Total Product Count In PLP
+    ${maxPagedSize}=    Evaluate    int((${totalProductCounts} + 23)/24)
+    ${actualTotalProductCounts}    Set variable    0
+    : FOR    ${i}    IN RANGE    ${maxPagedSize}
+    \    ${currentPageProductCount}=    Get Current Page Product Count In PLP
+    \    ${actualTotalProductCounts}=    Evaluate    ${actualTotalProductCounts}+${currentPageProductCount}
+    \    ${haveNextPage}=    Have Next Page
+    \    Run Keyword If    '${haveNextPage}' == '0'    Exit For Loop
+    \    Click Element    id=nextPageLink
+    Should Be Equal As Integers    ${actualTotalProductCounts}    ${totalProductCounts}
+    [Teardown]    Go to    ${asics_url}
+
+Accessory Product Pagination
+    [Documentation]    1. Go to an accessories page
+    ...    2. Get the total number of pages.
+    ...    3. Run a loop for each page and check if there are products.
+    ...    4. Counts the number of Products on the page
+    ...    5. Passes if the sum of all products == total found.
+    [Tags]
+    [Setup]    Go to    ${asics_url}${accessoriesCatalogURL}
+    ${totalProductCounts}=    Get Total Product Count In PLP
+    ${maxPagedSize}=    Evaluate    int((${totalProductCounts} + 23)/24)
+    ${actualTotalProductCounts}    Set variable    0
+    : FOR    ${i}    IN RANGE    ${maxPagedSize}
+    \    ${currentPageProductCount}=    Get Current Page Product Count In PLP
+    \    ${actualTotalProductCounts}=    Evaluate    ${actualTotalProductCounts}+${currentPageProductCount}
+    \    ${haveNextPage}=    Have Next Page
+    \    Run Keyword If    '${haveNextPage}' == '0'    Exit For Loop
+    \    Click Element    id=nextPageLink
+    Should Be Equal As Integers    ${actualTotalProductCounts}    ${totalProductCounts}
+    [Teardown]    Go to    ${asics_url}

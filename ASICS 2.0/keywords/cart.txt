@@ -1,0 +1,86 @@
+*** Settings ***
+Documentation     This resource file also contains keywords that have to do with PLP/PDP
+Library           Selenium2Library
+Resource          search.txt
+
+*** Keywords ***
+Add to Cart
+    [Documentation]    The sleep command is to wait for the minicart text to be updated.
+    Click Element    id=addToCartButton
+    Sleep    5 seconds
+
+Shopping Cart ID should be present
+    Page should contain Element    css=.subtotal-cartid
+
+Review Cart Layout
+    [Documentation]    Keyword checks for the following elements on the page: Product Image, Product Name, Product Size, Product Colour, Product Price and Product Subtotal. Product Width is not considered because it does not apply to all products in the site. Keyword also takes a screenshot for RF logs.
+    Page should contain Element    xpath=//*[@id='cart_table']/tbody/tr/td[1]/a/img
+    Page should contain Element    css=.cartProductDetailName
+    Page should Contain Element    css=.cartProductSizeParagraph
+    Page should Contain Element    css=.cartProductColourParagraph>span
+    Page should contain Element    xpath=//*[@id='cart_table']/tbody/tr/td[contains(@class,"price val")]
+    Page should contain Element    xpath=//*[@id='cart_table']/tbody/tr/td[contains(@class,"subtotal val")]
+    Capture Page Screenshot
+
+Select first Product in the PLP
+    Wait Until Page contains element    css=.prod-wrap a    10 seconds
+    Click Element    css=.prod-wrap a
+
+Select In Stock Product in the PLP
+    Wait until Keyword Succeeds    2 minutes    10 seconds    Page should contain Element    css=.prod-wrap a
+    Comment    Wait Until Page contains element    css=.prod-wrap a    10 seconds
+    Execute Javascript    var shoes = document.getElementsByClassName("price center"); var shoeInStockIndex = 0; for (var x=0;x<shoes.length;x++) { \ \ if (shoes[x].textContent.match(/\\d+/g)) { \ \ \ \ shoeInStockIndex = x; \ \ \ \ break; \ \ } } shoes[shoeInStockIndex].parentNode.getElementsByTagName("a")[0].click();
+    Wait Until Element Is Visible    id=addToCartButton    1 minute
+
+Select any available size
+    [Documentation]    August 3, 2016: New PDP no longer has ptpchoosesizebutton, so am commenting them out. Putting them back if they need to.
+    ...    Original CSS: css=.dropdown-menu .SizeOption a:not(.SizeUnavailable)
+    ...
+    ...    September 26, 2016:
+    ...    PDP V5 isn't out yet. So I had to put it back. God damn it.
+    ...
+    ...    October 6, 2016:
+    ...    ...setting a conditional for AKR. Can we just use the new PDP already?
+    ${selectway}    Execute Javascript    return document.getElementsByClassName('tab-content clearfix').length
+    log    ${selectway}
+    Comment    Run Keyword if    ${selectway} > 0    "${COUNTRY}" = "AKR" OR "${COUNTRY}" = "AOP"
+    Run Keyword if    ${selectway}>0    Execute Javascript    $("#sizes-options").find(".SizeOption.inStock a").first().click()
+    Comment    Run Keyword if    ${selectway} = 0    "${COUNTRY}" != "AKR" AND "${COUNTRY}" != "AOP"
+    Run Keyword if    ${selectway}==0    Wait Until Element is Visible    id=ptpChooseSizeButton    30 seconds
+    Run Keyword if    ${selectway}==0    Click Element    id=ptpChooseSizeButton
+    Run Keyword if    ${selectway}==0    Wait Until Element is Visible    css=.SizeOption a:not(.SizeUnavailable)    20 seconds
+    Run Keyword if    ${selectway}==0    Click Element    css=.SizeOption a:not(.SizeUnavailable)
+
+Minicart Quantity should have been increased
+    ${quantity}=    Get Text    id=minicart-total
+    Should be True    ${quantity} > 0
+
+Remove Item from Cart
+    [Documentation]    Only removes the FIRST item from the cart
+    Comment    Click Element    id=RemoveProduct_0
+    Wait until keyword succeeds    1 minute    10 seconds    Execute JavaScript    $('.submitRemoveProduct').first().click();
+    Comment    Execute JavaScript    $('.submitRemoveProduct').first().click();
+
+Go to Cart Page
+    Comment    Click Element    xpath=//*[@id='nav_main']/div[2]/a/span[3]
+    Click Element    id=minicart-total
+
+Increase Item Quantity
+    Wait Until Keyword Succeeds    2 minutes    10 seconds    Page should contain element    id=quantity0
+    Clear Element Text    id=quantity0
+    Input Text    id=quantity0    2
+    Click Element    id=QuantityProduct_0
+
+Cart Quantity should have changed
+    ${quantity}=    Get Value    quantity0
+    Should be True    ${quantity} > 1
+
+Continue Shopping
+    [Documentation]    Goes back and checks if we return to the homepage
+    Comment    Click Element    link=${continue_shopping_text}
+    Wait until page contains Element    css=.shopping    2 minutes
+    Click Element    css=.shopping
+    Wait until page does not contain element    css=.subtotal-cartid    30 seconds
+    Run Keyword If    "${COUNTRY}" == "AAC"    Title should be    ${asics_home_title_prefix}
+    Run Keyword if    "${COUNTRY}" != "AAC"    Title should Be    ${asics_home_title_prefix} ${asics_home_title_suffix}
+    Comment    Title should Be    ${asics_home_title_prefix} ${asics_home_title_suffix}

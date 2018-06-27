@@ -1,0 +1,25 @@
+*** Settings ***
+Documentation     For AAC and other future sites using Shoe Finder
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Force Tags        aac
+Resource          ../keywords/setup.txt
+Resource          ../keywords/shoe_finder.txt
+
+*** Test Cases ***
+Check if there is a result
+    [Documentation]    Needs to be reworked but makes sure that there is no 500 error on the page.
+    [Tags]    shoefinder
+    [Setup]    Go to    ${asics_url}product-finder/shoe
+    Start button should appear
+    Click Start button
+    Next button should appear
+    Click Men
+    Click Element    //*[@id='product-finder-module']/div[2]/div/div[3]/button
+    Click Road
+    Click Element    //*[@id='product-finder-module']/div[3]/div/div[3]/button[2]
+    Click Element    //*[@id='step-graph-options']/div[1]/div/div[1]
+    Click Element    //*[@id='product-finder-module']/div[4]/div/div[3]/button[2]
+    Click Element    //*[@id='step-pronation-options']/div[1]
+    Click Element    //*[@id='product-finder-module']/div[5]/div/div[3]/button[2]
+    Page Should Contain Element    css=.start-over-button

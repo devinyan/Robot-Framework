@@ -1,0 +1,18 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for US
+
+*** Variables ***
+${site_url}       http://www.ecstage.onitsukatiger.com/es/es-es/
+${url_production}    http://www.onitsukatiger.com/es/
+${home_title_prefix}    Onitsuka Tiger Spain
+${home_title_suffix}    | Homepage
+@{shoe_size2}     Mens 6    \    \    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    /    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    \    Womens 7.5
+${search_product}    gel    # 0010141695.1390
+${search_keyword}    mexico
+${search_keyword2}    edr
+${local_site_url}    http://onitsukatiger-es:9001/es/es-es/
+${search_prod}    0010248021.9494

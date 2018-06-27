@@ -1,0 +1,170 @@
+*** Settings ***
+Library           Selenium2Library
+Resource          login.txt
+Resource          search.txt
+Resource          setup.txt
+Resource          cart.txt
+Resource          dummy_address.txt
+Resource          rakuten.txt
+Resource          credit_card_validation.txt
+Resource          payment.txt
+
+*** Keywords ***
+Proceed to Checkout
+    Comment    Click Element    xpath=(//a[contains(text(),'${checkout_text}')])[2]
+    Wait until page contains element    id=checkoutButtonTop    10 seconds
+    Click Element    id=checkoutButtonTop
+
+Checkout as Guest
+    [Documentation]    May 24, 2016: Had to change because in CE2 for 2.0 we removed the guest email from the checkout page. Woop de doo.
+    Comment    Wait until Page Contains Element    id=guest.email    10 seconds
+    Comment    Input Text    id=guest.email    ${login_email}
+    ${noSkipLoginStep}    Execute Javascript    return $("form[id='guestForm']").is(":visible");
+    Run Keyword If    '${noSkipLoginStep}'=='True'    Wait until page contains element    xpath=//form[@id='guestForm']/div/button    10 seconds
+    Run Keyword If    '${noSkipLoginStep}'=='True'    Click Element    xpath=//form[@id='guestForm']/div/button
+
+Place Order
+    Wait Until Page Contains Element    id=PlaceOrder    10 seconds
+    Comment    Execute Javascript    window.scrollTo(0,document.body.scrollHeight - 300);
+    Focus    id=PlaceOrder
+    Click Element    id=PlaceOrder
+
+Get Order Number
+    Wait Until Page Contains Element    xpath=//*[@id='content']/div[2]/div/div[1]/p[2]    1 minute
+    ${order_number}=    Get Text    xpath=//*[@id='content']/div[2]/div/div[1]/p[2]
+    Log    ${order_number}
+
+Accept Terms and Conditions
+    [Documentation]    Accept them blindly.
+    Log    ${COUNTRY}
+    Run Keyword If    "${COUNTRY}" == "AJP"    Run Keywords    Wait until Page Contains Element    id=termChecked    10 seconds
+    ...    AND    Execute javascript    document.getElementById('termChecked').checked=true
+    ...    AND    Wait until Page Contains Element    link=同意して購入手続きに進む    10 seconds
+    ...    AND    Click Element    link=同意して購入手続きに進む
+    Comment    Wait until Page Contains Element    link=同意して購入手続きに進む    10 seconds
+    Comment    Click Element    link=同意して購入手続きに進む
+    Comment    Wait until Page Contains Element    xpath=.//*[@id='storeFinder']/a[2]    10 seconds
+    Comment    Click Element    xpath=.//*[@id='storeFinder']/a[2]
+    Run Keyword if    "${COUNTRY}" in ["AGB","AOP","ADE"]    Run Keywords    Page should contain Element    id=Terms
+    ...    AND    Execute Javascript    document.getElementById("Terms").checked=true;
+    Run keyword If    "${COUNTRY}" == "AKR"    Run keywords    Wait until element is visible    link=동의함    10 seconds
+    ...    AND    Click Element    link=동의함
+
+Checkout as Registered User
+    [Documentation]    Added different login details for AKR
+    ${noSkipLoginStepForRegister}    Execute Javascript    return $("input[id='j_username']").is(":visible");
+    Run Keyword If    '${noSkipLoginStepForRegister}'=='True'    Wait until keyword succeeds    2 minutes    10 seconds    Page should contain element    j_username
+    Run Keyword If    '${noSkipLoginStepForRegister}'=='True'    Input Text    j_username    ${login_email}
+    Run Keyword If    '${noSkipLoginStepForRegister}'=='True'    Input Password    j_password    ${login_password}
+    Run Keyword If    '${noSkipLoginStepForRegister}'=='True'    Click Element    xpath=//button[@type='submit']
+    Run Keyword If    '${noSkipLoginStepForRegister}'=='False'    Enter AGB Address
+    Run Keyword if    "${COUNTRY}" =="AKR"    Run Keywords    Input text    j_username    nicole.toledo+accept@asics.com
+    ...    AND    Input Password    j_password    ${login_password}
+    ...    AND    Click Element    xpath=//button[@type='submit']
+
+Select Cash on Delivery
+    ${display}    Execute Javascript    return document.getElementsByClassName('addNewPymentMethosPanel ')[0].style.display;
+    Run Keyword If    "${display}" == "block"    Show Add New Payment Methods Panel
+    Comment    Click Element    id=cashondelivery
+    Comment    Select Radio Button    paymentType    cashondelivery
+    Execute Javascript    $("#cashondelivery").click();
+    Execute Javascript    ACC.checkout.switchPaymentType();
+
+Enter Japan Delivery Address If Not Exist
+    [Documentation]    Details are taken from the userdetails.txt
+    ${display}    Execute Javascript    return document.getElementsByClassName('addNewDeliveryAddressPanel')[0].style.display;
+    Run Keyword If    "${display}" == "none"    Enter AJP Address
+
+Enter Japan Delivery Address And Save If Not Exist
+    [Documentation]    Details are taken from the userdetails.txt
+    ${display}    Execute Javascript    return document.getElementsByClassName('addNewDeliveryAddressPanel')[0].style.display;
+    Run Keyword If    "${display}" == "none"    Enter AJP Address
+    Run Keyword If    "${display}" == "none"    Select Checkbox    id=saveAddress
+    Run Keyword If    "${display}" == "none"    Click Element    id=saveAddress
+
+Enter Visa Info If Not Exist
+    ${display}    Execute Javascript    return document.getElementsByClassName('addNewPymentMethosPanel ')[0].style.display;
+    Run Keyword If    "${display}" == "none"    Pay with Visa
+    ...    ELSE    Click Element    xpath=.//*[@id='savedPaymentListHolder']/form/ul/li[1]
+    Sleep    2 seconds
+
+Show Add New Payment Methods Panel
+    Focus    xpath=.//*[@id='cs_saved_payment_cards_lists']/div[2]/button
+    Click Element    xpath=.//*[@id='cs_saved_payment_cards_lists']/div[2]/button
+    Wait Until Element Is Visible    id=uniform-cashondelivery    15
+
+Select Pay Later
+    ${display}    Execute Javascript    return document.getElementsByClassName('addNewPymentMethosPanel ')[0].style.display;
+    Run Keyword If    "${display}" == "block"    Show Add New Payment Methods Panel
+    Comment    Click Element    id=paylater
+    Comment    Select Radio Button    paymentType    paylater
+    Execute Javascript    $("#paylater").click();
+    Execute Javascript    ACC.checkout.switchPaymentType();
+
+Select Enable Gift Wrapping Checkbox
+    Focus    id=enabledGiftWrapping1
+    Select Checkbox    id=enabledGiftWrapping1
+    Comment    Click Element    id=enabledGiftWrapping1
+
+Click Add Gift Message Checkbox
+    Select Checkbox    id=enabledAddGiftMessage1
+    Wait Until Element Is Visible    id=giftMessage
+    Input Text    id=giftMessage    Automation Test Text
+
+Register from Checkout
+    Comment    Wait until Element is visible    xpath=.//div[@class='guestRegisterCheckoutChoice']/div[@class='choices']/div[2]
+    Comment    Click Element    xpath=.//div[@class='guestRegisterCheckoutChoice']/div[@class='choices']/div[2]
+    Wait until Element is visible    xpath=.//div[@class='choices']/div[2]
+    Click Element    xpath=.//div[@class='choices']/div[2]
+
+Untick Terms and Condtions
+    [Documentation]    Sometimes you just want to be a rebel
+    Unselect Checkbox    id=Terms
+
+Select Rakuten
+    [Documentation]    AJP Only thing.
+    ${display}    Execute Javascript    return document.getElementsByClassName('addNewPymentMethosPanel ')[0].style.display;
+    Run Keyword If    "${display}" == "block"    Show Add New Payment Methods Panel
+    Comment    Click Element    id=cashondelivery
+    Select Radio Button    paymentType    rakuten
+
+Select Pay Cybersource
+    ${display}    Execute Javascript    return document.getElementsByClassName('addNewPymentMethosPanel ')[0].style.display;
+    Run Keyword If    "${display}" == "block"    Show Add New Payment Methods Panel
+    Comment    Click Element    id=paylater
+    Comment    Select Radio Button    paymentType    paylater
+    Execute Javascript    $("#cybersource").click();
+    Execute Javascript    ACC.checkout.switchPaymentType();
+
+Select Visa
+    [Documentation]    AEB thing for countries where Visa is not the default payment method.
+    Focus    ogonePaymentForm
+    Select Radio Button    payment_type    p-method-paypal-express-visa
+    Comment    Execute Javascript    $("#p-method-paypal-express-visa").click();
+
+Enter Visa Info If Not Exist for AAC
+    ${display}    Execute Javascript    return document.getElementsByClassName('addNewPymentMethosPanel ')[0].style.display;
+    Run Keyword If    "${display}" == "none"    Pay with Visa For ACC
+    ...    ELSE    Click Element    xpath=.//*[@id='savedPaymentListHolder']/form/ul/li[1]
+    Run Keyword If    "${display}" == "block"    Execute Javascript    $('input[name="securityCode"]:visible').val('123');
+    Sleep    2 seconds
+
+Enter AOP Address if it doesn't exist
+    ${display}    Execute Javascript    return document.getElementsByClassName('addNewDeliveryAddressPanel')[0].style.display;
+    Run Keyword If    "${display}" == "none"    Enter AOP Address
+
+Enter AAC Delivery Address If Not Exist
+    [Documentation]    Details are taken from the userdetails.txt
+    ${display}    Execute Javascript    return document.getElementsByClassName('addNewDeliveryAddressPanel')[0].style.display;
+    Run Keyword If    "${display}" == "none"    Enter AAC Address
+
+Enter a Delivery Address if not present
+    [Documentation]    Combined 3 keywords (Enter AAC, Enter AEB, Enter AOP) in one keyword if the other doesn't exist.
+    ${display}    Execute Javascript    return document.getElementsByClassName('addNewDeliveryAddressPanel')[0].style.display;
+    Run keyword if    "${COUNTRY}" in ["AGB","ADE"] and "${display}" == "none"    Enter AEB Address
+    Run keyword if    "${COUNTRY}" == "AOP" and "${display}" == "none"    Enter AOP Address
+    Run keyword if    "${COUNTRY}" == "AAC" and "${display}" == "none"    Enter AAC Address
+    Run keyword if    "${COUNTRY}" == "ANZ" and "${display}" == "none"    Enter ANZ Address
+
+Ogone Page should appear
+    Wait Until Page contains Element    id=Ecom_Payment_Card_Number    20 seconds

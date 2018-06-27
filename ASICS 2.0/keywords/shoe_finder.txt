@@ -1,0 +1,27 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Keywords ***
+Start button should appear
+    Wait until Page Contains Element    product-finder-start-button
+
+Click Start Button
+    Wait until Page Contains Element    product-finder-start-button    1 minute
+    Click Element    product-finder-start-button
+
+Next button should appear
+    [Documentation]    This does not distinguish which next button it is.
+    Wait until page contains element    css=.button.next.light-blue
+
+Click Men
+    [Documentation]    CSS!
+    Click element    css=img[alt="Men"]
+
+Click Next Button
+    Comment    Wait until Element is visible    css=#product-finder-start-button .button.next.light-blue    30 seconds
+    Comment    Click Element    css=#product-finder-start-button .button.next.light-blue
+    Wait until Element is visible    //*[@id='product-finder-module']/div[2]/div/div[3]/button
+    Click Element    //*[@id='product-finder-module']/div[2]/div/div[3]/button
+
+Click Road
+    Click Element    css=img[alt="Road"]

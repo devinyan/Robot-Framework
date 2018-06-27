@@ -1,0 +1,179 @@
+*** Settings ***
+Documentation     Needs to add ID tags to work for AOP and AAC. (Works for AJP like a charm)
+Suite Setup       Open Homepage
+Suite Teardown    Close Browser
+Test Setup        Login to my Account
+Test Teardown     Log out
+Force Tags        personaldetails    --noncritical
+Library           Selenium2Library
+Resource          ../keywords/personal_details.txt
+Resource          ../keywords/setup.txt
+
+*** Test Cases ***
+Blank First Name
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Modify First Name    ${EMPTY}
+    Update Personal Details
+    Error Message should appear    ${error_general_message}
+    Error Message should appear    ${error_invalid_firstname}
+    [Teardown]    Log out
+
+Blank Last Name
+    [Setup]    Login to My Account
+    Go to Personal Details Page
+    Modify Last Name    ${EMPTY}
+    Update Personal Details
+    Error Message should appear    ${error_general_message}
+    Error Message should appear    ${error_invalid_lastname}
+    [Teardown]    Log out
+
+Blank Phonetic First Name
+    [Documentation]    Make sure to exclude ajp in the command line if not being used.
+    [Tags]    ajp
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Modify Phonetic First Name    ${EMPTY}
+    Update Personal Details
+    Error Message should appear    ${error_general_message}
+    Error Message should appear    ${error_phonetic_first_name}
+    [Teardown]    Logout
+
+Blank Phonetic Last Name
+    [Tags]    ajp
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Modify Phonetic Last Name    ${EMPTY}
+    Update Personal Details
+    Error Message should appear    ${error_general_message}
+    Error Message should appear    ${error_phonetic_last_name}
+    [Teardown]    Logout
+
+Update Personal Details
+    [Documentation]    Test will pass if the all names were successfully changed in the system.
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Modify First Name    First
+    Modify Last Name    last
+    Run Keyword if    '${COUNTRY}' == 'AJP'    Modify Phonetic First Name    ライヤン
+    Run Keyword if    '${COUNTRY}' == 'AJP'    Modify Phonetic Last Name    チャン
+    Update Personal Details
+    Notification message should be displayed    ${notification_update_details}
+    Check if First Name was updated    First
+    Check if Last Name was updated    last
+    Run Keyword if    '${COUNTRY}' == 'AJP'    Check if Phonetic first name was updated    ライヤン
+    Run Keyword if    '${COUNTRY}' == 'AJP'    Check if Phonetic last name was updated    チャン
+    [Teardown]    Logout
+
+Cancel Personal Details
+    [Documentation]    User should return back to the profile page.
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Cancel Email Update
+    [Teardown]    Logout
+
+Blank Email Address
+    [Tags]
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Modify Email Address    ${EMPTY}
+    Enter Current Password    ${login_password}
+    Update Email Address
+    Error Message should appear    ${error_general_message}
+    Error Message should appear    ${error_blank_email}
+    [Teardown]    Logout
+
+Blank Confirm Email Address
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Modify Email Address    nicole.toledo@asics.com
+    Enter Current Password    ${login_password}
+    Update Email Address
+    Error Message should appear    ${error_general_message}
+    Error Message should appear    ${error_personal_details_blank_email}
+    [Teardown]    Logout
+
+Personal Detail Emails don't match
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Modify Email Address    nicole.toledo@asics.com
+    Confirm Email Address    nicole.toledo.test@outlook.com
+    Enter Current Password    123456n
+    Update Email Address
+    Error Message should appear    ${error_general_message}
+    Error Message should appear    ${error_email_no_match}
+    [Teardown]    Logout
+
+Incorrect Current Password
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Modify Email Address    nicole.toledo@gmail.com
+    Confirm Email Address    nicole.toledo@gmail.com
+    Enter Current Password    123
+    Update Email Address
+    Error Message should appear    ${error_general_message}
+    Error Message should appear    ${error_incorrect_current_password}
+    [Teardown]    Log out
+
+Update Email
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Modify Email Address    nicole.toledo@gmail.com
+    Confirm Email Address    nicole.toledo@gmail.com
+    Enter current password    ${login_password}
+    Update Email Address
+    Notification message should be displayed    ${notification_update_details}
+    Check if email was updated    nicole.toledo@gmail.com
+    [Teardown]    Logout
+
+Cancel Email Update
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Cancel Email Update
+    [Teardown]    Log out
+
+Incorrect Current Password (Password field)
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Enter the Current Password    123
+    Modify Password    654321n
+    Confirm New Password    654321n
+    Update Password
+    Error message should appear    ${error_incorrect_current_password}
+    Error message should appear    ${error_general_message}
+    [Teardown]    Log out
+
+New Weak Password
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Enter the Current Password    ${login_password}
+    Modify Password    4321
+    Confirm New Password    4321
+    Update Password
+    Error message should appear    ${error_weak_password}
+    Error message should appear    ${error_general_message}
+    [Teardown]    Log out
+
+New Passwords don't match
+    [Setup]    Login to my Account
+    Go to Personal Details Page
+    Enter the current Password    ${login_password}
+    Modify Password    ${login_updated_password}
+    Confirm New Password    njiokmlp
+    Update Password
+    Error message should appear    ${error_password_no_match}
+    Error message should appear    ${error_general_message}
+    [Teardown]    Log out
+
+Successful Change Password
+    [Documentation]    This uses a separate account from the other test cases so I can use my main account for manual testing.
+    [Tags]    password_update
+    [Setup]    Login to My Account For Change Password Case
+    Go to Personal Details Page
+    Enter the current Password    ${login_password}
+    Modify Password    ${login_updated_password}
+    Confirm New Password    ${login_updated_password}
+    Update Password
+    Notification message should be displayed    ${notification_password_update}
+    Check if password was updated
+    [Teardown]    Log out

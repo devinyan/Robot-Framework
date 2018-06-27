@@ -1,0 +1,18 @@
+*** Settings ***
+Documentation     This contains all keywords for the AT/OT site for US
+
+*** Variables ***
+${site_url}       http://www.ecstage.onitsukatiger.com/gb/en-gb/
+${url_production}    http://www.onitsukatiger.com/gb
+${home_title_prefix}    Onitsuka Tiger United Kingdom
+${home_title_suffix}    | Homepage
+@{shoe_size2}     Mens 6    \    \    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    /    \    \    \    ${EMPTY}
+...               \    \    \    \    \    \    ${EMPTY}
+...               \    \    \    Womens 7.5
+${search_product}    shoe    # 0010223127.0101
+${search_keyword}    mexico
+${search_keyword2}    edr
+${local_site_url}    http://onitsukatiger-gb:9001/gb/en-gb/
+${search_prod}    0010255857.2199

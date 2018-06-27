@@ -1,0 +1,36 @@
+*** Settings ***
+Documentation     US has a different checkout path from the other regions.
+...
+...               Instead of forcing to merge the checkout suite in one site I have decided to split how it's done.
+Force Tags        uscheckout    otatus    cycle1
+Library           Selenium2Library
+Resource          ../Keywords/checkout.txt
+
+*** Test Cases ***
+Guest Checkout
+    [Setup]    Open Homepage
+    Search    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to cart
+    Proceed to Checkout
+    Checkout as Guest
+    Enter AAC Address
+    Pay with Mastercard
+    Place Order
+    Get Order Number
+    [Teardown]    Close Browser
+
+Registered Checkout
+    [Setup]    Open Homepage
+    Search    ${search_product}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to cart
+    Proceed to Checkout
+    Checkout as Registered User
+    Enter AAC Address If Not Exist
+    Enter Payment Information For AAC
+    Place Order
+    Get Order Number
+    [Teardown]    Close Browser

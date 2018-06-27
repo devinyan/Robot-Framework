@@ -1,0 +1,97 @@
+*** Settings ***
+Documentation     US, AU and UK are definitely working.
+Force Tags        otat
+Resource          ../Keywords/checkout.txt
+Resource          ../Keywords/cart.txt
+
+*** Test Cases ***
+US- Guest
+    [Tags]    aac
+    [Setup]    Open Homepage For Smoke    AAC
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to cart
+    Proceed to Checkout
+    Checkout as Guest
+    Enter AAC Address
+    Comment    Find Security Code
+    [Teardown]    Close Browser
+
+US-Registered
+    [Tags]    aac
+    [Setup]    Open Homepage For Smoke    AAC
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to cart
+    Proceed to Checkout
+    Checkout as Registered User
+    Find Security CODE
+    [Teardown]    Close Browser
+
+AU-Guest
+    [Tags]    aop    smoketestotataop
+    [Setup]    Open Homepage For Smoke    AOP
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to cart
+    Comment    Minicart Quantity should have increased
+    Proceed to Checkout
+    Checkout as Guest
+    Enter Shipping Details
+    Accept Terms and Conditions
+    Switch To Paypal Payment Method
+    Place Order
+    Paypal page should have loaded
+    [Teardown]    Close Browser
+
+AU-Registered
+    [Tags]    aop
+    [Setup]    Open Homepage For Smoke    AOP
+    Search    ${search_prod}
+    Select In Stock Product in the PLP
+    Select Any Size
+    Add to cart
+    Minicart quantity should have increased
+    Proceed to Checkout
+    Checkout as Registered User
+    Enter Shipping Details If Not Exist For Registered User
+    Accept Terms and Conditions
+    Switch To Paypal Payment Method
+    Place Order
+    Paypal page should have loaded
+    [Teardown]    Close Browser
+
+AEB-Guest
+    [Tags]    aeb
+    [Setup]    Open Homepage For Smoke    ${COUNTRY}
+    ${isAEBSite}=    IsAEBSite    ${COUNTRY}
+    Run Keyword If    ${isAEBSite}    Run Keywords    Search    ${search_prod}
+    ...    AND    Select In Stock Product in the PLP
+    ...    AND    Select Any Size
+    ...    AND    Add to cart
+    ...    AND    Proceed to Checkout
+    ...    AND    Checkout as Guest
+    ...    AND    Enter Shipping Details
+    ...    AND    Accept Terms and Conditions
+    ...    AND    Place Order
+    ...    AND    Ogone Page should have appeared
+    [Teardown]    Close Browser
+
+AEB-Registered
+    [Tags]    aeb
+    [Setup]    Open Homepage For Smoke    ${COUNTRY}
+    ${isAEBSite}=    IsAEBSite    ${COUNTRY}
+    Run Keyword If    ${isAEBSite}    Run Keywords    Search    ${search_prod}
+    ...    AND    Select In Stock Product in the PLP
+    ...    AND    Select Any Size
+    ...    AND    Add to cart
+    ...    AND    Proceed to Checkout
+    ...    AND    Checkout as Registered User
+    ...    AND    Enter Shipping Details If Not Exist For Registered User
+    ...    AND    Accept Terms and Conditions
+    ...    AND    Place Order
+    ...    AND    Ogone Page should have appeared
+    [Teardown]    Close Browser
